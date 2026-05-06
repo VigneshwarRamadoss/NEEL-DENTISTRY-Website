@@ -1,6 +1,6 @@
 # Neel Dentistry
 
-A premium dental clinic platform featuring a sophisticated "Full Pink" aesthetic and glassmorphism UI. Optimized for high-conversion with direct WhatsApp integration and a 98/100 mobile responsiveness score. Built with React and Framer Motion, the site embodies "Artistic smiles & Exceptional care" through smooth animations and modern UX design.
+A premium dental clinic platform featuring a sophisticated "Full Pink" aesthetic and glassmorphism UI. Optimized for high-conversion with direct WhatsApp integration. Built with React and Framer Motion, the site embodies "Artistic smiles & Exceptional care" through smooth animations and modern UX design.
 
 ## Features
 - **Premium Design**: Modern "Full Pink" aesthetic with glassmorphism elements.
