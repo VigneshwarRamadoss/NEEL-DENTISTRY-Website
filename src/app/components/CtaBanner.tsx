@@ -26,16 +26,21 @@ export function CtaBanner() {
 
           <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
             <a
-              href="tel:+1234567890"
+              href="tel:+919655300036"
               className="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-3 transform hover:-translate-y-1"
             >
               <PhoneCall size={22} />
               +91 96553 00036
             </a>
-            <button className="w-full sm:w-auto bg-white/50 backdrop-blur-md hover:bg-white text-gray-900 border border-white/60 px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 transform hover:-translate-y-1">
+            <a 
+              href="https://wa.me/919655300036?text=Hello!%20I'd%20like%20to%20book%20a%20consultation%20at%20Neel%20Dentistry."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto bg-white/50 backdrop-blur-md hover:bg-white text-gray-900 border border-white/60 px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 transform hover:-translate-y-1"
+            >
               <Calendar size={22} />
               Book Consultation
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
