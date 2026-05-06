@@ -111,7 +111,7 @@ export function FAQs() {
             <p className="text-gray-400 font-serif mb-10 max-w-[500px] mx-auto text-lg">
               Our front desk team is happy to help with anything — from treatment questions to insurance queries.
             </p>
-            <a href="tel:+1234567890" className="inline-block bg-[#ffc2d1] text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-[#ffb3c6] transition-colors">
+            <a href="tel:+919655300036" className="inline-block bg-[#ffc2d1] text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-[#ffb3c6] transition-colors">
               Call Us Today
             </a>
           </div>

@@ -1,47 +1,85 @@
 import { motion } from "motion/react";
-import { PhoneCall, Calendar } from "lucide-react";
+import { Phone } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <section className="py-24 bg-[#ffc2d1] relative overflow-hidden">
-      {/* Decorative abstract elements */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[140%] bg-gradient-to-tr from-white/20 to-transparent rounded-full blur-3xl transform rotate-12 pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[140%] bg-gradient-to-bl from-[#ffb3c6] to-transparent rounded-full blur-3xl transform -rotate-12 pointer-events-none" />
-
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10 text-center">
+    <section style={{ backgroundColor: "#F5F5F5", padding: "96px 0" }}>
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto"
+          className="max-w-2xl mx-auto text-center"
         >
-          <span className="text-gray-800 font-bold tracking-[3px] uppercase text-sm mb-4 block">Ready for a change?</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-serif leading-tight">
-            Schedule Your Next Dental Visit Today
-          </h2>
-          <p className="text-gray-800 text-lg md:text-xl mb-12 leading-relaxed opacity-90 max-w-2xl mx-auto">
-            Experience the highest standard of dental care in a relaxing environment. We are currently accepting new patients and look forward to seeing your smile.
+          {/* Eyebrow */}
+          <p style={{
+            fontFamily: "'Open Sans', sans-serif",
+            fontWeight: 700,
+            fontSize: "11px",
+            letterSpacing: "2.5px",
+            textTransform: "uppercase",
+            color: "#888888",
+            marginBottom: "14px",
+          }}>
+            Most patients are seen within 48 hours
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
-            <a
-              href="tel:+919655300036"
-              className="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl flex items-center justify-center gap-3 transform hover:-translate-y-1"
-            >
-              <PhoneCall size={22} />
-              +91 96553 00036
-            </a>
-            <a 
-              href="https://wa.me/919655300036?text=Hello!%20I'd%20like%20to%20book%20a%20consultation%20at%20Neel%20Dentistry."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-white/50 backdrop-blur-md hover:bg-white text-gray-900 border border-white/60 px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3 transform hover:-translate-y-1"
-            >
-              <Calendar size={22} />
-              Book Consultation
-            </a>
-          </div>
+          {/* Headline */}
+          <h2 style={{
+            fontFamily: "'Roboto', sans-serif",
+            fontWeight: 700,
+            fontSize: "28px",
+            color: "#000000",
+            lineHeight: 1.2,
+            marginBottom: "44px",
+          }}>
+            Your next appointment<br />
+            is one call away.
+          </h2>
+
+          {/* Level 1 CTA */}
+          <a
+            href="tel:+919655300036"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              backgroundColor: "#ffc2d1",
+              color: "#000000",
+              height: "52px",
+              padding: "0 36px",
+              borderRadius: "6px",
+              fontFamily: "'Open Sans', sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              letterSpacing: "0.3px",
+              textDecoration: "none",
+              transition: "all 200ms ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#ffb3c6";
+              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "#ffc2d1";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            <Phone size={18} fill="currentColor" />
+            Call Now — +91 96553 00036
+          </a>
+
+          {/* Trust micro-copy */}
+          <p style={{
+            fontFamily: "'Open Sans', sans-serif",
+            fontSize: "13px",
+            color: "#888888",
+            marginTop: "24px",
+            lineHeight: 1.7,
+          }}>
+            No referral needed &nbsp;·&nbsp; All ages welcome &nbsp;·&nbsp; Same-day emergency slots available
+          </p>
         </motion.div>
       </div>
     </section>

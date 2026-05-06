@@ -9,7 +9,7 @@ import { CtaBanner } from "../components/CtaBanner";
 
 export function Home() {
   return (
-    <div className="pt-[80px]">
+    <div>
       <Hero />
       <TrustBar />
       <ServicesOverview />

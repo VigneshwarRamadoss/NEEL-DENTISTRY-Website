@@ -200,7 +200,7 @@ export function ServiceDetail() {
               <p className="text-gray-600 mb-8 font-serif">
                 Not sure if this treatment is right for you? Speak to our experts for a personalised assessment.
               </p>
-              <a href="tel:+1234567890" className="w-full block bg-[#ffc2d1] text-gray-900 text-center py-4 rounded-full font-bold hover:bg-[#ffb3c6] transition-colors shadow-md mb-4">
+              <a href="tel:+919655300036" className="w-full block bg-[#ffc2d1] text-gray-900 text-center py-4 rounded-full font-bold hover:bg-[#ffb3c6] transition-colors shadow-md mb-4">
                 Call +91 96553 00036
               </a>
               <Link to="/contact" className="w-full block text-center py-4 border-2 border-gray-900 rounded-full font-bold hover:bg-gray-900 hover:text-white transition-all">

@@ -408,7 +408,7 @@ export function PatientInfo() {
               reserve time daily for urgent cases.
             </p>
             <a
-              href="tel:+1234567890"
+              href="tel:+919655300036"
               className="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-gray-900 px-10 py-4 rounded-full font-bold text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
             >
               <Phone size={22} fill="currentColor" />

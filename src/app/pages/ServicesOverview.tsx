@@ -123,7 +123,7 @@ export function ServicesOverview() {
           <p className="text-gray-400 text-lg mb-10 max-w-[700px] mx-auto font-serif">
             Book a consultation and let us guide you. We'll assess your needs, explain your options, and help you decide.
           </p>
-          <a href="tel:+1234567890" className="inline-block bg-[#ffc2d1] text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-[#ffb3c6] transition-colors shadow-lg">
+          <a href="tel:+919655300036" className="inline-block bg-[#ffc2d1] text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-[#ffb3c6] transition-colors shadow-lg">
             Call to Book a Consultation
           </a>
         </div>
