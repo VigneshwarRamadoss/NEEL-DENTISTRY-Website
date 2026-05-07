@@ -44,7 +44,7 @@ export function IntroAnimation() {
       if (w <= 400)       setDims({ fontSize: 32, taglineSize: 10 });
       else if (w <= 768)  setDims({ fontSize: 44, taglineSize: 11 });
       else if (w <= 1024) setDims({ fontSize: 66, taglineSize: 12 });
-      else                setDims({ fontSize: 85, taglineSize: 14 });
+      else                setDims({ fontSize: 100, taglineSize: 15 });
     };
     update();
     window.addEventListener("resize", update);
@@ -101,9 +101,9 @@ export function IntroAnimation() {
 
   if (!isVisible) return null;
 
-  // Shared text center coordinates
-  const cx = "50%";
-  const cy = "50%";
+  // Fixed center for SVG coordinate system (independent of container size)
+  const cx = 500;
+  const cy = 500;
 
   const letterSpacing = dims.fontSize >= 85 ? "8px" : dims.fontSize >= 66 ? "6px" : "4px";
   const taglineSpacing = dims.taglineSize >= 14 ? "5px" : "3px";
@@ -137,9 +137,9 @@ export function IntroAnimation() {
       </motion.div>
 
       {/* ── Main centered content ── */}
-      <div className="relative w-full h-full flex items-center justify-center p-4">
+      <div className="relative w-full h-full flex items-center justify-center p-4 sm:p-8">
         <motion.div
-          className="relative flex flex-col items-center w-full max-w-full"
+          className="relative flex flex-col items-center"
           initial={{ scale: 0.97, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
@@ -147,7 +147,7 @@ export function IntroAnimation() {
           {/* Pulsing energy glow */}
           <motion.div
             className="absolute bg-[#ffc2d1]/15 blur-[80px] rounded-full"
-            style={{ width: "60%", height: "120%", top: "-10%" }}
+            style={{ width: "120%", height: "120%", top: "-10%", left: "-10%" }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: [0.8, 1.2, 1], opacity: [0, 0.4, 0] }}
             transition={{ duration: 2.5, delay: 0.5, times: [0, 0.5, 1], ease: "easeInOut" }}
@@ -156,8 +156,8 @@ export function IntroAnimation() {
           {/* ── MAIN TITLE SVG ── */}
           <svg
             ref={mainSvgRef}
-            className="overflow-visible w-full h-auto"
-            /* viewBox set dynamically by fitSvg */
+            className="overflow-visible block mx-auto"
+            /* viewBox and size set dynamically by fitSvg */
           >
             {/* Hidden sizer */}
             <text
@@ -221,25 +221,25 @@ export function IntroAnimation() {
 
           {/* ── Pink gradient underline (spring physics) ── */}
           <motion.div
-            className="mx-auto"
             style={{
               height: "2px",
               background: "linear-gradient(90deg, transparent, #ffc2d1, #ffc2d1, transparent)",
               marginTop: "14px",
+              width: "100%", // Scale to parent container width
             }}
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "80%", opacity: 1 }}
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 0.8, opacity: 1 }}
             transition={{
-              width: { type: "spring", stiffness: 40, damping: 20, delay: FILL_DELAY + 0.2 },
+              scaleX: { type: "spring", stiffness: 40, damping: 20, delay: FILL_DELAY + 0.2 },
               opacity: { duration: 0.5, delay: FILL_DELAY + 0.2 },
             }}
           />
 
           {/* ── TAGLINE SVG ── */}
-          <div style={{ marginTop: "18px", display: "flex", justifyContent: "center", width: "100%" }}>
+          <div style={{ marginTop: "18px", width: "100%" }}>
             <svg
               ref={tagSvgRef}
-              className="overflow-visible w-full h-auto"
+              className="overflow-visible block mx-auto"
             >
               <text
                 x={cx} y={cy}
@@ -303,7 +303,7 @@ export function IntroAnimation() {
 
           {/* ── Pink micro-dot pulse ── */}
           <motion.div
-            className="rounded-full"
+            className="rounded-full mx-auto"
             style={{
               width: "5px",
               height: "5px",
@@ -323,5 +323,6 @@ export function IntroAnimation() {
         </motion.div>
       </div>
     </motion.div>
+
   );
 }
