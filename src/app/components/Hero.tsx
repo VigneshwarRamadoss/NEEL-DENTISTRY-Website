@@ -62,70 +62,91 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
+            className="flex flex-col sm:flex-row items-center sm:items-start gap-5"
           >
             {/* Level 1 CTA — Primary */}
             <a
               href="tel:+919655300036"
+              className="group"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                backgroundColor: "#ffc2d1",
+                color: "#000000",
+                height: "56px",
+                padding: "0 40px",
+                borderRadius: "12px",
+                fontFamily: "'Open Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "16px",
+                letterSpacing: "0.5px",
+                textDecoration: "none",
+                transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
+                whiteSpace: "nowrap",
+                boxShadow: "0 4px 14px rgba(255, 194, 209, 0.2)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.backgroundColor = "#ffb3c6";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(255, 194, 209, 0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.backgroundColor = "#ffc2d1";
+                e.currentTarget.style.boxShadow = "0 4px 14px rgba(255, 194, 209, 0.2)";
+              }}
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="18" height="18" 
+                viewBox="0 0 24 24" fill="none" 
+                stroke="currentColor" strokeWidth="2.5" 
+                strokeLinecap="round" strokeLinejoin="round"
+                className="transition-transform duration-300 group-hover:scale-110"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.3-2.3a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              Call Now — +91 96553 00036
+            </a>
+
+            {/* Level 2 CTA — Secondary (Glassmorphism) */}
+            <Link
+              to="/services"
+              className="group"
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "10px",
-                backgroundColor: "#ffc2d1",
-                color: "#000000",
-                height: "52px",
-                padding: "0 36px",
-                borderRadius: "6px",
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: 700,
-                fontSize: "16px",
-                letterSpacing: "0.3px",
-                textDecoration: "none",
-                transition: "all 200ms ease",
-                whiteSpace: "nowrap",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#ffb3c6";
-                e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#ffc2d1";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              Call Now — +91 96553 00036
-            </a>
-
-            {/* Level 2 CTA — Secondary */}
-            <Link
-              to="/services"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-                backgroundColor: "transparent",
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+                backdropFilter: "blur(12px)",
                 color: "#FFFFFF",
-                height: "48px",
-                padding: "0 28px",
-                borderRadius: "6px",
-                border: "1.5px solid #FFFFFF",
+                height: "56px",
+                padding: "0 32px",
+                borderRadius: "12px",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
                 fontFamily: "'Open Sans', sans-serif",
                 fontWeight: 600,
                 fontSize: "15px",
                 textDecoration: "none",
-                transition: "all 200ms ease",
+                transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
                 whiteSpace: "nowrap",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.4)";
+                e.currentTarget.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
               View Our Services
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
 

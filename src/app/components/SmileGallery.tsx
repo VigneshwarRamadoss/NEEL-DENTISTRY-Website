@@ -19,7 +19,7 @@ const images = [
 
 export function SmileGallery() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#F5F5F5" }}>
+    <section style={{ padding: "96px 0", backgroundColor: "#fff5f7" }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header — trimmed to 2 lines */}
         <div className="max-w-2xl" style={{ marginBottom: "56px" }}>

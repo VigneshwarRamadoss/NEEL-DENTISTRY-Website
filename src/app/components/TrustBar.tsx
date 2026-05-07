@@ -11,9 +11,9 @@ export function TrustBar() {
   return (
     <section
       style={{
-        backgroundColor: "#FAFAFA",
-        borderTop: "1px solid #E8E8E8",
-        borderBottom: "1px solid #E8E8E8",
+        backgroundColor: "#ffc2d1",
+        borderTop: "1px solid rgba(0,0,0,0.05)",
+        borderBottom: "1px solid rgba(0,0,0,0.05)",
         padding: "40px 0",
       }}
     >

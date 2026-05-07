@@ -28,7 +28,7 @@ const services = [
 
 export function ServicesOverview() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#FFFFFF" }}>
+    <section style={{ padding: "96px 0", backgroundColor: "#ffc2d1" }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         {/* Section header — 2 lines max */}
         <div className="text-center max-w-2xl mx-auto" style={{ marginBottom: "56px" }}>
@@ -62,8 +62,8 @@ export function ServicesOverview() {
             >
               <Link
                 to={service.path}
-                className="group flex flex-col bg-white overflow-hidden hover:shadow-lg transition-all duration-300"
-                style={{ borderRadius: "12px", border: "1px solid #E8E8E8" }}
+                className="group flex flex-col bg-[#fff5f7] overflow-hidden hover:shadow-lg transition-all duration-300"
+                style={{ borderRadius: "12px", border: "1px solid rgba(0,0,0,0.06)" }}
               >
                 {/* Image — 16:9 aspect, border-radius 12px, no shadow */}
                 <div className="overflow-hidden" style={{ aspectRatio: "16/9" }}>
@@ -132,12 +132,11 @@ export function ServicesOverview() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              backgroundColor: "transparent",
-              color: "#000000",
+              backgroundColor: "#000000",
+              color: "#FFFFFF",
               height: "48px",
               padding: "0 28px",
               borderRadius: "6px",
-              border: "1.5px solid #000000",
               fontFamily: "'Open Sans', sans-serif",
               fontWeight: 600,
               fontSize: "15px",
@@ -145,10 +144,10 @@ export function ServicesOverview() {
               transition: "all 200ms ease",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#F5F5F5";
+              e.currentTarget.style.backgroundColor = "#333333";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
+              e.currentTarget.style.backgroundColor = "#000000";
             }}
           >
             View All Services

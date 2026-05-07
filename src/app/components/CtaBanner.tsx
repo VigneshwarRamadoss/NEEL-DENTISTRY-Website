@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <section style={{ backgroundColor: "#F5F5F5", padding: "96px 0" }}>
+    <section style={{ backgroundColor: "#ffc2d1", padding: "96px 0" }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,7 +45,7 @@ export function CtaBanner() {
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              backgroundColor: "#ffc2d1",
+              backgroundColor: "#FFFFFF",
               color: "#000000",
               height: "52px",
               padding: "0 36px",
@@ -62,7 +62,7 @@ export function CtaBanner() {
               e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#ffc2d1";
+              e.currentTarget.style.backgroundColor = "#FFFFFF";
               e.currentTarget.style.boxShadow = "none";
             }}
           >

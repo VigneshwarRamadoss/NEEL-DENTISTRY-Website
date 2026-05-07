@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export function MeetDoctor() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#FAFAFA" }}>
+    <section style={{ padding: "96px 0", backgroundColor: "#ffc2d1" }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row-reverse items-stretch gap-0">
           {/* Image Side — bleeds to section edge */}

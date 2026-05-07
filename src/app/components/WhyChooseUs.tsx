@@ -10,7 +10,7 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#FFFFFF" }}>
+    <section style={{ padding: "96px 0", backgroundColor: "#fff5f7" }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-stretch gap-0">
           {/* Image Side — bleeds to section edge, no padding */}
@@ -89,23 +89,22 @@ export function WhyChooseUs() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "8px",
-                  backgroundColor: "transparent",
+                  backgroundColor: "#ffc2d1",
                   color: "#000000",
                   height: "48px",
                   padding: "0 28px",
                   borderRadius: "6px",
-                  border: "1.5px solid #000000",
                   fontFamily: "'Open Sans', sans-serif",
-                  fontWeight: 600,
+                  fontWeight: 700,
                   fontSize: "15px",
                   textDecoration: "none",
                   transition: "all 200ms ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#F5F5F5";
+                  e.currentTarget.style.backgroundColor = "#ffb3c6";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.backgroundColor = "#ffc2d1";
                 }}
               >
                 Meet Our Team

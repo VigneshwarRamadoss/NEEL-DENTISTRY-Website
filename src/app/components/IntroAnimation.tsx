@@ -1,215 +1,312 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { motion } from "motion/react";
+
+/*
+ * IntroAnimation — Self-drawing SVG stroke-path reveal
+ *
+ * Timeline (~5.5s total):
+ *   0.0s – 0.5s   Background blobs fade in
+ *   0.5s – 2.5s   "NEEL DENTISTRY" stroke draws (2s)
+ *   2.3s – 3.1s   Fill layer fades in (0.8s)
+ *   2.5s – 3.5s   Pink underline springs open
+ *   2.5s – 3.5s   Tagline stroke draws (1s)
+ *   3.5s – 4.3s   Tagline fill fades in
+ *   4.7s – 5.5s   Entire overlay fades out (0.8s)
+ *
+ * HOLD_DELAY = 4.7s  → Layout.tsx must use >= 4.7s for content reveal
+ */
+
+// Timing constants (exported so Layout can reference)
+const DRAW_DURATION = 2.0;
+const FILL_DELAY = DRAW_DURATION + 0.3;      // 2.3
+const FILL_DURATION = 0.8;
+const TAGLINE_DELAY = FILL_DELAY + 0.2;      // 2.5
+const TAGLINE_DRAW = 1.0;
+const HOLD_DELAY = TAGLINE_DELAY + TAGLINE_DRAW + 1.2; // 4.7
+const FADE_DURATION = 0.8;
+
+export const INTRO_TOTAL_DURATION = HOLD_DELAY + FADE_DURATION; // ~5.5s
 
 export function IntroAnimation() {
   const [isVisible, setIsVisible] = useState(() => {
-    return !window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   });
 
-  const [dimensions, setDimensions] = useState({
-    lineW1: 120,
-    lineW2: 220,
-    fontSize: 48,
-    letterSpacing: 6,
-    sliceOffset: 8,
-    taglineSize: 13,
-  });
+  const mainSvgRef = useRef<SVGSVGElement>(null);
+  const tagSvgRef = useRef<SVGSVGElement>(null);
+
+  // Responsive dimensions
+  const [dims, setDims] = useState({ fontSize: 85, taglineSize: 14 });
 
   useEffect(() => {
-    const handleResize = () => {
+    const update = () => {
       const w = window.innerWidth;
-      if (w <= 768) {
-        setDimensions({
-          lineW1: 80,
-          lineW2: 140,
-          fontSize: 30,
-          letterSpacing: 4,
-          sliceOffset: 5,
-          taglineSize: 11,
-        });
-      } else if (w <= 1024) {
-        setDimensions({
-          lineW1: 100,
-          lineW2: 180,
-          fontSize: 40,
-          letterSpacing: 5,
-          sliceOffset: 7,
-          taglineSize: 12,
-        });
-      } else {
-        setDimensions({
-          lineW1: 120,
-          lineW2: 240,
-          fontSize: 50,
-          letterSpacing: 7,
-          sliceOffset: 9,
-          taglineSize: 14,
-        });
-      }
+      if (w <= 768)       setDims({ fontSize: 48, taglineSize: 11 });
+      else if (w <= 1024) setDims({ fontSize: 66, taglineSize: 12 });
+      else                setDims({ fontSize: 85, taglineSize: 14 });
     };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () =>
-      window.removeEventListener("resize", handleResize);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
+  // Resize SVG viewBox to fit text after render
+  const fitSvg = useCallback(
+    (svg: SVGSVGElement | null) => {
+      if (!svg) return;
+      // Wait a frame so the browser has laid out the text nodes
+      requestAnimationFrame(() => {
+        const texts = svg.querySelectorAll("text");
+        let maxW = 0, maxH = 0;
+        texts.forEach((t) => {
+          try {
+            const b = t.getBBox();
+            maxW = Math.max(maxW, b.x + b.width);
+            maxH = Math.max(maxH, b.y + b.height);
+          } catch { /* getBBox can throw if not rendered */ }
+        });
+        if (maxW > 0 && maxH > 0) {
+          // Add padding
+          svg.setAttribute("viewBox", `0 0 ${maxW + 20} ${maxH + 10}`);
+          svg.setAttribute("width", `${maxW + 20}`);
+          svg.setAttribute("height", `${maxH + 10}`);
+        }
+      });
+    },
+    [],
+  );
+
+  // Fit SVGs whenever font-size changes
   useEffect(() => {
-    if (isVisible) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    fitSvg(mainSvgRef.current);
+    fitSvg(tagSvgRef.current);
+  }, [dims.fontSize, fitSvg]);
+
+  // Lock scroll while visible
+  useEffect(() => {
+    if (isVisible) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
   }, [isVisible]);
 
   if (!isVisible) return null;
 
-  const cubicBezier = [0.16, 1, 0.3, 1] as const;
+  // Shared text center coordinates
+  const cx = "50%";
+  const cy = "50%";
 
   return (
     <motion.div
       id="intro-overlay"
-      className="fixed inset-0 z-[9999] bg-white/95 backdrop-blur-2xl pointer-events-none"
+      className="fixed inset-0 z-[9999] bg-white pointer-events-none"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 0.4, delay: 2.1, ease: "easeIn" }}
+      transition={{ duration: FADE_DURATION, delay: HOLD_DELAY, ease: "easeIn" }}
       onAnimationComplete={() => setIsVisible(false)}
     >
-      <div className="relative w-full h-full">
-        {/* Phase 2: Silver Line Draw */}
+      {/* ── Atmospheric floating blobs ── */}
+      <motion.div
+        className="absolute inset-0 overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.3 }}
+        transition={{ duration: 2 }}
+      >
         <motion.div
-          className="absolute h-[1px] bg-[#CED4DA] top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2"
-          initial={{ width: 0 }}
-          animate={{
-            width: [
-              0,
-              dimensions.lineW1,
-              dimensions.lineW1,
-              dimensions.lineW2,
-            ],
-          }}
-          transition={{
-            duration: 1.4,
-            delay: 0.3,
-            times: [0, 0.4 / 1.4, 1.2 / 1.4, 1.4 / 1.4],
-            ease: [cubicBezier, "linear", cubicBezier] as any,
-          }}
+          animate={{ x: [0, 30, -20, 0], y: [0, -40, 20, 0], scale: [1, 1.1, 0.9, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-[#ffc2d1]/10 rounded-full blur-[120px]"
         />
-
-        {/* Phase 2: Pink Micro-dot Pulse */}
         <motion.div
-          className="absolute w-[4px] h-[4px] rounded-full bg-[#FFC2D1] top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{
-            duration: 0.25,
-            delay: 0.65,
-            times: [0, 0.5, 1],
-            ease: "easeInOut",
-          }}
+          animate={{ x: [0, -30, 20, 0], y: [0, 40, -20, 0], scale: [1, 1.2, 0.8, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-20 -right-20 w-[500px] h-[500px] bg-[#ffc2d1]/10 rounded-full blur-[150px]"
         />
+      </motion.div>
 
-        {/* Phase 3: Text Slice Reveal */}
-        <div
-          className="absolute top-[calc(50vh+16px)] left-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-[#1A1A1A] whitespace-nowrap"
-          style={{
-            fontFamily: "'Nativera', sans-serif",
-            fontSize: dimensions.fontSize,
-            letterSpacing: dimensions.letterSpacing,
-          }}
+      {/* ── Main centered content ── */}
+      <div className="relative w-full h-full flex items-center justify-center">
+        <motion.div
+          className="relative flex flex-col items-center"
+          initial={{ scale: 0.97, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Base invisible text to establish layout size */}
-          <div className="invisible">NEEL DENTISTRY</div>
-
-          {/* Top Half */}
+          {/* Pulsing energy glow */}
           <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ clipPath: "inset(0 0 49.5% 0)" }}
-            initial={{ y: -dimensions.sliceOffset, opacity: 0 }}
-            animate={{ y: 0, opacity: [0, 0.85, 1] }}
-            transition={{
-              duration: 0.5,
-              delay: 1.0,
-              y: {
-                ease: cubicBezier as any,
-                duration: 0.5,
-                delay: 1.0,
-              },
-              opacity: {
-                times: [0, 0.01, 1],
-                ease: "linear",
-                duration: 0.5,
-                delay: 1.0,
-              },
-            }}
-          >
-            NEEL DENTISTRY
-          </motion.div>
+            className="absolute bg-[#ffc2d1]/15 blur-[80px] rounded-full"
+            style={{ width: "60%", height: "120%", top: "-10%" }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: [0.8, 1.2, 1], opacity: [0, 0.4, 0] }}
+            transition={{ duration: 2.5, delay: 0.5, times: [0, 0.5, 1], ease: "easeInOut" }}
+          />
 
-          {/* Bottom Half */}
+          {/* ── MAIN TITLE SVG ── */}
+          <svg
+            ref={mainSvgRef}
+            className="overflow-visible"
+            /* viewBox set dynamically by fitSvg */
+          >
+            {/* Hidden sizer */}
+            <text
+              x={cx} y={cy}
+              textAnchor="middle" dominantBaseline="central"
+              style={{
+                fontFamily: "'Nativera', sans-serif",
+                fontSize: dims.fontSize,
+                fontWeight: 900,
+                letterSpacing: "8px",
+                visibility: "hidden",
+              }}
+            >
+              NEEL DENTISTRY
+            </text>
+
+            {/* Stroke-draw layer */}
+            <motion.text
+              x={cx} y={cy}
+              textAnchor="middle" dominantBaseline="central"
+              style={{
+                fontFamily: "'Nativera', sans-serif",
+                fontSize: dims.fontSize,
+                fontWeight: 900,
+                letterSpacing: "8px",
+              }}
+              fill="none"
+              stroke="#1A1A1A"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ strokeDasharray: 2000, strokeDashoffset: 2000, opacity: 0 }}
+              animate={{ strokeDashoffset: 0, opacity: 1 }}
+              transition={{
+                strokeDashoffset: { duration: DRAW_DURATION, delay: 0.5, ease: [0.45, 0, 0.55, 1] },
+                opacity: { duration: 0.2, delay: 0.5 },
+              }}
+            >
+              NEEL DENTISTRY
+            </motion.text>
+
+            {/* Fill layer */}
+            <motion.text
+              x={cx} y={cy}
+              textAnchor="middle" dominantBaseline="central"
+              style={{
+                fontFamily: "'Nativera', sans-serif",
+                fontSize: dims.fontSize,
+                fontWeight: 900,
+                letterSpacing: "8px",
+              }}
+              fill="#1A1A1A"
+              stroke="none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: FILL_DURATION, delay: FILL_DELAY, ease: "easeOut" }}
+            >
+              NEEL DENTISTRY
+            </motion.text>
+          </svg>
+
+          {/* ── Pink gradient underline (spring physics) ── */}
           <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ clipPath: "inset(49.5% 0 0 0)" }}
-            initial={{ y: dimensions.sliceOffset, opacity: 0 }}
-            animate={{ y: 0, opacity: [0, 0.85, 1] }}
-            transition={{
-              duration: 0.5,
-              delay: 1.0,
-              y: {
-                ease: cubicBezier as any,
-                duration: 0.5,
-                delay: 1.0,
-              },
-              opacity: {
-                times: [0, 0.01, 1],
-                ease: "linear",
-                duration: 0.5,
-                delay: 1.0,
-              },
+            className="mx-auto"
+            style={{
+              height: "2px",
+              background: "linear-gradient(90deg, transparent, #ffc2d1, #ffc2d1, transparent)",
+              marginTop: "14px",
             }}
-          >
-            NEEL DENTISTRY
-          </motion.div>
-        </div>
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "80%", opacity: 1 }}
+            transition={{
+              width: { type: "spring", stiffness: 40, damping: 20, delay: FILL_DELAY + 0.2 },
+              opacity: { duration: 0.5, delay: FILL_DELAY + 0.2 },
+            }}
+          />
 
-        {/* Phase 4: Pink Glow Behind Tagline */}
-        <motion.div
-          className="absolute top-[calc(50vh+52px)] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[100px] rounded-[100px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(255,194,209,0.08) 0%, rgba(255,194,209,0) 70%)",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.4,
-            delay: 1.6,
-            ease: "easeOut",
-          }}
-        />
+          {/* ── TAGLINE SVG ── */}
+          <div style={{ marginTop: "18px", display: "flex", justifyContent: "center" }}>
+            <svg
+              ref={tagSvgRef}
+              className="overflow-visible"
+            >
+              <text
+                x={cx} y={cy}
+                textAnchor="middle" dominantBaseline="central"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: dims.taglineSize,
+                  fontWeight: 400,
+                  letterSpacing: "5px",
+                  textTransform: "uppercase" as const,
+                  visibility: "hidden",
+                }}
+              >
+                WHERE CARE MEETS CRAFT
+              </text>
 
-        {/* Phase 4: Tagline */}
-        <motion.div
-          className="absolute top-[calc(50vh+52px)] left-1/2 -translate-x-1/2 -translate-y-1/2 font-normal uppercase whitespace-nowrap text-[#CED4DA]"
-          style={{
-            fontFamily: "'Montserrat', sans-serif",
-            fontSize: dimensions.taglineSize,
-            letterSpacing: "4px",
-          }}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.4,
-            delay: 1.6,
-            ease: "easeOut",
-          }}
-        >
-          WHERE CARE MEETS CRAFT
+              {/* Stroke-draw layer */}
+              <motion.text
+                x={cx} y={cy}
+                textAnchor="middle" dominantBaseline="central"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: dims.taglineSize,
+                  fontWeight: 400,
+                  letterSpacing: "5px",
+                }}
+                fill="none"
+                stroke="#CED4DA"
+                strokeWidth="0.5"
+                strokeLinecap="round"
+                initial={{ strokeDasharray: 800, strokeDashoffset: 800, opacity: 0 }}
+                animate={{ strokeDashoffset: 0, opacity: 1 }}
+                transition={{
+                  strokeDashoffset: { duration: TAGLINE_DRAW, delay: TAGLINE_DELAY, ease: [0.22, 1, 0.36, 1] },
+                  opacity: { duration: 0.3, delay: TAGLINE_DELAY },
+                }}
+              >
+                WHERE CARE MEETS CRAFT
+              </motion.text>
+
+              {/* Fill layer */}
+              <motion.text
+                x={cx} y={cy}
+                textAnchor="middle" dominantBaseline="central"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: dims.taglineSize,
+                  fontWeight: 400,
+                  letterSpacing: "5px",
+                }}
+                fill="#CED4DA"
+                stroke="none"
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: TAGLINE_DELAY + 0.5, ease: "easeOut" }}
+              >
+                WHERE CARE MEETS CRAFT
+              </motion.text>
+            </svg>
+          </div>
+
+          {/* ── Pink micro-dot pulse ── */}
+          <motion.div
+            className="rounded-full"
+            style={{
+              width: "5px",
+              height: "5px",
+              backgroundColor: "#FFC2D1",
+              marginTop: "22px",
+              boxShadow: "0 0 15px #FFC2D1",
+            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: [0, 1, 1, 0], scale: [0, 1.8, 1, 0] }}
+            transition={{
+              duration: 1.5,
+              delay: TAGLINE_DELAY + 0.5,
+              times: [0, 0.2, 0.8, 1],
+              ease: "easeInOut",
+            }}
+          />
         </motion.div>
       </div>
     </motion.div>

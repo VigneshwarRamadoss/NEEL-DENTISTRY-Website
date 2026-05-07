@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
-import { IntroAnimation } from "./IntroAnimation";
+import { IntroAnimation, INTRO_TOTAL_DURATION } from "./IntroAnimation";
 import { WhatsAppFloating } from "./WhatsAppFloating";
 import { motion } from "motion/react";
 
@@ -18,7 +18,10 @@ export function Layout() {
         className="flex flex-col min-h-screen"
         initial={{ opacity: isReducedMotion ? 1 : 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: isReducedMotion ? 0 : 2.2 }}
+        transition={{
+          duration: 0.4,
+          delay: isReducedMotion ? 0 : INTRO_TOTAL_DURATION - 0.3,
+        }}
       >
         <Navbar />
         <main className="flex-grow">

@@ -43,12 +43,15 @@ export function Navbar() {
     return location.pathname.startsWith(path);
   };
 
+  const isHomePage = location.pathname === "/";
+  const shouldShowSolid = isScrolled || !isHomePage;
+
   return (
     <header
       className="fixed top-0 left-0 w-full z-50"
       style={{
-        backgroundColor: isScrolled ? "#FFFFFF" : "transparent",
-        boxShadow: isScrolled ? "0 1px 8px rgba(0,0,0,0.06)" : "none",
+        backgroundColor: shouldShowSolid ? "#FFFFFF" : "transparent",
+        boxShadow: shouldShowSolid ? "0 1px 8px rgba(0,0,0,0.06)" : "none",
         transition: "background-color 300ms ease, box-shadow 300ms ease",
       }}
     >
@@ -56,15 +59,12 @@ export function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex flex-col items-start leading-[0.7] group" style={{ minWidth: "fit-content" }}>
           <span className="text-2xl font-black tracking-tighter font-nativera uppercase"
-            style={{ color: isScrolled ? "#000000" : "#FFFFFF" }}
+            style={{ color: shouldShowSolid ? "#000000" : "#FFFFFF" }}
           >
             Neel
           </span>
           <span className="text-[11px] font-bold tracking-[0.35em] uppercase"
-            style={{ 
-              fontFamily: "'Open Sans', sans-serif",
-              color: isScrolled ? "#ffc2d1" : "#ffc2d1",
-            }}
+            style={{ color: "#ffc2d1" }}
           >
             Dentistry
           </span>
@@ -80,7 +80,7 @@ export function Navbar() {
                 fontFamily: "'Roboto', sans-serif",
                 fontSize: "15px",
                 fontWeight: isActive(link.path) ? 700 : 400,
-                color: isScrolled ? "#333333" : "#FFFFFF",
+                color: shouldShowSolid ? "#333333" : "#FFFFFF",
                 letterSpacing: "0.2px",
                 textDecoration: "none",
                 transition: "color 300ms ease, font-weight 200ms ease",
@@ -104,7 +104,7 @@ export function Navbar() {
                 fontFamily: "'Roboto', sans-serif",
                 fontSize: "15px",
                 fontWeight: isActive("/services") ? 700 : 400,
-                color: isScrolled ? "#333333" : "#FFFFFF",
+                color: shouldShowSolid ? "#333333" : "#FFFFFF",
                 letterSpacing: "0.2px",
                 textDecoration: "none",
                 transition: "color 300ms ease",
@@ -153,7 +153,7 @@ export function Navbar() {
                 fontFamily: "'Roboto', sans-serif",
                 fontSize: "15px",
                 fontWeight: isActive(link.path) ? 700 : 400,
-                color: isScrolled ? "#333333" : "#FFFFFF",
+                color: shouldShowSolid ? "#333333" : "#FFFFFF",
                 letterSpacing: "0.2px",
                 textDecoration: "none",
                 transition: "color 300ms ease, font-weight 200ms ease",
@@ -221,7 +221,7 @@ export function Navbar() {
           <button
             className="p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ color: isScrolled ? "#000000" : "#FFFFFF" }}
+            style={{ color: shouldShowSolid ? "#000000" : "#FFFFFF" }}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>

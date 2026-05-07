@@ -47,7 +47,7 @@ export function Testimonials() {
   const review = reviews[current];
 
   return (
-    <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+    <section style={{ backgroundColor: "#fff5f7", padding: "96px 0" }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="max-w-[640px] mx-auto text-center">
           {/* Stars — above the quote */}

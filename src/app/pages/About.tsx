@@ -14,13 +14,14 @@ export function About() {
       {/* ─── Hero Banner ─── */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 z-0 bg-cover bg-center"
+          className="absolute inset-0 z-0 bg-cover bg-[center_15%]"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1629909605125-58da3181444d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjBvZmZpY2V8ZW58MXx8fHwxNzc3OTYwMjUwfDA&ixlib=rb-4.1.0&q=80&w=1080')",
+              "url('https://i.postimg.cc/85Wrwjw9/Enhance-the-quality-of-the-202605022234.jpg')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-[#ffc2d1]/40 via-gray-900/60 to-gray-900/80" />
+          {/* Subtle vignette overlay — clear in the center for faces, dark on edges for text */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <motion.span
