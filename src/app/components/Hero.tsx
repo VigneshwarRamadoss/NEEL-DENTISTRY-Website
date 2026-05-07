@@ -39,7 +39,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="font-sans font-normal text-lg sm:text-xl text-white/80 max-w-[480px] mb-10"
           >
-            Trusted by families across Chennai for 20+ years.
+            Sculpting unique smiles.
           </motion.p>
 
           {/* CTA grouping */}
