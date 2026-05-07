@@ -33,7 +33,17 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
@@ -48,44 +58,32 @@ export function Navbar() {
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50"
-      style={{
-        backgroundColor: shouldShowSolid ? "#FFFFFF" : "transparent",
-        boxShadow: shouldShowSolid ? "0 1px 8px rgba(0,0,0,0.06)" : "none",
-        transition: "background-color 300ms ease, box-shadow 300ms ease",
-      }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        shouldShowSolid ? "bg-white shadow-md py-3" : "bg-transparent py-5"
+      }`}
     >
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between h-[72px]">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex flex-col items-start leading-[0.7] group" style={{ minWidth: "fit-content" }}>
-          <span className="text-2xl font-black tracking-tighter font-nativera uppercase"
-            style={{ color: shouldShowSolid ? "#000000" : "#FFFFFF" }}
-          >
+        <Link to="/" className="flex flex-col items-start leading-[0.7] group min-w-fit">
+          <span className={`text-2xl font-black tracking-tighter font-nativera uppercase transition-colors duration-300 ${
+            shouldShowSolid ? "text-black" : "text-white"
+          }`}>
             Neel
           </span>
-          <span className="text-[11px] font-bold tracking-[0.35em] uppercase"
-            style={{ color: "#ffc2d1" }}
-          >
+          <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-primary">
             Dentistry
           </span>
         </Link>
 
-        {/* Desktop Nav — 44px gap, Roboto 15px 400, max 5 items visible */}
-        <nav className="hidden lg:flex items-center" style={{ gap: "44px", marginLeft: "40px" }}>
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-10 ml-10">
           {navLinks.slice(0, 2).map(link => (
             <Link
               key={link.path}
               to={link.path}
-              style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontSize: "15px",
-                fontWeight: isActive(link.path) ? 700 : 400,
-                color: shouldShowSolid ? "#333333" : "#FFFFFF",
-                letterSpacing: "0.2px",
-                textDecoration: "none",
-                transition: "color 300ms ease, font-weight 200ms ease",
-                whiteSpace: "nowrap",
-              }}
+              className={`font-heading text-[15px] tracking-wide transition-all duration-300 hover:text-primary ${
+                isActive(link.path) ? "font-bold" : "font-normal"
+              } ${shouldShowSolid ? "text-gray-800" : "text-white"}`}
             >
               {link.name}
             </Link>
@@ -99,31 +97,22 @@ export function Navbar() {
           >
             <Link
               to="/services"
-              className="flex items-center gap-1"
-              style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontSize: "15px",
-                fontWeight: isActive("/services") ? 700 : 400,
-                color: shouldShowSolid ? "#333333" : "#FFFFFF",
-                letterSpacing: "0.2px",
-                textDecoration: "none",
-                transition: "color 300ms ease",
-                whiteSpace: "nowrap",
-              }}
+              className={`flex items-center gap-1 font-heading text-[15px] tracking-wide transition-colors duration-300 hover:text-primary ${
+                isActive("/services") ? "font-bold" : "font-normal"
+              } ${shouldShowSolid ? "text-gray-800" : "text-white"}`}
             >
               Services <ChevronDown size={14} className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`} />
             </Link>
 
             {servicesOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[280px]">
-                <div className="bg-white shadow-2xl rounded-xl border-t-[3px] border-[#ffc2d1] overflow-hidden">
+                <div className="bg-white shadow-2xl rounded-xl border-t-[3px] border-primary overflow-hidden">
                   <div className="p-3 grid grid-cols-1 gap-0">
                     {services.map((service) => (
                       <Link
                         key={service.path}
                         to={service.path}
-                        className="px-4 py-3 text-sm text-gray-700 hover:bg-[#F5F5F5] hover:text-[#000000] rounded-lg transition-all"
-                        style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 400 }}
+                        className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-black rounded-lg transition-all font-sans"
                         onClick={() => setServicesOpen(false)}
                       >
                         {service.name}
@@ -132,8 +121,7 @@ export function Navbar() {
                     <div className="border-t border-gray-100 mt-1 pt-1">
                       <Link
                         to="/services"
-                        className="px-4 py-3 text-sm font-bold text-[#ffc2d1] flex items-center justify-between"
-                        style={{ fontFamily: "'Open Sans', sans-serif" }}
+                        className="px-4 py-3 text-sm font-bold text-primary flex items-center justify-between font-sans"
                         onClick={() => setServicesOpen(false)}
                       >
                         View All Services <ArrowRight size={14} />
@@ -149,173 +137,121 @@ export function Navbar() {
             <Link
               key={link.path}
               to={link.path}
-              style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontSize: "15px",
-                fontWeight: isActive(link.path) ? 700 : 400,
-                color: shouldShowSolid ? "#333333" : "#FFFFFF",
-                letterSpacing: "0.2px",
-                textDecoration: "none",
-                transition: "color 300ms ease, font-weight 200ms ease",
-                whiteSpace: "nowrap",
-              }}
+              className={`font-heading text-[15px] tracking-wide transition-all duration-300 hover:text-primary ${
+                isActive(link.path) ? "font-bold" : "font-normal"
+              } ${shouldShowSolid ? "text-gray-800" : "text-white"}`}
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        {/* Right zone — Level 1 CTA (desktop) */}
+        {/* Desktop CTA */}
         <div className="hidden lg:flex items-center">
           <a
             href="tel:+919655300036"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              backgroundColor: "#ffc2d1",
-              color: "#000000",
-              height: "52px",
-              padding: "0 36px",
-              borderRadius: "6px",
-              fontFamily: "'Open Sans', sans-serif",
-              fontWeight: 700,
-              fontSize: "16px",
-              letterSpacing: "0.3px",
-              textDecoration: "none",
-              transition: "all 200ms ease",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#ffb3c6";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#ffc2d1";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-black h-[52px] px-8 rounded-lg font-sans font-bold text-base tracking-wide transition-all duration-300 hover:shadow-lg active:scale-95"
           >
             <Phone size={16} fill="currentColor" />
             Call Now
           </a>
         </div>
 
-        {/* Mobile — Icon-only phone + hamburger */}
-        <div className="flex lg:hidden items-center gap-3">
+        {/* Mobile Nav Toggle */}
+        <div className="flex lg:hidden items-center gap-4">
           <a
             href="tel:+919655300036"
             aria-label="Call Neel Dentistry"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "44px",
-              height: "44px",
-              backgroundColor: "#ffc2d1",
-              borderRadius: "50%",
-              color: "#000000",
-            }}
+            className="flex items-center justify-center w-11 h-11 bg-primary rounded-full text-black shadow-sm active:scale-90 transition-transform"
           >
             <Phone size={20} fill="currentColor" />
           </a>
           <button
-            className="p-2"
+            className={`p-1 transition-colors duration-300 ${shouldShowSolid ? "text-black" : "text-white"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ color: shouldShowSolid ? "#000000" : "#FFFFFF" }}
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Nav Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[72px] bg-white z-40 flex flex-col p-8 overflow-y-auto">
-          <nav className="flex flex-col gap-6">
+      <div 
+        className={`lg:hidden fixed inset-0 top-0 bg-white z-[60] flex flex-col transition-transform duration-500 ease-in-out ${
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between h-[72px] px-4 border-b">
+          <Link to="/" className="flex flex-col items-start leading-[0.7]" onClick={() => setMobileMenuOpen(false)}>
+            <span className="text-2xl font-black tracking-tighter font-nativera uppercase text-black">
+              Neel
+            </span>
+            <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-primary">
+              Dentistry
+            </span>
+          </Link>
+          <button className="p-2 text-black" onClick={() => setMobileMenuOpen(false)}>
+            <X size={32} />
+          </button>
+        </div>
+
+        <div className="flex-grow overflow-y-auto px-6 py-10">
+          <nav className="flex flex-col gap-8">
             {navLinks.map(link => (
               <Link
                 key={link.path}
                 to={link.path}
-                style={{
-                  fontFamily: "'Roboto', sans-serif",
-                  fontSize: "24px",
-                  fontWeight: isActive(link.path) ? 700 : 400,
-                  color: "#000000",
-                  textDecoration: "none",
-                }}
+                className={`font-heading text-3xl tracking-tight ${
+                  isActive(link.path) ? "font-bold text-primary" : "font-normal text-black"
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
 
-            <div className="flex flex-col gap-4 mt-2">
-              <span
-                style={{
-                  fontFamily: "'Open Sans', sans-serif",
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  color: "#ffc2d1",
-                  textTransform: "uppercase",
-                  letterSpacing: "2.5px",
-                }}
-              >
+            <div className="flex flex-col gap-5 mt-4">
+              <span className="font-sans text-xs font-black text-primary uppercase tracking-[0.2em]">
                 Our Services
               </span>
-              {services.map(service => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  style={{
-                    fontFamily: "'Open Sans', sans-serif",
-                    fontSize: "18px",
-                    fontWeight: 400,
-                    color: "#333333",
-                    paddingLeft: "16px",
-                    borderLeft: "2px solid #E8E8E8",
-                    textDecoration: "none",
-                  }}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {service.name}
-                </Link>
-              ))}
+              <div className="grid grid-cols-1 gap-4 pl-4 border-l-2 border-gray-100">
+                {services.map(service => (
+                  <Link
+                    key={service.path}
+                    to={service.path}
+                    className="font-sans text-lg font-medium text-gray-700 active:text-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {service.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </nav>
 
-          <a
-            href="tel:+919655300036"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "12px",
-              backgroundColor: "#ffc2d1",
-              color: "#000000",
-              padding: "16px 24px",
-              borderRadius: "6px",
-              fontFamily: "'Open Sans', sans-serif",
-              fontWeight: 700,
-              fontSize: "18px",
-              marginTop: "48px",
-              textDecoration: "none",
-            }}
-          >
-            <Phone size={22} fill="currentColor" />
-            Call Now — +91 96553 00036
-          </a>
+          <div className="mt-16 space-y-6">
+            <a
+              href="tel:+919655300036"
+              className="flex items-center justify-center gap-3 bg-primary text-black py-5 rounded-xl font-sans font-bold text-xl shadow-lg active:scale-95 transition-all"
+            >
+              <Phone size={24} fill="currentColor" />
+              Call +91 96553 00036
+            </a>
 
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: "13px",
-            color: "#888888",
-            textAlign: "center",
-            marginTop: "12px",
-          }}>
-            Mon–Sat · 9am–10pm · Sun · 10am–9pm
-          </p>
+            <div className="text-center space-y-2">
+              <p className="font-sans text-sm font-bold text-gray-400 uppercase tracking-widest">
+                Opening Hours
+              </p>
+              <p className="font-sans text-base text-gray-600">
+                Mon–Sat · 9am–10pm
+              </p>
+              <p className="font-sans text-base text-gray-600">
+                Sun · 10am–9pm
+              </p>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

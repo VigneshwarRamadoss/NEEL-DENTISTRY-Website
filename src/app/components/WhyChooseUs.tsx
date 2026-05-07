@@ -10,7 +10,7 @@ const benefits = [
 
 export function WhyChooseUs() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#fff5f7" }}>
+    <section className="py-24 bg-section-pink">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-stretch gap-0">
           {/* Image Side — bleeds to section edge, no padding */}
@@ -24,9 +24,8 @@ export function WhyChooseUs() {
             <img
               src="https://images.unsplash.com/photo-1776400985210-92f654712d30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dGlmdWwlMjBzbWlsZSUyMGRlbnRpc3RyeXxlbnwxfHx8fDE3Nzc5NjAyNTd8MA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="Beautiful smile"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-b-xl lg:rounded-r-xl lg:rounded-bl-none"
               style={{
-                borderRadius: "0 12px 12px 0",
                 minHeight: "480px",
               }}
             />
@@ -38,46 +37,26 @@ export function WhyChooseUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full lg:w-1/2 flex items-center"
-            style={{ padding: "40px 0 40px 60px" }}
+            className="w-full lg:w-1/2 flex items-center py-10 lg:pl-16 lg:py-0"
           >
-            <div style={{ maxWidth: "480px" }}>
-              <h2 style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontWeight: 700,
-                fontSize: "28px",
-                color: "#000000",
-                marginBottom: "20px",
-                lineHeight: 1.2,
-              }}>
+            <div className="max-w-[480px]">
+              <h2 className="mb-5">
                 A Dental Experience Unlike Any Other
               </h2>
 
-              <p style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontSize: "16px",
-                color: "#888888",
-                lineHeight: 1.7,
-                marginBottom: "32px",
-              }}>
+              <p className="text-muted-foreground mb-8">
                 We believe visiting the dentist shouldn't be something to dread. Our practice is designed to make you feel comfortable from the moment you walk through our doors.
               </p>
 
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 44px 0" }}>
+              <ul className="list-none p-0 m-0 mb-11">
                 {benefits.map((benefit, index) => (
                   <li
                     key={index}
-                    className="flex items-center gap-3"
-                    style={{
-                      fontFamily: "'Open Sans', sans-serif",
-                      fontSize: "16px",
-                      fontWeight: 400,
-                      color: "#000000",
-                      padding: "10px 0",
-                      borderBottom: index < benefits.length - 1 ? "1px solid #E8E8E8" : "none",
-                    }}
+                    className={`flex items-center gap-3 py-2.5 font-sans font-normal ${
+                      index < benefits.length - 1 ? "border-b border-border" : ""
+                    }`}
                   >
-                    <span style={{ color: "#ffc2d1", fontSize: "18px" }}>✓</span>
+                    <span className="text-primary text-lg">✓</span>
                     {benefit}
                   </li>
                 ))}
@@ -85,27 +64,7 @@ export function WhyChooseUs() {
 
               <Link
                 to="/about"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  backgroundColor: "#ffc2d1",
-                  color: "#000000",
-                  height: "48px",
-                  padding: "0 28px",
-                  borderRadius: "6px",
-                  fontFamily: "'Open Sans', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "15px",
-                  textDecoration: "none",
-                  transition: "all 200ms ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#ffb3c6";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#ffc2d1";
-                }}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground h-12 px-7 rounded-md font-sans font-bold text-[15px] no-underline transition-colors hover:bg-primary-hover"
               >
                 Meet Our Team
               </Link>

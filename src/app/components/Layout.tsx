@@ -12,7 +12,7 @@ export function Layout() {
       : false;
 
   return (
-    <div className="flex flex-col min-h-screen bg-white text-gray-800 font-sans relative">
+    <div className="flex flex-col min-h-screen bg-background text-foreground font-sans relative overflow-x-hidden">
       <IntroAnimation />
       <motion.div
         className="flex flex-col min-h-screen"

@@ -7,7 +7,7 @@ export function Hero() {
   const whatsappUrl = "https://wa.me/919655300036?text=Hello!%20I'd%20like%20to%20start%20my%20smile%20journey%20with%20Neel%20Dentistry.";
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden">
+    <section className="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden">
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -16,43 +16,28 @@ export function Hero() {
           className="w-full h-full object-cover object-center"
         />
         {/* Darker overlay for text legibility */}
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(13,13,13,0.45)" }} />
+        <div className="absolute inset-0 bg-black/45" />
       </div>
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10 w-full">
         <div className="max-w-[640px]">
-          {/* Headline — 2 lines max */}
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            style={{
-              fontFamily: "'Roboto', sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(32px, 5vw, 48px)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.5px",
-              color: "#FFFFFF",
-              marginBottom: "20px",
-            }}
+            className="text-white mb-5"
           >
             Exceptional Dental Care,<br />
             Delivered With Warmth.
           </motion.h1>
 
-          {/* Sub-headline — 1 line */}
+          {/* Sub-headline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            style={{
-              fontFamily: "'Open Sans', sans-serif",
-              fontWeight: 400,
-              fontSize: "18px",
-              color: "rgba(255,255,255,0.8)",
-              maxWidth: "480px",
-              marginBottom: "40px",
-            }}
+            className="font-sans font-normal text-lg sm:text-xl text-white/80 max-w-[480px] mb-10"
           >
             Trusted by families across Chennai for 20+ years.
           </motion.p>
@@ -62,41 +47,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center sm:items-start gap-5"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5"
           >
-            {/* Level 1 CTA — Primary */}
+            {/* Primary CTA */}
             <a
               href="tel:+919655300036"
-              className="group"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "12px",
-                backgroundColor: "#ffc2d1",
-                color: "#000000",
-                height: "56px",
-                padding: "0 40px",
-                borderRadius: "12px",
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: 700,
-                fontSize: "16px",
-                letterSpacing: "0.5px",
-                textDecoration: "none",
-                transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-                whiteSpace: "nowrap",
-                boxShadow: "0 4px 14px rgba(255, 194, 209, 0.2)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.backgroundColor = "#ffb3c6";
-                e.currentTarget.style.boxShadow = "0 8px 20px rgba(255, 194, 209, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.backgroundColor = "#ffc2d1";
-                e.currentTarget.style.boxShadow = "0 4px 14px rgba(255, 194, 209, 0.2)";
-              }}
+              className="group flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-black h-14 px-10 rounded-xl font-sans font-bold text-base tracking-wide transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -111,63 +67,29 @@ export function Hero() {
               Call Now — +91 96553 00036
             </a>
 
-            {/* Level 2 CTA — Secondary (Glassmorphism) */}
+            {/* Secondary CTA */}
             <Link
               to="/services"
-              className="group"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "10px",
-                backgroundColor: "rgba(255, 255, 255, 0.08)",
-                backdropFilter: "blur(12px)",
-                color: "#FFFFFF",
-                height: "56px",
-                padding: "0 32px",
-                borderRadius: "12px",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: 600,
-                fontSize: "15px",
-                textDecoration: "none",
-                transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-                whiteSpace: "nowrap",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.4)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.08)";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
+              className="group flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 h-14 px-8 rounded-xl font-sans font-semibold text-base transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
             >
               View Our Services
               <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
 
-          {/* Plain text fallback — removes last psychological barrier */}
+          {/* WhatsApp micro-copy */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 1.0 }}
-            style={{
-              fontFamily: "'Open Sans', sans-serif",
-              fontSize: "13px",
-              color: "rgba(255,255,255,0.6)",
-              marginTop: "20px",
-            }}
+            className="font-sans text-sm text-white/60 mt-6"
           >
             Or WhatsApp us directly:{" "}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "rgba(255,255,255,0.8)", textDecoration: "underline" }}
+              className="text-white/80 underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-all"
             >
               +91 96553 00036
             </a>

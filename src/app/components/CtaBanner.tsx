@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 
 export function CtaBanner() {
   return (
-    <section style={{ backgroundColor: "#ffc2d1", padding: "96px 0" }}>
+    <section className="bg-primary py-16 sm:py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -13,27 +13,12 @@ export function CtaBanner() {
           className="max-w-2xl mx-auto text-center"
         >
           {/* Eyebrow */}
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontWeight: 700,
-            fontSize: "11px",
-            letterSpacing: "2.5px",
-            textTransform: "uppercase",
-            color: "#888888",
-            marginBottom: "14px",
-          }}>
+          <p className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-black/40 mb-4">
             Most patients are seen within 48 hours
           </p>
 
           {/* Headline */}
-          <h2 style={{
-            fontFamily: "'Roboto', sans-serif",
-            fontWeight: 700,
-            fontSize: "28px",
-            color: "#000000",
-            lineHeight: 1.2,
-            marginBottom: "44px",
-          }}>
+          <h2 className="text-black mb-10 leading-tight">
             Your next appointment<br />
             is one call away.
           </h2>
@@ -41,43 +26,14 @@ export function CtaBanner() {
           {/* Level 1 CTA */}
           <a
             href="tel:+919655300036"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              backgroundColor: "#FFFFFF",
-              color: "#000000",
-              height: "52px",
-              padding: "0 36px",
-              borderRadius: "6px",
-              fontFamily: "'Open Sans', sans-serif",
-              fontWeight: 700,
-              fontSize: "16px",
-              letterSpacing: "0.3px",
-              textDecoration: "none",
-              transition: "all 200ms ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#ffb3c6";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#FFFFFF";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            className="inline-flex items-center justify-center gap-3 bg-white hover:bg-gray-50 text-black h-14 px-10 rounded-xl font-sans font-bold text-base tracking-wide transition-all duration-300 shadow-lg active:scale-95 w-full sm:w-auto"
           >
             <Phone size={18} fill="currentColor" />
             Call Now — +91 96553 00036
           </a>
 
           {/* Trust micro-copy */}
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: "13px",
-            color: "#888888",
-            marginTop: "24px",
-            lineHeight: 1.7,
-          }}>
+          <p className="font-sans text-sm text-black/40 mt-8 leading-relaxed">
             No referral needed &nbsp;·&nbsp; All ages welcome &nbsp;·&nbsp; Same-day emergency slots available
           </p>
         </motion.div>

@@ -47,7 +47,7 @@ export function Testimonials() {
   const review = reviews[current];
 
   return (
-    <section style={{ backgroundColor: "#fff5f7", padding: "96px 0" }}>
+    <section className="bg-section-pink py-24">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="max-w-[640px] mx-auto text-center">
           {/* Stars — above the quote */}
@@ -56,8 +56,8 @@ export function Testimonials() {
               <Star
                 key={i}
                 size={18}
-                fill="#ffc2d1"
-                color="#ffc2d1"
+                fill="var(--color-primary)"
+                stroke="var(--color-primary)"
               />
             ))}
           </div>
@@ -72,36 +72,17 @@ export function Testimonials() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              <p style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: 400,
-                fontStyle: "italic",
-                fontSize: "20px",
-                color: "#000000",
-                lineHeight: 1.7,
-                marginBottom: "32px",
-              }}>
+              <p className="font-sans font-normal italic text-xl text-foreground leading-relaxed mb-8">
                 &ldquo;{review.text}&rdquo;
               </p>
 
               {/* Patient name */}
-              <p style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontWeight: 700,
-                fontSize: "14px",
-                color: "#000000",
-                marginBottom: "4px",
-              }}>
+              <p className="font-heading font-bold text-sm text-foreground mb-1">
                 {review.author}, {review.location}
               </p>
 
               {/* Treatment type */}
-              <p style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontWeight: 400,
-                fontSize: "13px",
-                color: "#888888",
-              }}>
+              <p className="font-sans font-normal text-[13px] text-muted-foreground">
                 {review.treatment}
               </p>
             </motion.div>
@@ -114,16 +95,9 @@ export function Testimonials() {
                 key={idx}
                 onClick={() => goTo(idx)}
                 aria-label={`View testimonial ${idx + 1}`}
-                style={{
-                  width: idx === current ? "8px" : "6px",
-                  height: idx === current ? "8px" : "6px",
-                  borderRadius: "50%",
-                  backgroundColor: idx === current ? "#ffc2d1" : "#E8E8E8",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  transition: "all 200ms ease",
-                }}
+                className={`w-1.5 h-1.5 rounded-full border-none p-0 cursor-pointer transition-all ${
+                  idx === current ? "w-2 h-2 bg-primary" : "bg-border"
+                }`}
               />
             ))}
           </div>

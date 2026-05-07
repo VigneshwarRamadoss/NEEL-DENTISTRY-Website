@@ -9,15 +9,8 @@ const trustItems = [
 
 export function TrustBar() {
   return (
-    <section
-      style={{
-        backgroundColor: "#ffc2d1",
-        borderTop: "1px solid rgba(0,0,0,0.05)",
-        borderBottom: "1px solid rgba(0,0,0,0.05)",
-        padding: "40px 0",
-      }}
-    >
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+    <section className="bg-primary border-y border-black/5 py-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px:6 lg:px-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {trustItems.map((item, index) => (
             <motion.div
@@ -28,26 +21,10 @@ export function TrustBar() {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="flex flex-col items-center text-center"
             >
-              <p
-                style={{
-                  fontFamily: "'Roboto', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "32px",
-                  color: "#000000",
-                  lineHeight: 1,
-                  marginBottom: "8px",
-                }}
-              >
+              <p className="font-heading font-bold text-3xl text-primary-foreground leading-none mb-2">
                 {item.number}
               </p>
-              <p
-                style={{
-                  fontFamily: "'Open Sans', sans-serif",
-                  fontWeight: 400,
-                  fontSize: "13px",
-                  color: "#888888",
-                }}
-              >
+              <p className="font-sans font-normal text-[13px] text-primary-foreground/60 uppercase tracking-wider">
                 {item.label}
               </p>
             </motion.div>

@@ -40,91 +40,51 @@ const linkStyle: React.CSSProperties = {
 
 export function Footer() {
   return (
-    <footer style={{ backgroundColor: "#1A2E35" }}>
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10" style={{ paddingTop: "80px", paddingBottom: "40px" }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    <footer className="bg-dark-bg text-white">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-10">
           {/* Column 1 — Brand */}
-          <div>
-            {/* Logo white variant */}
-            <div className="mb-6">
-              <span
-                style={{
-                  fontFamily: "'Nativera', sans-serif",
-                  fontWeight: 800,
-                  fontSize: "28px",
-                  color: "#FFFFFF",
-                  textTransform: "uppercase",
-                  letterSpacing: "-1px",
-                  lineHeight: 0.7,
-                  display: "block",
-                }}
-              >
+          <div className="space-y-6">
+            <div>
+              <span className="font-nativera font-extrabold text-3xl text-white uppercase tracking-tighter leading-none block">
                 Neel
               </span>
-              <span
-                style={{
-                  fontFamily: "'Open Sans', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "10px",
-                  letterSpacing: "3px",
-                  color: "#ffc2d1",
-                  textTransform: "uppercase",
-                }}
-              >
+              <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-primary uppercase block mt-0.5">
                 Dentistry
               </span>
             </div>
 
-            <p style={{
-              fontFamily: "'Open Sans', sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              color: "rgba(255,255,255,0.5)",
-              marginBottom: "24px",
-              lineHeight: 1.6,
-            }}>
-              Where care meets craft.
+            <p className="font-sans text-white/50 text-sm leading-relaxed max-w-[240px]">
+              Where care meets craft. Delivering exceptional dental experiences for 20+ years.
             </p>
 
-            {/* Phone — standalone headline */}
-            <a
-              href="tel:+919655300036"
-              style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontWeight: 700,
-                fontSize: "22px",
-                color: "#FFFFFF",
-                textDecoration: "none",
-                display: "block",
-                marginBottom: "8px",
-              }}
-            >
-              +91 96553 00036
-            </a>
-            <a
-              href="mailto:hello@neeldentistry.com"
-              style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.55)",
-                textDecoration: "none",
-              }}
-            >
-              hello@neeldentistry.com
-            </a>
+            <div className="space-y-2">
+              <a
+                href="tel:+919655300036"
+                className="font-heading font-bold text-2xl text-white hover:text-primary transition-colors block"
+              >
+                +91 96553 00036
+              </a>
+              <a
+                href="mailto:hello@neeldentistry.com"
+                className="font-sans text-sm text-white/50 hover:text-white transition-colors block"
+              >
+                hello@neeldentistry.com
+              </a>
+            </div>
           </div>
 
           {/* Column 2 — Quick Links */}
           <div>
-            <h4 style={columnHeadingStyle}>Quick Links</h4>
-            <ul className="flex flex-col">
+            <h4 className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-primary mb-8">
+              Quick Links
+            </h4>
+            <ul className="flex flex-col gap-3">
               {quickLinks.map(link => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    style={linkStyle}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(255,255,255,1)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
+                    className="font-sans text-[13px] text-white/60 hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -135,15 +95,15 @@ export function Footer() {
 
           {/* Column 3 — Services */}
           <div>
-            <h4 style={columnHeadingStyle}>Services</h4>
-            <ul className="flex flex-col">
+            <h4 className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-primary mb-8">
+              Services
+            </h4>
+            <ul className="flex flex-col gap-3">
               {serviceLinks.map(link => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    style={linkStyle}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(255,255,255,1)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
+                    className="font-sans text-[13px] text-white/60 hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -153,66 +113,42 @@ export function Footer() {
           </div>
 
           {/* Column 4 — Visit Us */}
-          <div>
-            <h4 style={columnHeadingStyle}>Visit Us</h4>
-            <p style={{
-              fontFamily: "'Open Sans', sans-serif",
-              fontSize: "13px",
-              color: "rgba(255,255,255,0.65)",
-              lineHeight: 1.8,
-              marginBottom: "20px",
-            }}>
-              Neel Dentistry Peace Homes,<br />
-              113A, East Main Road, Sankar Nagar,<br />
-              Pammal, Chennai 600075
-            </p>
-            <div style={{
-              fontFamily: "'Open Sans', sans-serif",
-              fontSize: "13px",
-              color: "rgba(255,255,255,0.65)",
-              lineHeight: 2.0,
-            }}>
-              <p>Mon – Sat: 9am – 10pm</p>
-              <p>Sun: 10am – 9pm</p>
+          <div className="space-y-8">
+            <div>
+              <h4 className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-primary mb-8">
+                Visit Us
+              </h4>
+              <p className="font-sans text-[13px] text-white/60 leading-relaxed">
+                Neel Dentistry Peace Homes,<br />
+                113A, East Main Road, Sankar Nagar,<br />
+                Pammal, Chennai 600075
+              </p>
+            </div>
+            
+            <div className="space-y-1">
+              <p className="font-sans text-[13px] text-white/60">Mon – Sat: 9am – 10pm</p>
+              <p className="font-sans text-[13px] text-white/60">Sun: 10am – 9pm</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div style={{ backgroundColor: "rgba(0,0,0,0.2)" }}>
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4 py-5">
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: "12px",
-            color: "rgba(255,255,255,0.35)",
-          }}>
+      <div className="border-t border-white/5 bg-black/20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row justify-between items-center gap-6 py-8">
+          <p className="font-sans text-xs text-white/30 text-center sm:text-left">
             &copy; {new Date().getFullYear()} Neel Dentistry. All rights reserved.
           </p>
           <div className="flex gap-8">
             <Link
               to="/"
-              style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.35)",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
+              className="font-sans text-xs text-white/30 hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               to="/"
-              style={{
-                fontFamily: "'Open Sans', sans-serif",
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.35)",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.65)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.35)"; }}
+              className="font-sans text-xs text-white/30 hover:text-white transition-colors"
             >
               Terms of Use
             </Link>

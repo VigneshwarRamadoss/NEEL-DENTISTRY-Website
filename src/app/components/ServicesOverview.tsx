@@ -28,30 +28,19 @@ const services = [
 
 export function ServicesOverview() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#ffc2d1" }}>
+    <section className="py-16 sm:py-24 bg-primary">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
-        {/* Section header — 2 lines max */}
-        <div className="text-center max-w-2xl mx-auto" style={{ marginBottom: "56px" }}>
-          <h2 style={{
-            fontFamily: "'Roboto', sans-serif",
-            fontWeight: 700,
-            fontSize: "28px",
-            color: "#000000",
-            marginBottom: "12px",
-          }}>
+        {/* Section header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+          <h2 className="text-black mb-3">
             Comprehensive Dental Care
           </h2>
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: "16px",
-            color: "#888888",
-            lineHeight: 1.7,
-          }}>
+          <p className="text-black/60">
             A wide range of services tailored to your unique needs, using the latest technology.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "28px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -62,11 +51,10 @@ export function ServicesOverview() {
             >
               <Link
                 to={service.path}
-                className="group flex flex-col bg-[#fff5f7] overflow-hidden hover:shadow-lg transition-all duration-300"
-                style={{ borderRadius: "12px", border: "1px solid rgba(0,0,0,0.06)" }}
+                className="group flex flex-col bg-section-pink overflow-hidden hover:shadow-xl transition-all duration-300 rounded-2xl border border-black/5 h-full"
               >
-                {/* Image — 16:9 aspect, border-radius 12px, no shadow */}
-                <div className="overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                {/* Image — 16:9 aspect */}
+                <div className="aspect-video overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.title}
@@ -74,84 +62,37 @@ export function ServicesOverview() {
                   />
                 </div>
 
-                <div style={{ padding: "24px" }} className="flex-grow flex flex-col">
-                  <h4 style={{
-                    fontFamily: "'Roboto', sans-serif",
-                    fontWeight: 700,
-                    fontSize: "20px",
-                    color: "#000000",
-                    marginBottom: "8px",
-                  }}>
+                <div className="p-6 sm:p-8 flex-grow flex flex-col">
+                  <h4 className="text-black mb-2">
                     {service.title}
                   </h4>
 
-                  <p style={{
-                    fontFamily: "'Open Sans', sans-serif",
-                    fontSize: "16px",
-                    color: "#888888",
-                    lineHeight: 1.7,
-                    marginBottom: "12px",
-                    flexGrow: 1,
-                  }}>
+                  <p className="text-black/60 mb-6 flex-grow">
                     {service.description}
                   </p>
 
-                  {/* Conversion hook line */}
-                  <p style={{
-                    fontFamily: "'Open Sans', sans-serif",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    color: "#ffc2d1",
-                    marginBottom: "8px",
-                  }}>
-                    {service.hook}
-                  </p>
+                  <div className="mt-auto space-y-4">
+                    <p className="text-primary font-bold text-xs uppercase tracking-wider">
+                      {service.hook}
+                    </p>
 
-                  {/* Level 3 directional link */}
-                  <span
-                    className="inline-flex items-center gap-1 group-hover:underline"
-                    style={{
-                      fontFamily: "'Open Sans', sans-serif",
-                      fontSize: "14px",
-                      fontWeight: 400,
-                      color: "#000000",
-                    }}
-                  >
-                    Learn More <ArrowRight size={14} />
-                  </span>
+                    <span className="inline-flex items-center gap-2 text-black font-semibold text-sm group-hover:gap-3 transition-all">
+                      Learn More <ArrowRight size={16} />
+                    </span>
+                  </div>
                 </div>
               </Link>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center" style={{ marginTop: "56px" }}>
+        <div className="text-center mt-12 sm:mt-16">
           <Link
             to="/services"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              backgroundColor: "#000000",
-              color: "#FFFFFF",
-              height: "48px",
-              padding: "0 28px",
-              borderRadius: "6px",
-              fontFamily: "'Open Sans', sans-serif",
-              fontWeight: 600,
-              fontSize: "15px",
-              textDecoration: "none",
-              transition: "all 200ms ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = "#333333";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#000000";
-            }}
+            className="inline-flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white h-14 px-10 rounded-xl font-sans font-bold text-base transition-all duration-300 shadow-lg active:scale-95 w-full sm:w-auto"
           >
             View All Services
-            <ArrowRight size={18} />
+            <ArrowRight size={20} />
           </Link>
         </div>
       </div>
