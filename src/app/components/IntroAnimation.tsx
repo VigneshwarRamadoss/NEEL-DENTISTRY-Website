@@ -261,7 +261,7 @@ export function IntroAnimation() {
                   visibility: "hidden",
                 }}
               >
-                WHERE CARE MEETS CRAFT
+                SCULPTING UNIQUE SMILES
               </text>
 
               {/* Stroke-draw layer */}
@@ -285,7 +285,7 @@ export function IntroAnimation() {
                   opacity: { duration: 0.3, delay: TAGLINE_DELAY },
                 }}
               >
-                WHERE CARE MEETS CRAFT
+                SCULPTING UNIQUE SMILES
               </motion.text>
 
               {/* Fill layer */}
@@ -304,7 +304,7 @@ export function IntroAnimation() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: TAGLINE_DELAY + 0.5, ease: "easeOut" }}
               >
-                WHERE CARE MEETS CRAFT
+               SCULPTING UNIQUE SMILES
               </motion.text>
             </svg>
           </div>
