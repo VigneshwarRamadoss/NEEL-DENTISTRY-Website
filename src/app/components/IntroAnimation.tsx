@@ -41,7 +41,8 @@ export function IntroAnimation() {
   useEffect(() => {
     const update = () => {
       const w = window.innerWidth;
-      if (w <= 768)       setDims({ fontSize: 48, taglineSize: 11 });
+      if (w <= 400)       setDims({ fontSize: 32, taglineSize: 10 });
+      else if (w <= 768)  setDims({ fontSize: 44, taglineSize: 11 });
       else if (w <= 1024) setDims({ fontSize: 66, taglineSize: 12 });
       else                setDims({ fontSize: 85, taglineSize: 14 });
     };
@@ -57,19 +58,28 @@ export function IntroAnimation() {
       // Wait a frame so the browser has laid out the text nodes
       requestAnimationFrame(() => {
         const texts = svg.querySelectorAll("text");
-        let maxW = 0, maxH = 0;
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        
         texts.forEach((t) => {
           try {
             const b = t.getBBox();
-            maxW = Math.max(maxW, b.x + b.width);
-            maxH = Math.max(maxH, b.y + b.height);
+            minX = Math.min(minX, b.x);
+            minY = Math.min(minY, b.y);
+            maxX = Math.max(maxX, b.x + b.width);
+            maxY = Math.max(maxY, b.y + b.height);
           } catch { /* getBBox can throw if not rendered */ }
         });
-        if (maxW > 0 && maxH > 0) {
-          // Add padding
-          svg.setAttribute("viewBox", `0 0 ${maxW + 20} ${maxH + 10}`);
-          svg.setAttribute("width", `${maxW + 20}`);
-          svg.setAttribute("height", `${maxH + 10}`);
+
+        if (maxX > -Infinity && maxY > -Infinity) {
+          const w = maxX - minX;
+          const h = maxY - minY;
+          const paddingX = 40;
+          const paddingY = 20;
+          
+          svg.setAttribute("viewBox", `${minX - paddingX/2} ${minY - paddingY/2} ${w + paddingX} ${h + paddingY}`);
+          svg.style.width = "100%";
+          svg.style.maxWidth = `${w + paddingX}px`;
+          svg.style.height = "auto";
         }
       });
     },
@@ -94,6 +104,9 @@ export function IntroAnimation() {
   // Shared text center coordinates
   const cx = "50%";
   const cy = "50%";
+
+  const letterSpacing = dims.fontSize >= 85 ? "8px" : dims.fontSize >= 66 ? "6px" : "4px";
+  const taglineSpacing = dims.taglineSize >= 14 ? "5px" : "3px";
 
   return (
     <motion.div
@@ -124,9 +137,9 @@ export function IntroAnimation() {
       </motion.div>
 
       {/* ── Main centered content ── */}
-      <div className="relative w-full h-full flex items-center justify-center">
+      <div className="relative w-full h-full flex items-center justify-center p-4">
         <motion.div
-          className="relative flex flex-col items-center"
+          className="relative flex flex-col items-center w-full max-w-full"
           initial={{ scale: 0.97, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
@@ -143,7 +156,7 @@ export function IntroAnimation() {
           {/* ── MAIN TITLE SVG ── */}
           <svg
             ref={mainSvgRef}
-            className="overflow-visible"
+            className="overflow-visible w-full h-auto"
             /* viewBox set dynamically by fitSvg */
           >
             {/* Hidden sizer */}
@@ -154,7 +167,7 @@ export function IntroAnimation() {
                 fontFamily: "'Nativera', sans-serif",
                 fontSize: dims.fontSize,
                 fontWeight: 900,
-                letterSpacing: "8px",
+                letterSpacing: letterSpacing,
                 visibility: "hidden",
               }}
             >
@@ -169,7 +182,7 @@ export function IntroAnimation() {
                 fontFamily: "'Nativera', sans-serif",
                 fontSize: dims.fontSize,
                 fontWeight: 900,
-                letterSpacing: "8px",
+                letterSpacing: letterSpacing,
               }}
               fill="none"
               stroke="#1A1A1A"
@@ -194,7 +207,7 @@ export function IntroAnimation() {
                 fontFamily: "'Nativera', sans-serif",
                 fontSize: dims.fontSize,
                 fontWeight: 900,
-                letterSpacing: "8px",
+                letterSpacing: letterSpacing,
               }}
               fill="#1A1A1A"
               stroke="none"
@@ -223,10 +236,10 @@ export function IntroAnimation() {
           />
 
           {/* ── TAGLINE SVG ── */}
-          <div style={{ marginTop: "18px", display: "flex", justifyContent: "center" }}>
+          <div style={{ marginTop: "18px", display: "flex", justifyContent: "center", width: "100%" }}>
             <svg
               ref={tagSvgRef}
-              className="overflow-visible"
+              className="overflow-visible w-full h-auto"
             >
               <text
                 x={cx} y={cy}
@@ -235,7 +248,7 @@ export function IntroAnimation() {
                   fontFamily: "'Montserrat', sans-serif",
                   fontSize: dims.taglineSize,
                   fontWeight: 400,
-                  letterSpacing: "5px",
+                  letterSpacing: taglineSpacing,
                   textTransform: "uppercase" as const,
                   visibility: "hidden",
                 }}
@@ -251,7 +264,7 @@ export function IntroAnimation() {
                   fontFamily: "'Montserrat', sans-serif",
                   fontSize: dims.taglineSize,
                   fontWeight: 400,
-                  letterSpacing: "5px",
+                  letterSpacing: taglineSpacing,
                 }}
                 fill="none"
                 stroke="#CED4DA"
@@ -275,7 +288,7 @@ export function IntroAnimation() {
                   fontFamily: "'Montserrat', sans-serif",
                   fontSize: dims.taglineSize,
                   fontWeight: 400,
-                  letterSpacing: "5px",
+                  letterSpacing: taglineSpacing,
                 }}
                 fill="#CED4DA"
                 stroke="none"
