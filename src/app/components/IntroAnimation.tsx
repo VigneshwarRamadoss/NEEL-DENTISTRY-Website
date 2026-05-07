@@ -44,7 +44,7 @@ export function IntroAnimation() {
       if (w <= 400)       setDims({ fontSize: 32, taglineSize: 10 });
       else if (w <= 768)  setDims({ fontSize: 44, taglineSize: 11 });
       else if (w <= 1024) setDims({ fontSize: 66, taglineSize: 12 });
-      else                setDims({ fontSize: 100, taglineSize: 15 });
+      else                setDims({ fontSize: 180, taglineSize: 24 });
     };
     update();
     window.addEventListener("resize", update);
@@ -55,8 +55,8 @@ export function IntroAnimation() {
   const fitSvg = useCallback(
     (svg: SVGSVGElement | null) => {
       if (!svg) return;
-      // Wait a frame so the browser has laid out the text nodes
-      requestAnimationFrame(() => {
+      
+      const runFit = () => {
         const texts = svg.querySelectorAll("text");
         let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
         
@@ -73,15 +73,23 @@ export function IntroAnimation() {
         if (maxX > -Infinity && maxY > -Infinity) {
           const w = maxX - minX;
           const h = maxY - minY;
-          const paddingX = 40;
-          const paddingY = 20;
+          const paddingX = 100; // More breathing room
+          const paddingY = 40;
           
           svg.setAttribute("viewBox", `${minX - paddingX/2} ${minY - paddingY/2} ${w + paddingX} ${h + paddingY}`);
-          svg.style.width = "100%";
-          svg.style.maxWidth = `${w + paddingX}px`;
+          // Set to natural size but cap at screen width
+          svg.style.width = `${w + paddingX}px`;
+          svg.style.maxWidth = "95vw";
           svg.style.height = "auto";
         }
-      });
+      };
+
+      // Wait for font loading and layout
+      if ("fonts" in document) {
+        document.fonts.ready.then(runFit);
+      } else {
+        requestAnimationFrame(runFit);
+      }
     },
     [],
   );
@@ -105,7 +113,7 @@ export function IntroAnimation() {
   const cx = 500;
   const cy = 500;
 
-  const letterSpacing = dims.fontSize >= 85 ? "8px" : dims.fontSize >= 66 ? "6px" : "4px";
+  const letterSpacing = dims.fontSize >= 180 ? "16px" : dims.fontSize >= 66 ? "8px" : "4px";
   const taglineSpacing = dims.taglineSize >= 14 ? "5px" : "3px";
 
   return (
