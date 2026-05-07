@@ -15,8 +15,8 @@ export function Contact() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 lg:py-28 flex items-center justify-center overflow-hidden bg-dark-bg">
-        <div className="absolute inset-0 z-0 bg-dark-bg/80" />
+      <section className="relative py-16 sm:py-24 lg:py-28 flex items-center justify-center overflow-hidden bg-[#1A2E35]">
+        <div className="absolute inset-0 z-0 bg-[#1A2E35]/80" />
         <div className="relative z-10 text-center text-white px-4">
           <span className="text-primary uppercase tracking-[0.3em] text-xs sm:text-sm font-black mb-5 block font-sans">
             Get in Touch
@@ -124,7 +124,7 @@ export function Contact() {
       </section>
 
       {/* Emergency Strip */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-dark-bg text-white">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[#1A2E35] text-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row items-center justify-between gap-10">
            <div className="text-center lg:text-left max-w-2xl">
               <h2 className="text-primary mb-3">Dental Emergency?</h2>

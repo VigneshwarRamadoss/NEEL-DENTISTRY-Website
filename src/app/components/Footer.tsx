@@ -40,7 +40,7 @@ const linkStyle: React.CSSProperties = {
 
 export function Footer() {
   return (
-    <footer className="bg-dark-bg text-white">
+    <footer className="bg-[#1A2E35] text-white">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-10">
           {/* Column 1 — Brand */}

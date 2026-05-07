@@ -81,8 +81,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-input-background: var(--input-background);
-  --color-switch-background: var(--switch-background);
-  --color-ring: var(--ring);
+  --color-primary-hover: var(--primary-hover);
+  --color-dark-bg: var(--dark-bg);
   --color-section-pink: var(--section-pink);
   
   --radius-sm: calc(var(--radius) - 2px);

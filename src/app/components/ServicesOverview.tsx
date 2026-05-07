@@ -72,7 +72,7 @@ export function ServicesOverview() {
                   </p>
 
                   <div className="mt-auto space-y-4">
-                    <p className="text-primary font-bold text-xs uppercase tracking-wider">
+                    <p className="text-black/40 font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] mb-4">
                       {service.hook}
                     </p>
 
