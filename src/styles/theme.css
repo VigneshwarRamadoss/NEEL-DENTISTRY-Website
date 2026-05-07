@@ -83,6 +83,7 @@
   --color-input-background: var(--input-background);
   --color-primary-hover: var(--primary-hover);
   --color-dark-bg: var(--dark-bg);
+  --color-ring: var(--ring);
   --color-section-pink: var(--section-pink);
   
   --radius-sm: calc(var(--radius) - 2px);
