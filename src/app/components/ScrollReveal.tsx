@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { useMotionSafe } from "@/hooks/useMotionSafe";
+import { useMotionSafe } from "../../hooks/useMotionSafe";
 
 interface ScrollRevealProps {
   children: React.ReactNode;

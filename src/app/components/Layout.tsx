@@ -7,7 +7,7 @@ import { IntroAnimation } from "./IntroAnimation";
 import { PageTransition } from "./PageTransition";
 import { ScrollProgress } from "./ScrollProgress";
 import { WhatsAppFloating } from "./WhatsAppFloating";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { useSmoothScroll } from "../../hooks/useSmoothScroll";
 
 function PageSkeleton() {
   return (

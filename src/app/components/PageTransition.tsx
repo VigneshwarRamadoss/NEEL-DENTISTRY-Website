@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useLocation } from "react-router";
-import { useMotionSafe } from "@/hooks/useMotionSafe";
+import { useMotionSafe } from "../../hooks/useMotionSafe";
 
 interface PageTransitionProps {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { Link } from "react-router";
-import { useMotionSafe } from "@/hooks/useMotionSafe";
+import { useMotionSafe } from "../../hooks/useMotionSafe";
 
 const benefits = [
   "State-of-the-Art Technology & Equipment",

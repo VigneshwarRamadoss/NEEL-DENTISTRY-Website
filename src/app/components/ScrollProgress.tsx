@@ -1,5 +1,5 @@
 import { motion, useScroll, useSpring } from "motion/react";
-import { useMotionSafe } from "@/hooks/useMotionSafe";
+import { useMotionSafe } from "../../hooks/useMotionSafe";
 
 export function ScrollProgress() {
   const { shouldAnimate } = useMotionSafe();
