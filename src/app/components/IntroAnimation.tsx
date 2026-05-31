@@ -119,6 +119,24 @@ export function IntroAnimation({ onComplete }: IntroAnimationProps) {
 
         {/* PHASE 2 — Clinic Name Slice/Split Reveal */}
         <div className="relative overflow-hidden" style={{ height: fontSize * 1.25 }}>
+          {/* Hidden reference text to naturally size the parent container width */}
+          <span
+            aria-hidden="true"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 600,
+              fontSize: fontSize,
+              letterSpacing: windowW <= 400 ? "3px" : windowW <= 768 ? "5px" : "8px",
+              color: "transparent",
+              display: "block",
+              whiteSpace: "nowrap",
+              lineHeight: 1.25,
+              visibility: "hidden",
+            }}
+          >
+            NEEL DENTISTRY
+          </span>
+
           {/* TOP HALF */}
           <motion.div
             className="absolute inset-0 overflow-hidden"
