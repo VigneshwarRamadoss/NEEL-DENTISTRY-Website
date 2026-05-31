@@ -93,7 +93,11 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => { if (isDragging) updateSlider(e.clientX); };
     const onMouseUp   = () => setIsDragging(false);
-    const onTouchMove = (e: TouchEvent) => { if (isDragging) updateSlider(e.touches[0].clientX); };
+    const onTouchMove = (e: TouchEvent) => { 
+      if (isDragging && e.touches && e.touches.length > 0) {
+        updateSlider(e.touches[0].clientX); 
+      }
+    };
 
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
