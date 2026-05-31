@@ -8,7 +8,7 @@ const images = [
     tag: "Teeth Whitening",
   },
   {
-    img: "https://images.unsplash.com/photo-1758523671894-b5891a2ef3b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMG1hbiUyMHBlcmZlY3QlMjB0ZWV0aHxlbnwxfHx8fDE3Nzc5NjAyODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    img: "https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     tag: "Porcelain Veneers",
   },
   {
