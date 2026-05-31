@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, Star, Sparkles, ChevronLeft, ChevronRight, Phone } from "lucide-react";
 import { WhatsAppIcon } from "../components/WhatsAppIcon";
 
@@ -10,7 +9,7 @@ const galleryItems = [
     category: "Veneers",
     title: "Smile Transformation",
     desc: "Porcelain veneers — 8 upper teeth restored",
-    before: "https://images.unsplash.com/photo-1593022356769-11f09a79a24a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    before: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
     after:  "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
     duration: "3 visits",
     rating: 5,
@@ -41,7 +40,7 @@ const galleryItems = [
     title: "Full Restoration",
     desc: "Single titanium implant with ceramic crown",
     before: "https://images.unsplash.com/photo-1513224502586-d1e602410265?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
-    after:  "https://images.unsplash.com/photo-1629909605125-58da3181444d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
+    after:  "https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800",
     duration: "2 visits",
     rating: 5,
   },
@@ -112,11 +111,7 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
   }, [isDragging]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 24 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+    <div
       className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-border transition-all duration-500"
     >
       {/* Slider Viewport */}
@@ -192,7 +187,7 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
           <p className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider font-semibold">{item.duration}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -216,38 +211,24 @@ export function SmileGallery() {
         <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/6 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-[900px] mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div>
             <span className="inline-flex items-center gap-2 bg-[#ffc2d1]/15 text-[#ffb3c6] px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] mb-6 font-sans">
               <Sparkles size={11} className="text-[#ffc2d1]" />
               Real Results · Real Patients
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[40px] sm:text-[56px] md:text-[68px] font-bold text-[#333333] leading-[1.05] mb-6 font-heading"
-          >
+          <h1 className="text-[40px] sm:text-[56px] md:text-[68px] font-bold text-[#333333] leading-[1.05] mb-6 font-heading">
             Smiles We're{" "}
             <span className="relative inline-block text-black">
               Proud Of
               <span className="absolute -bottom-1.5 left-0 w-full h-[4px] bg-[#ffc2d1] rounded-full" />
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#666666] text-base sm:text-lg max-w-[620px] mx-auto font-sans leading-relaxed"
-          >
+          <p className="text-[#666666] text-base sm:text-lg max-w-[620px] mx-auto font-sans leading-relaxed">
             Interact with the cards below by dragging the comparison slider to see before &amp; after transformations. Every patient restyled by our experts.
-          </motion.p>
+          </p>
         </div>
       </section>
 
@@ -255,17 +236,13 @@ export function SmileGallery() {
       <section className="bg-white border-y border-border">
         <div className="max-w-[1100px] mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="text-center"
             >
               <p className="text-2xl sm:text-3xl font-bold text-[#333333] font-heading">{stat.value}</p>
               <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-sans font-bold mt-1.5">{stat.label}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -279,17 +256,10 @@ export function SmileGallery() {
               onClick={() => setActiveTab(cat)}
               className={`relative px-5 py-2.5 rounded-full text-xs font-bold font-sans transition-all duration-300 ${
                 activeTab === cat
-                  ? "text-white"
+                  ? "text-white bg-[#333333] shadow-md shadow-[#333333]/15"
                   : "bg-white text-[#666666] hover:bg-[#ffc2d1]/10 hover:text-[#333333] border border-border"
               }`}
             >
-              {activeTab === cat && (
-                <motion.span
-                  layoutId="activeFilter"
-                  className="absolute inset-0 bg-[#333333] rounded-full -z-10 shadow-md shadow-[#333333]/15"
-                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                />
-              )}
               {cat}
               {cat !== "All" && (
                 <span className={`ml-2 text-[9px] px-1.5 py-0.5 rounded-full font-bold ${activeTab === cat ? "bg-white/20 text-white" : "bg-[#ffc2d1]/20 text-[#ffb3c6]"}`}>
@@ -304,20 +274,13 @@ export function SmileGallery() {
       {/* ─── Gallery Grid ─── */}
       <section className="py-20 bg-background">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {filteredItems.map((item) => (
-                <BeforeAfterCard key={item.id} item={item} />
-              ))}
-            </motion.div>
-          </AnimatePresence>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {filteredItems.map((item) => (
+              <BeforeAfterCard key={item.id} item={item} />
+            ))}
+          </div>
 
           {filteredItems.length === 0 && (
             <div className="text-center py-24 text-[#666666] font-sans font-medium">
@@ -333,12 +296,7 @@ export function SmileGallery() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#ffc2d1]/8 rounded-full blur-[90px] pointer-events-none" />
 
         <div className="max-w-[900px] mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div>
             <div className="flex gap-1 justify-center mb-5">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={16} className="text-[#ffc2d1] fill-[#ffc2d1]" />
@@ -348,7 +306,7 @@ export function SmileGallery() {
               "I never imagined I'd be comfortable smiling in photos. Dr. Neelambari gave me back my confidence, and my new smile looks incredibly natural."
             </blockquote>
             <p className="text-[#666666] font-sans text-xs uppercase tracking-[0.2em] font-semibold">— Priya R. · Veneers Patient</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -359,12 +317,7 @@ export function SmileGallery() {
         <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/8 rounded-full blur-[110px] pointer-events-none" />
 
         <div className="relative z-10 max-w-[800px] mx-auto px-4 text-center text-white">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div>
             <Sparkles className="mx-auto text-[#ffc2d1] mb-5 animate-pulse" size={28} />
             <h2 className="text-[36px] md:text-[52px] font-bold text-white font-heading leading-tight mb-5">
               Ready for Your<br />Transformation?
@@ -391,7 +344,7 @@ export function SmileGallery() {
                 +91 96553 00036
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
