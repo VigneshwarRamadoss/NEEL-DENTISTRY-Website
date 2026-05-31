@@ -53,7 +53,7 @@ export function FAQs() {
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gray-900" />
         <div className="relative z-10 text-center text-white px-4">
-          <Link to="/patient-info" className="inline-flex items-center gap-2 text-[#ffc2d1] mb-6 hover:translate-x-[-4px] transition-transform">
+          <Link to="/patient-info" className="inline-flex items-center gap-2 text-primary mb-6 hover:translate-x-[-4px] transition-transform">
             <ArrowLeft size={18} /> Back to Patient Info
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4 leading-tight">
@@ -76,7 +76,7 @@ export function FAQs() {
                 onClick={() => { setActiveTab(cat.category); setOpenFaq(null); }}
                 className={`px-8 py-4 font-bold font-serif text-lg transition-all relative ${
                   activeTab === cat.category 
-                    ? "text-gray-900 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-[#ffc2d1]" 
+                    ? "text-gray-900 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-primary" 
                     : "text-gray-400 hover:text-gray-600"
                 }`}
               >
@@ -106,12 +106,12 @@ export function FAQs() {
           </div>
 
           <div className="mt-24 text-center p-12 bg-gray-900 rounded-[40px] text-white">
-            <HelpCircle className="mx-auto text-[#ffc2d1] mb-6" size={48} />
+            <HelpCircle className="mx-auto text-primary mb-6" size={48} />
             <h3 className="text-2xl font-bold font-serif mb-4">Still Have Questions?</h3>
             <p className="text-gray-400 font-serif mb-10 max-w-[500px] mx-auto text-lg">
               Our front desk team is happy to help with anything — from treatment questions to insurance queries.
             </p>
-            <a href="tel:+919655300036" className="inline-block bg-[#ffc2d1] text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-[#ffb3c6] transition-colors">
+            <a href="tel:+919655300036" className="inline-block bg-primary text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-primary-hover transition-colors">
               Call Us Today
             </a>
           </div>

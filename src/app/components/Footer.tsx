@@ -24,7 +24,7 @@ const columnHeadingStyle: React.CSSProperties = {
   fontSize: "11px",
   textTransform: "uppercase",
   letterSpacing: "2px",
-  color: "#ffc2d1",
+  color: "var(--color-primary)",
   marginBottom: "24px",
 };
 

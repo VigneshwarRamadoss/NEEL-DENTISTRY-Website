@@ -28,7 +28,7 @@ export function Contact() {
         
         {/* Animated Fluid Orbs (Organic Breathing Effect) */}
         <motion.div
-          className="absolute top-[-150px] left-[-150px] w-[600px] h-[600px] bg-[#ffc2d1]/12 rounded-full blur-[140px] pointer-events-none"
+          className="absolute top-[-150px] left-[-150px] w-[600px] h-[600px] bg-primary/12 rounded-full blur-[140px] pointer-events-none"
           animate={{
             x: [0, 40, -30, 0],
             y: [0, -50, 30, 0],
@@ -41,7 +41,7 @@ export function Contact() {
           }}
         />
         <motion.div
-          className="absolute bottom-[-150px] right-[-150px] w-[500px] h-[500px] bg-[#ffc2d1]/8 rounded-full blur-[120px] pointer-events-none"
+          className="absolute bottom-[-150px] right-[-150px] w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px] pointer-events-none"
           animate={{
             x: [0, -50, 40, 0],
             y: [0, 40, -40, 0],
@@ -83,7 +83,7 @@ export function Contact() {
               initial={{ opacity: 0, letterSpacing: "1px" }}
               animate={{ opacity: 1, letterSpacing: "4px" }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-block text-[#FFC2D1] uppercase text-xs font-bold mb-4 font-sans"
+              className="inline-block text-primary uppercase text-xs font-bold mb-4 font-sans"
             >
               Get in Touch
             </motion.span>
@@ -101,7 +101,7 @@ export function Contact() {
               {"Contact Us".split(" ").map((word, i) => (
                 <motion.span
                   key={i}
-                  className="inline-block mr-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#ffc2d1] bg-[size:150%]"
+                  className="inline-block mr-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary bg-[size:150%]"
                   variants={{
                     hidden: { opacity: 0, y: 35, rotateX: -20 },
                     visible: { 
@@ -145,8 +145,8 @@ export function Contact() {
                   
                   {/* Phone & WhatsApp */}
                   <div className="flex gap-5">
-                    <div className="p-3.5 bg-[#ffc2d1]/15 rounded-2xl text-[#ffb3c6] h-fit shrink-0 border border-[#ffc2d1]/10">
-                      <Phone size={22} className="text-[#ffc2d1]" />
+                    <div className="p-3.5 bg-primary/15 rounded-2xl text-primary h-fit shrink-0 border border-primary/10">
+                      <Phone size={22} className="text-primary" />
                     </div>
                     <div>
                       <h4 className="text-[#333333] font-heading font-semibold text-lg mb-1.5">Phone & WhatsApp</h4>
@@ -156,7 +156,7 @@ export function Contact() {
                       <div className="flex flex-col gap-2.5">
                         <a 
                           href="tel:+919655300036" 
-                          className="text-2xl sm:text-3xl font-bold text-[#333333] hover:text-[#ffc2d1] transition-colors font-heading tracking-tight"
+                          className="text-2xl sm:text-3xl font-bold text-[#333333] hover:text-primary transition-colors font-heading tracking-tight"
                         >
                           +91 96553 00036
                         </a>
@@ -175,8 +175,8 @@ export function Contact() {
 
                   {/* Our Location */}
                   <div className="flex gap-5">
-                    <div className="p-3.5 bg-[#ffc2d1]/15 rounded-2xl text-[#ffb3c6] h-fit shrink-0 border border-[#ffc2d1]/10">
-                      <MapPin size={22} className="text-[#ffc2d1]" />
+                    <div className="p-3.5 bg-primary/15 rounded-2xl text-primary h-fit shrink-0 border border-primary/10">
+                      <MapPin size={22} className="text-primary" />
                     </div>
                     <div>
                       <h4 className="text-[#333333] font-heading font-semibold text-lg mb-1.5">Our Location</h4>
@@ -190,7 +190,7 @@ export function Contact() {
                         href="https://maps.app.goo.gl/wEfJnXYrMuPdmLaA7" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="inline-flex items-center gap-1.5 text-[#ffc2d1] font-bold text-xs uppercase tracking-widest mt-4 hover:gap-2.5 transition-all font-sans"
+                        className="inline-flex items-center gap-1.5 text-primary font-bold text-xs uppercase tracking-widest mt-4 hover:gap-2.5 transition-all font-sans"
                       >
                         Get Directions <ExternalLink size={14} />
                       </a>
@@ -199,8 +199,8 @@ export function Contact() {
 
                   {/* Office Hours */}
                   <div className="flex gap-5">
-                    <div className="p-3.5 bg-[#ffc2d1]/15 rounded-2xl text-[#ffb3c6] h-fit shrink-0 border border-[#ffc2d1]/10">
-                      <Clock size={22} className="text-[#ffc2d1]" />
+                    <div className="p-3.5 bg-primary/15 rounded-2xl text-primary h-fit shrink-0 border border-primary/10">
+                      <Clock size={22} className="text-primary" />
                     </div>
                     <div>
                       <h4 className="text-[#333333] font-heading font-semibold text-lg mb-1.5">Office Hours</h4>
@@ -233,7 +233,7 @@ export function Contact() {
                 ></iframe>
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 backdrop-blur-sm">
-                  <div className="w-8 h-8 border-2 border-[#FFC2D1] border-t-transparent rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
                 </div>
               )}
             </div>
@@ -245,11 +245,11 @@ export function Contact() {
       {/* Emergency Strip — Premium Dark Slate & Pink Accents */}
       <section className="py-20 bg-[#1a1a1a] text-white relative overflow-hidden">
         {/* Ambient glow decoration */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#ffc2d1]/8 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/8 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
            <div className="text-center lg:text-left max-w-2xl">
-              <h2 className="text-[#FFC2D1] mb-3 font-heading font-bold text-3xl sm:text-4xl">Dental Emergency?</h2>
+              <h2 className="text-primary mb-3 font-heading font-bold text-3xl sm:text-4xl">Dental Emergency?</h2>
               <p className="text-white/70 text-base sm:text-lg font-sans leading-relaxed">
                 We reserve same-day emergency slots for patients experiencing severe pain. Reach out to our team immediately.
               </p>

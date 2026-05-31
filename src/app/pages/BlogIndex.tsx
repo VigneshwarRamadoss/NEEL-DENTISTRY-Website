@@ -48,7 +48,7 @@ export function BlogIndex() {
           <div className="absolute inset-0 bg-gray-900/60" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
-          <span className="text-[#ffc2d1] uppercase tracking-[3px] text-sm font-semibold mb-4 block">Education</span>
+          <span className="text-primary uppercase tracking-[3px] text-sm font-semibold mb-4 block">Education</span>
           <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4 leading-tight">
             Latest from the Clinic
           </h1>
@@ -71,16 +71,16 @@ export function BlogIndex() {
             </div>
             <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
               <div className="flex items-center gap-4 mb-6">
-                <span className="px-4 py-1.5 bg-[#ffc2d1] text-gray-900 rounded-full text-sm font-bold uppercase tracking-wider">{posts[0].category}</span>
+                <span className="px-4 py-1.5 bg-primary text-black rounded-full text-sm font-bold uppercase tracking-wider">{posts[0].category}</span>
                 <div className="flex items-center gap-2 text-gray-500 text-sm font-medium">
                    <Calendar size={14} /> {posts[0].date}
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-6 group-hover:text-[#ffc2d1] transition-colors">{posts[0].title}</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-6 group-hover:text-primary transition-colors">{posts[0].title}</h2>
               <p className="text-gray-600 text-lg font-serif mb-10 leading-relaxed">
                 {posts[0].excerpt}
               </p>
-              <Link to="/blog" className="inline-flex items-center gap-2 text-gray-900 font-bold hover:text-[#ffc2d1] transition-colors group/link">
+              <Link to="/blog" className="inline-flex items-center gap-2 text-gray-900 font-bold hover:text-primary transition-colors group/link">
                 Read Full Article <ArrowRight size={20} className="group-hover/link:translate-x-2 transition-transform" />
               </Link>
             </div>
@@ -98,19 +98,19 @@ export function BlogIndex() {
                   <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 </div>
                 <div className="flex items-center gap-4 mb-4">
-                   <span className="text-[#ffc2d1] text-xs font-bold uppercase tracking-[2px]">{post.category}</span>
+                   <span className="text-primary text-xs font-bold uppercase tracking-[2px]">{post.category}</span>
                    <div className="flex items-center gap-2 text-gray-400 text-xs font-medium">
                       <Clock size={12} /> {post.readTime}
                    </div>
                 </div>
-                <h3 className="text-2xl font-bold font-serif text-gray-900 mb-4 group-hover:text-[#ffc2d1] transition-colors leading-tight">
+                <h3 className="text-2xl font-bold font-serif text-gray-900 mb-4 group-hover:text-primary transition-colors leading-tight">
                   {post.title}
                 </h3>
                 <p className="text-gray-600 font-serif mb-8 line-clamp-2">
                   {post.excerpt}
                 </p>
                 <Link to="/blog" className="inline-flex items-center gap-2 text-gray-900 font-bold group/btn">
-                  Read More <ArrowRight size={18} className="group-hover/btn:translate-x-2 transition-transform text-[#ffc2d1]" />
+                  Read More <ArrowRight size={18} className="group-hover/btn:translate-x-2 transition-transform text-primary" />
                 </Link>
               </div>
             ))}
@@ -119,7 +119,7 @@ export function BlogIndex() {
       </section>
 
       {/* Blog CTA */}
-      <section className="py-24 bg-[#ffc2d1]">
+      <section className="py-24 bg-primary">
         <div className="max-w-[1200px] mx-auto px-4 text-center">
           <BookOpen className="mx-auto text-gray-900 mb-8" size={48} />
           <h2 className="text-3xl md:text-4xl font-bold font-serif mb-6 text-gray-900">Get Health Tips in Your Inbox</h2>

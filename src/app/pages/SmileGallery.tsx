@@ -138,7 +138,7 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
           className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-10 pointer-events-none"
           style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border border-[#ffc2d1] transition-all">
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border border-primary transition-all">
             <ChevronLeft size={10} className="text-[#333333] mr-[1px]" />
             <ChevronRight size={10} className="text-[#333333] ml-[1px]" />
           </div>
@@ -148,7 +148,7 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
         <span className="absolute top-4 left-4 bg-black/45 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans pointer-events-none">
           Before
         </span>
-        <span className="absolute top-4 right-4 bg-[#ffc2d1] text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans pointer-events-none">
+        <span className="absolute top-4 right-4 bg-primary text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans pointer-events-none">
           After
         </span>
 
@@ -163,7 +163,7 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
       {/* Card Info Section */}
       <div className="p-6 flex items-start justify-between gap-4">
         <div>
-          <span className="inline-block bg-[#ffc2d1]/15 text-[#ffb3c6] text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1 rounded-full mb-2.5 font-sans">
+          <span className="inline-block bg-primary/15 text-primary text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1 rounded-full mb-2.5 font-sans">
             {item.category}
           </span>
           <h3 className="text-lg font-bold text-[#333333] font-heading leading-tight">{item.title}</h3>
@@ -172,7 +172,7 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
         <div className="text-right shrink-0">
           <div className="flex gap-0.5 justify-end mb-1">
             {[...Array(item.rating)].map((_, i) => (
-              <Star key={i} size={11} className="text-[#ffc2d1] fill-[#ffc2d1]" />
+              <Star key={i} size={11} className="text-primary fill-primary" />
             ))}
           </div>
           <p className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider font-semibold">{item.duration}</p>
@@ -198,13 +198,13 @@ export function SmileGallery() {
       {/* ─── Hero Banner with Pink Ethereal Glow ─── */}
       <section className="relative overflow-hidden py-24 sm:py-28 px-4">
         {/* Soft elegant ambient glows */}
-        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-[#ffc2d1]/8 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/6 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-primary/6 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-[900px] mx-auto text-center relative z-10">
           <div>
-            <span className="inline-flex items-center gap-2 bg-[#ffc2d1]/15 text-[#ffb3c6] px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] mb-6 font-sans">
-              <Sparkles size={11} className="text-[#ffc2d1]" />
+            <span className="inline-flex items-center gap-2 bg-primary/15 text-primary px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] mb-6 font-sans">
+              <Sparkles size={11} className="text-primary" />
               Real Results · Real Patients
             </span>
           </div>
@@ -213,7 +213,7 @@ export function SmileGallery() {
             Smiles We're{" "}
             <span className="relative inline-block text-black">
               Proud Of
-              <span className="absolute -bottom-1.5 left-0 w-full h-[4px] bg-[#ffc2d1] rounded-full" />
+              <span className="absolute -bottom-1.5 left-0 w-full h-[4px] bg-primary rounded-full" />
             </span>
           </h1>
 
@@ -248,12 +248,12 @@ export function SmileGallery() {
               className={`relative px-5 py-2.5 rounded-full text-xs font-bold font-sans transition-all duration-300 ${
                 activeTab === cat
                   ? "text-white bg-[#333333] shadow-md shadow-[#333333]/15"
-                  : "bg-white text-[#666666] hover:bg-[#ffc2d1]/10 hover:text-[#333333] border border-border"
+                  : "bg-white text-[#666666] hover:bg-primary/10 hover:text-[#333333] border border-border"
               }`}
             >
               {cat}
               {cat !== "All" && (
-                <span className={`ml-2 text-[9px] px-1.5 py-0.5 rounded-full font-bold ${activeTab === cat ? "bg-white/20 text-white" : "bg-[#ffc2d1]/20 text-[#ffb3c6]"}`}>
+                <span className={`ml-2 text-[9px] px-1.5 py-0.5 rounded-full font-bold ${activeTab === cat ? "bg-white/20 text-white" : "bg-primary/20 text-primary"}`}>
                   {galleryItems.filter((g) => g.category === cat).length}
                 </span>
               )}
@@ -284,13 +284,13 @@ export function SmileGallery() {
       {/* ─── Premium Testimonial Strip ─── */}
       <section className="py-24 bg-white border-t border-border relative overflow-hidden">
         {/* Soft pink glow overlay */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#ffc2d1]/8 rounded-full blur-[90px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-primary/8 rounded-full blur-[90px] pointer-events-none" />
 
         <div className="max-w-[900px] mx-auto px-4 text-center relative z-10">
           <div>
             <div className="flex gap-1 justify-center mb-5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={16} className="text-[#ffc2d1] fill-[#ffc2d1]" />
+                <Star key={i} size={16} className="text-primary fill-primary" />
               ))}
             </div>
             <blockquote className="text-xl sm:text-2xl md:text-3xl font-heading font-medium text-[#333333] leading-relaxed mb-6 italic">
@@ -304,12 +304,12 @@ export function SmileGallery() {
       {/* ─── Premium Dark Slate CTA Section with Pink Glow ─── */}
       <section className="relative py-28 overflow-hidden bg-[#1a1a1a]">
         {/* Breathtaking ambient pink-to-silver radial glows */}
-        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-[#ffc2d1]/12 rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/8 rounded-full blur-[110px] pointer-events-none" />
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-primary/12 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-primary/8 rounded-full blur-[110px] pointer-events-none" />
 
         <div className="relative z-10 max-w-[800px] mx-auto px-4 text-center text-white">
           <div>
-            <Sparkles className="mx-auto text-[#ffc2d1] mb-5 animate-pulse" size={28} />
+            <Sparkles className="mx-auto text-primary mb-5 animate-pulse" size={28} />
             <h2 className="text-[36px] md:text-[52px] font-bold text-white font-heading leading-tight mb-5">
               Ready for Your<br />Transformation?
             </h2>
@@ -321,7 +321,7 @@ export function SmileGallery() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-[#FFC2D1] hover:bg-[#FFB3C6] text-black px-10 py-4.5 rounded-xl font-bold text-[15px] transition-all shadow-lg shadow-[#FFC2D1]/15 active:scale-95 group"
+                className="inline-flex items-center gap-3 bg-primary hover:bg-primary-hover text-black px-10 py-4.5 rounded-xl font-bold text-[15px] transition-all shadow-lg shadow-primary/15 active:scale-95 group"
               >
                 <WhatsAppIcon size={16} />
                 Book via WhatsApp

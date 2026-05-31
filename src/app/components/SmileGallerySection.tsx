@@ -21,7 +21,7 @@ export function SmileGallerySection() {
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Decorative ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#FFC2D1]/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         
@@ -76,11 +76,11 @@ export function SmileGallerySection() {
                     background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)",
                   }}
                 >
-                  <span className="text-[#FFC2D1] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-1.5 font-sans">
+                  <span className="text-primary text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-1.5 font-sans">
                     {item.tag}
                   </span>
                   <span className="text-white text-base sm:text-lg font-bold flex items-center gap-1 font-sans group-hover:translate-x-1 transition-transform duration-300">
-                    View Results <ArrowRight size={14} className="text-[#FFC2D1]" />
+                    View Results <ArrowRight size={14} className="text-primary" />
                   </span>
                 </div>
               </Link>
@@ -92,7 +92,7 @@ export function SmileGallerySection() {
         <div className="text-center mt-12">
           <Link
             to="/smile-gallery"
-            className="inline-flex items-center gap-2 text-[#333333] hover:text-[#FFC2D1] font-bold text-sm tracking-widest uppercase transition-colors font-sans group"
+            className="inline-flex items-center gap-2 text-[#333333] hover:text-primary font-bold text-sm tracking-widest uppercase transition-colors font-sans group"
           >
             View All Results 
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />

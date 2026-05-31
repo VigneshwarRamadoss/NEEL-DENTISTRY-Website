@@ -165,7 +165,7 @@ export function ServiceDetail() {
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-gray-900" />
         <div className="relative z-10 text-center text-white px-4">
-          <Link to="/services" className="inline-flex items-center gap-2 text-[#ffc2d1] mb-6 hover:translate-x-[-4px] transition-transform">
+          <Link to="/services" className="inline-flex items-center gap-2 text-primary mb-6 hover:translate-x-[-4px] transition-transform">
             <ArrowLeft size={18} /> Back to Services
           </Link>
           <h1 className="text-4xl md:text-6xl font-bold font-serif mb-4 leading-tight">
@@ -188,7 +188,7 @@ export function ServiceDetail() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {content.treatments.map((item: string, idx: number) => (
                   <div key={idx} className="flex items-center gap-3 p-4 bg-[#f2f2f2] rounded-xl border border-gray-100">
-                    <CheckCircle2 className="text-[#ffc2d1] shrink-0" size={20} />
+                    <CheckCircle2 className="text-primary shrink-0" size={20} />
                     <span className="text-gray-800 font-medium font-serif">{item}</span>
                   </div>
                 ))}
@@ -200,7 +200,7 @@ export function ServiceDetail() {
               <p className="text-gray-600 mb-8 font-serif">
                 Not sure if this treatment is right for you? Speak to our experts for a personalised assessment.
               </p>
-              <a href="tel:+919655300036" className="w-full block bg-[#ffc2d1] text-gray-900 text-center py-4 rounded-full font-bold hover:bg-[#ffb3c6] transition-colors shadow-md mb-4">
+              <a href="tel:+919655300036" className="w-full block bg-primary text-black text-center py-4 rounded-full font-bold hover:bg-primary-hover transition-colors shadow-md mb-4">
                 Call +91 96553 00036
               </a>
               <Link to="/contact" className="w-full block text-center py-4 border-2 border-gray-900 rounded-full font-bold hover:bg-gray-900 hover:text-white transition-all">
@@ -220,11 +220,11 @@ export function ServiceDetail() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {content.steps.map((step: any, idx: number) => (
               <div key={idx} className="relative">
-                <div className="text-5xl font-bold text-[#ffc2d1]/20 absolute -top-4 -left-2 z-0 font-serif">
+                <div className="text-5xl font-bold text-primary/20 absolute -top-4 -left-2 z-0 font-serif">
                   0{idx + 1}
                 </div>
                 <div className="relative z-10">
-                  <h3 className="text-xl font-bold font-serif mb-3 text-[#ffc2d1]">{step.title}</h3>
+                  <h3 className="text-xl font-bold font-serif mb-3 text-primary">{step.title}</h3>
                   <p className="text-gray-400 font-serif leading-relaxed">
                     {step.desc}
                   </p>
@@ -239,7 +239,7 @@ export function ServiceDetail() {
       <section className="py-24 bg-white">
         <div className="max-w-[800px] mx-auto px-4">
           <div className="text-center mb-16">
-            <HelpCircle className="mx-auto text-[#ffc2d1] mb-4" size={40} />
+            <HelpCircle className="mx-auto text-primary mb-4" size={40} />
             <h2 className="text-3xl font-bold font-serif">Common Questions</h2>
           </div>
           <div className="space-y-4">
@@ -275,7 +275,7 @@ export function ServiceDetail() {
                 className="bg-white p-8 rounded-3xl border border-gray-200 hover:shadow-lg transition-all group"
               >
                 <h3 className="text-xl font-bold font-serif mb-4 text-gray-900">{serviceContent[id].title}</h3>
-                <span className="inline-flex items-center gap-2 text-[#ffc2d1] font-bold group-hover:translate-x-2 transition-transform">
+                <span className="inline-flex items-center gap-2 text-primary font-bold group-hover:translate-x-2 transition-transform">
                   View Service <ArrowRight size={18} />
                 </span>
               </Link>

@@ -56,7 +56,7 @@ const cardHoverVariants = {
   },
   hover: {
     y: -8,
-    boxShadow: "0 16px 40px rgba(255,194,209,0.30)", // shadow-pink
+    boxShadow: "0 16px 40px rgba(var(--color-primary-rgb, 255,194,209),0.30)",
     transition: { type: "spring", stiffness: 300, damping: 20 },
   },
 };

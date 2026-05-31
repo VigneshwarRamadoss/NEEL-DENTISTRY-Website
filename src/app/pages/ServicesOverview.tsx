@@ -15,37 +15,37 @@ const services = [
   {
     id: "general-dentistry",
     title: "General Dentistry",
-    icon: <Stethoscope size={40} className="text-[#ffc2d1]" />,
+    icon: <Stethoscope size={40} className="text-primary" />,
     desc: "Your foundation for lifelong oral health. From routine check-ups to fillings and gum care."
   },
   {
     id: "cosmetic-dentistry",
     title: "Cosmetic Dentistry",
-    icon: <Sparkles size={40} className="text-[#ffc2d1]" />,
+    icon: <Sparkles size={40} className="text-primary" />,
     desc: "Help you feel completely comfortable in your own smile — whitening, reshaping, or transformation."
   },
   {
     id: "orthodontics",
     title: "Orthodontics",
-    icon: <Align size={40} className="text-[#ffc2d1]" />,
+    icon: <Align size={40} className="text-primary" />,
     desc: "Straight, healthy smiles for all ages. We offer traditional braces and clear aligner options."
   },
   {
     id: "pediatric-dentistry",
     title: "Pediatric Dentistry",
-    icon: <Baby size={40} className="text-[#ffc2d1]" />,
+    icon: <Baby size={40} className="text-primary" />,
     desc: "A gentle approach and a friendly team to make every child feel safe and comfortable."
   },
   {
     id: "emergency-care",
     title: "Emergency Care",
-    icon: <Activity size={40} className="text-[#ffc2d1]" />,
+    icon: <Activity size={40} className="text-primary" />,
     desc: "When it can't wait — we're here. Same-day appointments for genuine dental emergencies."
   },
   {
     id: "dental-implants",
     title: "Dental Implants",
-    icon: <PlusCircle size={40} className="text-[#ffc2d1]" />,
+    icon: <PlusCircle size={40} className="text-primary" />,
     desc: "The gold standard for replacing missing teeth. Permanent, natural, and life-changing."
   }
 ];
@@ -62,7 +62,7 @@ export function ServicesOverview() {
           <div className="absolute inset-0 bg-gray-900/60" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
-          <span className="text-[#ffc2d1] uppercase tracking-[3px] text-sm font-semibold mb-4 block">What We Offer</span>
+          <span className="text-primary uppercase tracking-[3px] text-sm font-semibold mb-4 block">What We Offer</span>
           <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4 leading-tight">
             Complete Dental Care,<br />Under One Roof.
           </h1>
@@ -76,7 +76,7 @@ export function ServicesOverview() {
       <section className="py-24 bg-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
           <div className="text-center mb-16">
-            <span className="text-[#ffc2d1] uppercase tracking-[2px] text-sm font-semibold mb-4 block">Our Specialisations</span>
+            <span className="text-primary uppercase tracking-[2px] text-sm font-semibold mb-4 block">Our Specialisations</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-serif mb-6">Every Smile Has a Story. We Help You Write Yours.</h2>
             <p className="text-gray-600 text-lg max-w-[800px] mx-auto font-serif">
               We offer six core areas of dental care, each delivered by trained specialists using modern equipment and evidence-based techniques.
@@ -90,14 +90,14 @@ export function ServicesOverview() {
                 to={`/services/${service.id}`}
                 className="group bg-white p-10 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="mb-8 p-4 bg-[#ffc2d1]/10 rounded-2xl w-fit group-hover:bg-[#ffc2d1]/20 transition-colors">
+                <div className="mb-8 p-4 bg-primary/10 rounded-2xl w-fit group-hover:bg-primary/20 transition-colors">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 font-serif">{service.title}</h3>
                 <p className="text-gray-600 mb-8 font-serif leading-relaxed">
                   {service.desc}
                 </p>
-                <span className="inline-flex items-center gap-2 text-[#ffc2d1] font-bold group-hover:translate-x-2 transition-transform">
+                <span className="inline-flex items-center gap-2 text-primary font-bold group-hover:translate-x-2 transition-transform">
                   Learn More <ArrowRight size={20} />
                 </span>
               </Link>
@@ -109,7 +109,7 @@ export function ServicesOverview() {
       {/* Insurance Note */}
       <section className="py-12 bg-[#f2f2f2] border-y border-gray-200">
         <div className="max-w-[1200px] mx-auto px-4 flex items-center justify-center gap-4 text-center">
-          <ShieldCheck className="text-[#ffc2d1] shrink-0" size={32} />
+          <ShieldCheck className="text-primary shrink-0" size={32} />
           <p className="text-gray-800 font-medium font-serif">
             We work with most major dental insurance providers. Speak to our front desk team about your coverage.
           </p>
@@ -123,7 +123,7 @@ export function ServicesOverview() {
           <p className="text-gray-400 text-lg mb-10 max-w-[700px] mx-auto font-serif">
             Book a consultation and let us guide you. We'll assess your needs, explain your options, and help you decide.
           </p>
-          <a href="tel:+919655300036" className="inline-block bg-[#ffc2d1] text-gray-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-[#ffb3c6] transition-colors shadow-lg">
+          <a href="tel:+919655300036" className="inline-block bg-primary text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-primary-hover transition-colors shadow-lg">
             Call to Book a Consultation
           </a>
         </div>

@@ -85,18 +85,18 @@ function FAQItem({ faq, index }: { faq: (typeof faqs)[0]; index: number }) {
     <motion.div
       {...fadeUp}
       transition={{ duration: 0.4, delay: index * 0.06 }}
-      className="border border-[#ffc2d1]/15 rounded-2xl overflow-hidden bg-white hover:border-[#ffc2d1]/40 transition-colors"
+      className="border border-primary/15 rounded-2xl overflow-hidden bg-white hover:border-primary/40 transition-colors"
     >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between p-6 text-left group"
       >
-        <span className="text-[17px] font-bold text-gray-900 font-serif pr-4 group-hover:text-[#ffc2d1] transition-colors">
+        <span className="text-[17px] font-bold text-gray-900 font-serif pr-4 group-hover:text-primary transition-colors">
           {faq.q}
         </span>
         <ChevronDown
           size={20}
-          className={`text-[#ffc2d1] shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`text-primary shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
         />
       </button>
       <AnimatePresence>
@@ -128,13 +128,13 @@ export function PatientInfo() {
               "url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB3YWl0aW5nfGVufDF8fHwxNzc3OTYwMjUwfDA&ixlib=rb-4.1.0&q=80&w=1080')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-[#ffc2d1]/40 via-gray-900/60 to-gray-900/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-gray-900/60 to-gray-900/80" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <motion.span
             {...fadeUp}
             transition={{ duration: 0.5 }}
-            className="inline-block text-[#ffc2d1] uppercase tracking-[0.35em] text-[13px] font-black mb-5 font-sans"
+            className="inline-block text-primary uppercase tracking-[0.35em] text-[13px] font-black mb-5 font-sans"
           >
             Here to Help
           </motion.span>
@@ -145,7 +145,7 @@ export function PatientInfo() {
           >
             Everything You Need
             <br />
-            <span className="text-[#ffc2d1]">Before You Arrive.</span>
+            <span className="text-primary">Before You Arrive.</span>
           </motion.h1>
           <motion.p
             {...fadeUp}
@@ -161,7 +161,7 @@ export function PatientInfo() {
       <section className="py-28 bg-[#fff5f7]">
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center">
-            <span className="inline-block bg-[#ffc2d1]/20 text-[#ffc2d1] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-6 font-sans">
+            <span className="inline-block bg-primary/20 text-primary px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-6 font-sans">
               First Time Here?
             </span>
             <h2 className="text-3xl md:text-[44px] font-bold text-gray-900 font-serif mb-8 leading-[1.15]">
@@ -193,9 +193,9 @@ export function PatientInfo() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl p-6 text-center border border-[#ffc2d1]/10 shadow-sm"
+                className="bg-white rounded-2xl p-6 text-center border border-primary/10 shadow-sm"
               >
-                <p className="text-3xl md:text-4xl font-black text-[#ffc2d1] font-sans">{stat.value}</p>
+                <p className="text-3xl md:text-4xl font-black text-primary font-sans">{stat.value}</p>
                 <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mt-2 font-sans">
                   {stat.label}
                 </p>
@@ -206,10 +206,10 @@ export function PatientInfo() {
       </section>
 
       {/* ─── What to Bring Checklist ─── */}
-      <section className="py-28 bg-[#ffc2d1]/10">
+      <section className="py-28 bg-primary/10">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-20">
-            <span className="inline-block bg-[#ffc2d1]/20 text-[#ffc2d1] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-5 font-sans">
+            <span className="inline-block bg-primary/20 text-primary px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-5 font-sans">
               Be Prepared
             </span>
             <h2 className="text-3xl md:text-[44px] font-bold text-gray-900 font-serif leading-[1.15]">
@@ -228,19 +228,16 @@ export function PatientInfo() {
                   key={idx}
                   {...fadeUp}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="bg-white p-8 rounded-[1.5rem] border border-[#ffc2d1]/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col items-start gap-5"
+                  className="bg-white p-8 rounded-[1.5rem] border border-primary/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col items-start gap-5"
                 >
-                  <div className="w-14 h-14 bg-[#ffc2d1]/15 rounded-2xl flex items-center justify-center group-hover:bg-[#ffc2d1] transition-colors duration-300">
-                    <Icon
-                      className="text-[#ffc2d1] group-hover:text-white transition-colors duration-300"
-                      size={28}
-                    />
+                  <div className="w-14 h-14 bg-primary/15 rounded-2xl flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                    <Icon className="text-primary group-hover:text-white transition-colors duration-300" size={28} />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold font-serif text-gray-900 mb-2">{item.title}</h3>
                     <p className="text-gray-600 font-serif text-[15px] leading-relaxed">{item.desc}</p>
                   </div>
-                  <CheckCircle2 className="text-[#ffc2d1]/30 mt-auto ml-auto" size={20} />
+                  <CheckCircle2 className="text-primary/30 mt-auto ml-auto" size={20} />
                 </motion.div>
               );
             })}
@@ -254,7 +251,7 @@ export function PatientInfo() {
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.5 }}
-            className="bg-[#ffc2d1] rounded-[2.5rem] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden"
+            className="bg-primary rounded-[2.5rem] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden"
           >
             {/* Decorative circles */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl" />
@@ -305,10 +302,10 @@ export function PatientInfo() {
       </section>
 
       {/* ─── FAQ Section ─── */}
-      <section className="py-28 bg-[#ffc2d1]/10">
+      <section className="py-28 bg-primary/10">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-16">
-            <span className="inline-block bg-[#ffc2d1]/20 text-[#ffc2d1] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-5 font-sans">
+            <span className="inline-block bg-primary/20 text-primary px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-5 font-sans">
               Got Questions?
             </span>
             <h2 className="text-3xl md:text-[44px] font-bold text-gray-900 font-serif leading-[1.15]">
@@ -337,10 +334,10 @@ export function PatientInfo() {
             <motion.div {...fadeUp} transition={{ duration: 0.4 }}>
               <Link
                 to="/patient-info/insurance"
-                className="block bg-white p-10 rounded-[1.5rem] border border-[#ffc2d1]/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group h-full"
+                className="block bg-white p-10 rounded-[1.5rem] border border-primary/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group h-full"
               >
                 <div className="w-14 h-14 bg-[#ffc2d1]/15 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#ffc2d1] transition-colors duration-300">
-                  <CreditCard className="text-[#ffc2d1] group-hover:text-white transition-colors duration-300" size={28} />
+                  <CreditCard className="text-primary group-hover:text-white transition-colors duration-300" size={28} />
                 </div>
                 <h3 className="text-xl font-bold font-serif mb-3 text-gray-900">Insurance & Payments</h3>
                 <p className="text-gray-600 font-serif text-[15px] mb-6 leading-relaxed">
@@ -355,10 +352,10 @@ export function PatientInfo() {
             <motion.div {...fadeUp} transition={{ duration: 0.4, delay: 0.1 }}>
               <Link
                 to="/patient-info/faqs"
-                className="block bg-white p-10 rounded-[1.5rem] border border-[#ffc2d1]/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group h-full"
+                className="block bg-white p-10 rounded-[1.5rem] border border-primary/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group h-full"
               >
                 <div className="w-14 h-14 bg-[#ffc2d1]/15 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#ffc2d1] transition-colors duration-300">
-                  <HelpCircle className="text-[#ffc2d1] group-hover:text-white transition-colors duration-300" size={28} />
+                  <HelpCircle className="text-primary group-hover:text-white transition-colors duration-300" size={28} />
                 </div>
                 <h3 className="text-xl font-bold font-serif mb-3 text-gray-900">Common Questions</h3>
                 <p className="text-gray-600 font-serif text-[15px] mb-6 leading-relaxed">
@@ -373,10 +370,10 @@ export function PatientInfo() {
             <motion.div {...fadeUp} transition={{ duration: 0.4, delay: 0.2 }}>
               <Link
                 to="/contact"
-                className="block bg-white p-10 rounded-[1.5rem] border border-[#ffc2d1]/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group h-full"
+                className="block bg-white p-10 rounded-[1.5rem] border border-primary/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group h-full"
               >
                 <div className="w-14 h-14 bg-[#ffc2d1]/15 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#ffc2d1] transition-colors duration-300">
-                  <Phone className="text-[#ffc2d1] group-hover:text-white transition-colors duration-300" size={28} />
+                  <Phone className="text-primary group-hover:text-white transition-colors duration-300" size={28} />
                 </div>
                 <h3 className="text-xl font-bold font-serif mb-3 text-gray-900">Contact Us</h3>
                 <p className="text-gray-600 font-serif text-[15px] mb-6 leading-relaxed">
@@ -393,7 +390,7 @@ export function PatientInfo() {
 
       {/* ─── Emergency CTA ─── */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[#ffc2d1]" />
+        <div className="absolute inset-0 bg-primary" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-3xl" />
 

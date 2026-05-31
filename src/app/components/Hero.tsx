@@ -59,7 +59,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20, letterSpacing: "0px" }}
             animate={{ opacity: 1, y: 0, letterSpacing: "3px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-[#BCD9DE] text-xs font-medium uppercase mb-4"
+            className="block text-primary/70 text-xs font-medium uppercase mb-4"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             Chennai's Trusted Dental Clinic
@@ -118,7 +118,7 @@ export function Hero() {
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="group flex items-center justify-center gap-3 bg-[#FFC2D1] hover:bg-[#FFB3C6] text-black h-14 px-10 rounded-xl font-bold text-base tracking-wide shadow-lg shadow-[#FFC2D1]/25 whitespace-nowrap"
+              className="group flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-black h-14 px-10 rounded-xl font-bold text-base tracking-wide shadow-lg shadow-primary/25 whitespace-nowrap"
             >
               Call Now — +91 96553 00036
             </motion.a>
