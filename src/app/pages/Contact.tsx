@@ -16,38 +16,112 @@ export function Contact() {
   return (
     <div className="pt-20 bg-background text-[#333333]">
       
-      {/* Hero Section with Premium Slate-Grey and Pink Ambient Glow */}
-      <section className="relative py-20 sm:py-24 flex items-center justify-center overflow-hidden bg-[#1a1a1a] text-white">
-        {/* Soft, warm ambient glows */}
-        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-[#ffc2d1]/10 rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/6 rounded-full blur-[100px] pointer-events-none" />
+      {/* Award-Winning Premium Hero Section with Glassmorphism and Animated Orbs */}
+      <section className="relative py-24 sm:py-32 flex items-center justify-center overflow-hidden bg-[#0d0d0d] text-white">
         
-        <div className="relative z-10 text-center px-4 max-w-[800px]">
-          <motion.span 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#FFC2D1] uppercase tracking-[0.25em] text-xs font-bold mb-4 block font-sans"
-          >
-            Get in Touch
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold font-heading text-white mb-6 leading-tight"
-          >
-            Contact Us
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[600px] mx-auto text-white/70 text-base sm:text-lg font-sans leading-relaxed"
-          >
-            We're here to answer your questions, ease any anxieties, and help you schedule your next visit with our specialists.
-          </motion.p>
-        </div>
+        {/* Animated Fluid Orbs (Organic Breathing Effect) */}
+        <motion.div
+          className="absolute top-[-150px] left-[-150px] w-[600px] h-[600px] bg-[#ffc2d1]/12 rounded-full blur-[140px] pointer-events-none"
+          animate={{
+            x: [0, 40, -30, 0],
+            y: [0, -50, 30, 0],
+            scale: [1, 1.15, 0.95, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-[-150px] right-[-150px] w-[500px] h-[500px] bg-[#ffc2d1]/8 rounded-full blur-[120px] pointer-events-none"
+          animate={{
+            x: [0, -50, 40, 0],
+            y: [0, 40, -40, 0],
+            scale: [1, 0.9, 1.1, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Fine Minimalist Vector Grid (Architectural Texture) */}
+        <div 
+          className="absolute inset-0 z-0 opacity-[0.035] pointer-events-none" 
+          style={{
+            backgroundImage: "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+        
+        {/* Glassmorphic Container with Light Sweep Overlay */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 text-center px-8 py-16 sm:py-20 mx-4 max-w-[840px] rounded-3xl backdrop-blur-xl bg-white/[0.02] border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] overflow-hidden"
+        >
+          {/* Subtle light sweep across the card on load */}
+          <motion.div
+            className="absolute top-0 bottom-0 left-[-150%] w-[60%] bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 z-0"
+            animate={{ left: "150%" }}
+            transition={{ duration: 2.2, delay: 0.6, ease: "easeInOut" }}
+          />
+
+          <div className="relative z-10">
+            {/* Eyebrow */}
+            <motion.span 
+              initial={{ opacity: 0, letterSpacing: "1px" }}
+              animate={{ opacity: 1, letterSpacing: "4px" }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-block text-[#FFC2D1] uppercase text-xs font-bold mb-4 font-sans"
+            >
+              Get in Touch
+            </motion.span>
+            
+            {/* 3D Kinetic Text Reveal */}
+            <motion.h1 
+              className="text-5xl sm:text-6xl md:text-7xl font-bold font-heading text-white mb-6 leading-tight select-none"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
+              }}
+            >
+              {"Contact Us".split(" ").map((word, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block mr-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-[#ffc2d1] bg-[size:150%]"
+                  variants={{
+                    hidden: { opacity: 0, y: 35, rotateX: -20 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0, 
+                      rotateX: 0,
+                      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+                    }
+                  }}
+                  style={{ transformOrigin: "bottom center" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 0.8, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-[620px] mx-auto text-white text-base sm:text-lg font-sans leading-relaxed"
+            >
+              We're here to answer your questions, ease any anxieties, and help you schedule your next visit with our specialists.
+            </motion.p>
+          </div>
+        </motion.div>
       </section>
 
       {/* Contact Details & Map */}
