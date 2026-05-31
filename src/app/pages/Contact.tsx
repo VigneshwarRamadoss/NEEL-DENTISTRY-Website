@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { 
   Phone, 
   Mail, 
@@ -12,6 +13,12 @@ import { motion } from "motion/react";
 
 export function Contact() {
   const whatsappUrl = "https://wa.me/919655300036?text=Hello!%20I%20would%20like%20to%20book%20an%20appointment%20with%20Neel%20Dentistry.";
+  const [mountMap, setMountMap] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMountMap(true), 350);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="pt-20 bg-background text-[#333333]">
@@ -211,18 +218,24 @@ export function Contact() {
             </div>
 
             {/* Map Side */}
-            <div className="w-full lg:w-7/12 h-[350px] sm:h-[450px] lg:h-auto min-h-[350px] rounded-2xl overflow-hidden shadow-xl border border-border bg-gray-50 flex items-stretch">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7776.097562358378!2d80.12020469357908!3d12.968730400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f1c94c00a3b%3A0x470f08bf7866d8e5!2sNEEL%20DENTISTRY%20-%20Dr%20Neelambari%20Mohan%20M.D.S.!5e0!3m2!1sen!2sin!4v1778046331134!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700 w-full h-full"
-                title="Neel Dentistry Location Map"
-              ></iframe>
+            <div className="w-full lg:w-7/12 h-[350px] sm:h-[450px] lg:h-auto min-h-[350px] rounded-2xl overflow-hidden shadow-xl border border-border bg-gray-50 flex items-stretch relative">
+              {mountMap ? (
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7776.097562358378!2d80.12020469357908!3d12.968730400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f1c94c00a3b%3A0x470f08bf7866d8e5!2sNEEL%20DENTISTRY%20-%20Dr%20Neelambari%20Mohan%20M.D.S.!5e0!3m2!1sen!2sin!4v1778046331134!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="grayscale opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700 w-full h-full"
+                  title="Neel Dentistry Location Map"
+                ></iframe>
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 backdrop-blur-sm">
+                  <div className="w-8 h-8 border-2 border-[#FFC2D1] border-t-transparent rounded-full animate-spin" />
+                </div>
+              )}
             </div>
             
           </div>

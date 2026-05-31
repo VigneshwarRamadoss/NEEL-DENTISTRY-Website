@@ -23,10 +23,6 @@ export function Layout() {
 
   useSmoothScroll();
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
-
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground font-sans relative overflow-x-hidden">
       <ScrollProgress />
