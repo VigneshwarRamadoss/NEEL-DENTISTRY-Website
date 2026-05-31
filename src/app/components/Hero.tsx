@@ -1,101 +1,158 @@
-import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { Link } from "react-router";
-import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export function Hero() {
-  const whatsappUrl = "https://wa.me/919655300036?text=Hello!%20I'd%20like%20to%20start%20my%20smile%20journey%20with%20Neel%20Dentistry.";
+  const containerRef = useRef<HTMLElement>(null);
+  
+  const { scrollY } = useScroll();
+  
+  const bgY = useTransform(scrollY, [0, 800], [0, -240]);
+  const bgYSmooth = useSpring(bgY, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  
+  const vignetteY = useTransform(scrollY, [0, 800], [0, -80]);
+  
+  const textY = useTransform(scrollY, [0, 800], [0, -40]);
+  const textOpacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden">
-      {/* Full-bleed background image */}
-      <div className="absolute inset-0 z-0">
+    <section
+      ref={containerRef}
+      className="relative w-full h-screen min-h-[600px] flex items-center overflow-hidden"
+    >
+      {/* LAYER 1 — Background Photo */}
+      <motion.div
+        className="absolute inset-0 z-0 will-change-transform"
+        style={{ y: bgYSmooth }}
+      >
         <img
           src="https://i.postimg.cc/wjLsx7mg/Enhance-the-PNG-to-4k-202605022239.jpg"
-          alt="The Neel Dentistry Team"
+          alt="Neel Dentistry Team"
           className="w-full h-full object-cover object-center"
+          style={{ transform: "scale(1.15)" }}
+          fetchpriority="high"
+          decoding="async"
         />
-        {/* Darker overlay for text legibility */}
         <div className="absolute inset-0 bg-black/45" />
-      </div>
+      </motion.div>
 
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10 w-full">
+      {/* LAYER 2 — Pink warmth vignette */}
+      <motion.div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          y: vignetteY,
+          background: "radial-gradient(ellipse 80% 60% at 20% 60%, rgba(255,194,209,0.08) 0%, transparent 60%)",
+        }}
+      />
+
+      {/* LAYER 3 — Text Content */}
+      <motion.div
+        className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10 w-full"
+        style={{ y: textY, opacity: textOpacity }}
+      >
         <div className="max-w-[640px]">
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-white mb-5"
+          {/* Eyebrow */}
+          <motion.span
+            initial={{ opacity: 0, y: 20, letterSpacing: "0px" }}
+            animate={{ opacity: 1, y: 0, letterSpacing: "3px" }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="block text-[#BCD9DE] text-xs font-medium uppercase mb-4"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            Exceptional Dental Care,<br />
-            Delivered With Warmth.
+            Chennai's Trusted Dental Clinic
+          </motion.span>
+
+          {/* H1 — Word-by-word reveal */}
+          <motion.h1
+            className="text-white mb-5 text-4xl sm:text-5xl md:text-6xl font-bold font-heading"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+          >
+            {"Exceptional Dental Care, Delivered With Warmth.".split(" ").map((word, i) => (
+              <motion.span
+                key={i}
+                className="inline-block mr-3"
+                variants={{
+                  hidden: { opacity: 0, y: 30, rotateX: -15 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+                  },
+                }}
+                style={{ transformOrigin: "bottom center" }}
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.h1>
 
           {/* Sub-headline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-sans font-normal text-lg sm:text-xl text-white/80 max-w-[480px] mb-10"
+            transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-white/80 text-lg mb-10 max-w-[480px]"
           >
-            SCULPTING UNIQUE SMILES
+            Sculpting unique smiles — from your child's first check-up to a complete smile transformation.
           </motion.p>
 
-          {/* CTA grouping */}
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5"
+            transition={{ duration: 0.6, delay: 0.95 }}
+            className="flex flex-col sm:flex-row gap-4"
           >
-            {/* Primary CTA */}
-            <a
+            {/* Primary */}
+            <motion.a
               href="tel:+919655300036"
-              className="group flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-black h-14 px-10 rounded-xl font-sans font-bold text-base tracking-wide transition-all duration-300 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              className="group flex items-center justify-center gap-3 bg-[#FFC2D1] hover:bg-[#FFB3C6] text-black h-14 px-10 rounded-xl font-bold text-base tracking-wide shadow-lg shadow-[#FFC2D1]/25 whitespace-nowrap"
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="18" height="18" 
-                viewBox="0 0 24 24" fill="none" 
-                stroke="currentColor" strokeWidth="2.5" 
-                strokeLinecap="round" strokeLinejoin="round"
-                className="transition-transform duration-300 group-hover:scale-110"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.3-2.3a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
               Call Now — +91 96553 00036
-            </a>
-
-            {/* Secondary CTA */}
-            <Link
-              to="/services"
-              className="group flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 h-14 px-8 rounded-xl font-sans font-semibold text-base transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
+            </motion.a>
+            
+            {/* Secondary */}
+            <motion.a
+              href="/services"
+              whileHover={{ scale: 1.02, y: -2, borderColor: "rgba(255,255,255,0.5)" }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 h-14 px-8 rounded-xl font-semibold text-base whitespace-nowrap"
             >
               View Our Services
-              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            </motion.a>
           </motion.div>
-
-          {/* WhatsApp micro-copy */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 1.0 }}
-            className="font-sans text-sm text-white/60 mt-6"
-          >
-            Or WhatsApp us directly:{" "}
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/80 underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-all"
-            >
-              +91 96553 00036
-            </a>
-          </motion.p>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        style={{ opacity: textOpacity }}
+      >
+        <motion.div
+          className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center pt-1.5"
+        >
+          <motion.div
+            className="w-1 h-2 bg-white/60 rounded-full"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+        <span className="text-white/40 text-xs tracking-widest uppercase">Scroll</span>
+      </motion.div>
     </section>
   );
 }

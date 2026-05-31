@@ -1,35 +1,44 @@
-import { Outlet } from "react-router";
+import { Suspense, useEffect } from "react";
+import { Outlet, useLocation } from "react-router";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
-import { IntroAnimation, INTRO_TOTAL_DURATION } from "./IntroAnimation";
+import { IntroAnimation } from "./IntroAnimation";
+import { PageTransition } from "./PageTransition";
+import { ScrollProgress } from "./ScrollProgress";
 import { WhatsAppFloating } from "./WhatsAppFloating";
-import { motion } from "motion/react";
+
+function PageSkeleton() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-8 h-8 border-2 border-[#FFC2D1] border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+}
 
 export function Layout() {
-  const isReducedMotion =
-    typeof window !== "undefined"
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground font-sans relative overflow-x-hidden">
+      <ScrollProgress />
       <IntroAnimation />
-      <motion.div
-        className="flex flex-col min-h-screen"
-        initial={{ opacity: isReducedMotion ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 0.4,
-          delay: isReducedMotion ? 0 : INTRO_TOTAL_DURATION - 0.3,
-        }}
-      >
+      
+      <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">
-          <Outlet />
+          <PageTransition>
+            <Suspense fallback={<PageSkeleton />}>
+              <Outlet />
+            </Suspense>
+          </PageTransition>
         </main>
         <Footer />
         <WhatsAppFloating />
-      </motion.div>
+      </div>
     </div>
   );
 }

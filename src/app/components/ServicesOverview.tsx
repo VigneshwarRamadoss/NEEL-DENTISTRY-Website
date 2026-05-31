@@ -26,70 +26,122 @@ const services = [
   },
 ];
 
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const cardHoverVariants = {
+  rest: {
+    y: 0,
+    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+  },
+  hover: {
+    y: -8,
+    boxShadow: "0 16px 40px rgba(255,194,209,0.30)", // shadow-pink
+    transition: { type: "spring", stiffness: 300, damping: 20 },
+  },
+};
+
+const underlineVariants = {
+  rest: { width: "0%" },
+  hover: { width: "100%", transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export function ServicesOverview() {
   return (
-    <section className="py-16 sm:py-24 bg-primary">
+    <section className="py-16 sm:py-24 bg-background">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
-        {/* Section header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          <h2 className="text-black mb-3">
+          <h2 className="text-[#333333] mb-3">
             Comprehensive Dental Care
           </h2>
-          <p className="text-black/60">
+          <p className="text-muted-foreground">
             A wide range of services tailored to your unique needs, using the latest technology.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7"
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10% 0px" }}
+        >
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={cardVariants}
+              className="h-full"
             >
-              <Link
-                to={service.path}
-                className="group flex flex-col bg-section-pink overflow-hidden hover:shadow-xl transition-all duration-300 rounded-2xl border border-black/5 h-full"
-              >
-                {/* Image — 16:9 aspect */}
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
+              <Link to={service.path} className="block h-full outline-none">
+                <motion.div
+                  className="group flex flex-col bg-white overflow-hidden rounded-2xl border border-border h-full"
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                  variants={cardHoverVariants}
+                >
+                  <div className="aspect-video overflow-hidden relative">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
 
-                <div className="p-6 sm:p-8 flex-grow flex flex-col">
-                  <h4 className="text-black mb-2">
-                    {service.title}
-                  </h4>
+                  <div className="p-6 sm:p-8 flex-grow flex flex-col relative">
+                    <h4 className="text-[#333333] mb-2">
+                      {service.title}
+                    </h4>
 
-                  <p className="text-black/60 mb-6 flex-grow">
-                    {service.description}
-                  </p>
-
-                  <div className="mt-auto space-y-4">
-                    <p className="text-black/40 font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] mb-4">
-                      {service.hook}
+                    <p className="text-muted-foreground mb-6 flex-grow">
+                      {service.description}
                     </p>
 
-                    <span className="inline-flex items-center gap-2 text-black font-semibold text-sm group-hover:gap-3 transition-all">
-                      Learn More <ArrowRight size={16} />
-                    </span>
+                    <div className="mt-auto space-y-4">
+                      <p className="text-[#555555] font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] mb-4">
+                        {service.hook}
+                      </p>
+
+                      <span className="inline-flex items-center gap-2 text-primary-foreground font-semibold text-sm group-hover:gap-3 transition-all">
+                        Learn More <ArrowRight size={16} />
+                      </span>
+                    </div>
+
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-1 bg-primary"
+                      variants={underlineVariants}
+                    />
                   </div>
-                </div>
+                </motion.div>
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <div className="text-center mt-12 sm:mt-16">
           <Link
             to="/services"
-            className="inline-flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white h-14 px-10 rounded-xl font-sans font-bold text-base transition-all duration-300 shadow-lg active:scale-95 w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-3 bg-[#333333] hover:bg-[#1a1a1a] text-white h-14 px-10 rounded-xl font-sans font-bold text-base transition-all duration-300 shadow-lg active:scale-95 w-full sm:w-auto"
           >
             View All Services
             <ArrowRight size={20} />

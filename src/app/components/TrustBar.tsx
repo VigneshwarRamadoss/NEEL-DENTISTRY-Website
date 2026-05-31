@@ -1,32 +1,64 @@
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "motion/react";
 import { motion } from "motion/react";
 
-const trustItems = [
-  { number: "20+", label: "Years of Experience" },
-  { number: "2,400+", label: "Happy Patients" },
-  { number: "5.0", label: "Google Rating" },
-  { number: "Same-Day", label: "Emergency Slots" },
+function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-20% 0px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const duration = 1800; // ms
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
+}
+
+const TRUST_ITEMS = [
+  { icon: "🏆", stat: 20, suffix: "+", label: "Years Experience" },
+  { icon: "😊", stat: 2400, suffix: "+", label: "Happy Patients" },
+  { icon: "⭐", stat: 5, suffix: "-Star", label: "Rated Clinic" },
+  { icon: "🚨", stat: 24, suffix: "/7", label: "Emergency Care" },
 ];
 
 export function TrustBar() {
   return (
-    <section className="bg-primary border-y border-black/5 py-10">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px:6 lg:px-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {trustItems.map((item, index) => (
+    <section className="bg-secondary py-5 px-4 sm:px-10">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {TRUST_ITEMS.map((item, i) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="flex flex-col items-center text-center"
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-3 justify-center sm:justify-start"
             >
-              <p className="font-heading font-bold text-3xl text-primary-foreground leading-none mb-2">
-                {item.number}
-              </p>
-              <p className="font-sans font-normal text-[13px] text-primary-foreground/60 uppercase tracking-wider">
-                {item.label}
-              </p>
+              <span className="text-2xl">{item.icon}</span>
+              <div>
+                <p className="font-heading font-bold text-xl text-[#333333]">
+                  <AnimatedCounter target={item.stat} suffix={item.suffix} />
+                </p>
+                <p className="text-sm text-muted-foreground">{item.label}</p>
+              </div>
             </motion.div>
           ))}
         </div>
