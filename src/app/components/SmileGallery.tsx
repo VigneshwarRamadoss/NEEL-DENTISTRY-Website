@@ -17,7 +17,7 @@ const images = [
   },
 ];
 
-export function SmileGallery() {
+export function SmileGallerySection() {
   return (
     <section className="py-24 bg-background relative overflow-hidden">
       {/* Decorative ambient background glow */}

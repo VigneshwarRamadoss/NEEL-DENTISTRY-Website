@@ -4,7 +4,7 @@ import { ServicesOverview } from "../components/ServicesOverview";
 import { WhyChooseUs } from "../components/WhyChooseUs";
 import { MeetDoctor } from "../components/MeetDoctor";
 import { Testimonials } from "../components/Testimonials";
-import { SmileGallery } from "../components/SmileGallery";
+import { SmileGallerySection } from "../components/SmileGallery";
 import { CtaBanner } from "../components/CtaBanner";
 
 export function Home() {
@@ -15,7 +15,7 @@ export function Home() {
       <ServicesOverview />
       <WhyChooseUs />
       <MeetDoctor />
-      <SmileGallery />
+      <SmileGallerySection />
       <Testimonials />
       <CtaBanner />
     </div>
