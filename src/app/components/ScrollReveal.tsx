@@ -28,7 +28,7 @@ export function ScrollReveal({
   
   const isInView = useInView(ref, {
     once,
-    margin: `-${Math.round(threshold * 100)}% 0px -${Math.round(threshold * 100)}% 0px`,
+    margin: `-${Math.round(threshold * 100)}% 0px -${Math.round(threshold * 100)}% 0px` as any,
   });
 
   const offsets = {
