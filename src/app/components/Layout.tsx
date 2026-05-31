@@ -1,5 +1,6 @@
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router";
+import { AnimatePresence } from "motion/react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { IntroAnimation } from "./IntroAnimation";
@@ -17,6 +18,7 @@ function PageSkeleton() {
 
 export function Layout() {
   const { pathname } = useLocation();
+  const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -25,7 +27,10 @@ export function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground font-sans relative overflow-x-hidden">
       <ScrollProgress />
-      <IntroAnimation />
+      
+      <AnimatePresence>
+        {showIntro && <IntroAnimation onComplete={() => setShowIntro(false)} />}
+      </AnimatePresence>
       
       <div className="flex flex-col min-h-screen">
         <Navbar />
@@ -42,3 +47,4 @@ export function Layout() {
     </div>
   );
 }
+
