@@ -112,70 +112,75 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 24 }}
-      transition={{ duration: 0.4 }}
-      className="group bg-white rounded-[2rem] overflow-hidden shadow-md hover:shadow-2xl border border-[#ffc2d1]/10 transition-all duration-500"
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-border transition-all duration-500"
     >
-      {/* Slider */}
+      {/* Slider Viewport */}
       <div
         ref={cardRef}
-        className="relative aspect-[4/3] select-none cursor-col-resize overflow-hidden"
+        className="relative aspect-[4/3] select-none cursor-col-resize overflow-hidden bg-gray-100"
         onMouseDown={(e) => { setIsDragging(true); updateSlider(e.clientX); }}
         onTouchStart={(e) => { setIsDragging(true); updateSlider(e.touches[0].clientX); }}
       >
         {/* After (full width, behind) */}
-        <img src={item.after} alt="After" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={item.after} alt="After restoration" className="absolute inset-0 w-full h-full object-cover" />
 
-        {/* Before (clipped) */}
+        {/* Before (clipped, front) */}
         <div
           className="absolute inset-0 overflow-hidden"
           style={{ width: `${sliderPos}%` }}
         >
-          <img src={item.before} alt="Before" className="absolute inset-0 w-full h-full object-cover" style={{ width: `${10000 / sliderPos}%`, maxWidth: "none" }} />
+          <img 
+            src={item.before} 
+            alt="Before treatment" 
+            className="absolute inset-0 w-full h-full object-cover" 
+            style={{ width: `${10000 / sliderPos}%`, maxWidth: "none" }} 
+          />
         </div>
 
-        {/* Divider line + handle */}
+        {/* Custom Premium Handle */}
         <div
-          className="absolute top-0 bottom-0 w-[3px] bg-white shadow-xl z-10"
+          className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-10"
           style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border-2 border-[#ffc2d1]">
-            <ChevronLeft size={12} className="text-[#ffc2d1]" />
-            <ChevronRight size={12} className="text-[#ffc2d1]" />
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border border-[#ffc2d1] hover:scale-105 active:scale-95 transition-all">
+            <ChevronLeft size={10} className="text-[#333333] mr-[1px]" />
+            <ChevronRight size={10} className="text-[#333333] ml-[1px]" />
           </div>
         </div>
 
-        {/* Labels */}
-        <span className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest z-10">
+        {/* Labels with subtle glassmorphism */}
+        <span className="absolute top-4 left-4 bg-black/45 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans">
           Before
         </span>
-        <span className="absolute top-4 right-4 bg-[#ffc2d1] text-gray-900 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest z-10">
+        <span className="absolute top-4 right-4 bg-[#ffc2d1] text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans">
           After
         </span>
 
-        {/* Hint overlay (fades after first interaction) */}
-        <div className={`absolute inset-0 z-20 flex items-center justify-center bg-black/20 backdrop-blur-[1px] transition-opacity duration-500 pointer-events-none ${isDragging || sliderPos !== 50 ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}>
-          <p className="text-white text-xs font-bold uppercase tracking-widest bg-black/40 px-4 py-2 rounded-full">
+        {/* Interactive Drag Hint */}
+        <div className={`absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[0.5px] transition-opacity duration-500 pointer-events-none ${isDragging || sliderPos !== 50 ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}>
+          <p className="text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] bg-black/55 backdrop-blur-md px-4 py-2 rounded-full font-sans">
             ← Drag to Compare →
           </p>
         </div>
       </div>
 
-      {/* Card Footer */}
+      {/* Card Info Section */}
       <div className="p-6 flex items-start justify-between gap-4">
         <div>
-          <span className="inline-block bg-[#ffc2d1]/15 text-[#ffc2d1] text-[10px] font-black uppercase tracking-[0.25em] px-3 py-1 rounded-full mb-2">
+          <span className="inline-block bg-[#ffc2d1]/15 text-[#ffb3c6] text-[10px] font-bold uppercase tracking-[0.25em] px-3 py-1 rounded-full mb-2.5 font-sans">
             {item.category}
           </span>
-          <h3 className="text-lg font-bold text-gray-900 font-serif leading-tight">{item.title}</h3>
-          <p className="text-gray-500 text-sm mt-1 font-sans">{item.desc}</p>
+          <h3 className="text-lg font-bold text-[#333333] font-heading leading-tight">{item.title}</h3>
+          <p className="text-[#666666] text-sm mt-1 font-sans">{item.desc}</p>
         </div>
         <div className="text-right shrink-0">
           <div className="flex gap-0.5 justify-end mb-1">
             {[...Array(item.rating)].map((_, i) => (
-              <Star key={i} size={12} className="text-[#ffc2d1] fill-[#ffc2d1]" />
+              <Star key={i} size={11} className="text-[#ffc2d1] fill-[#ffc2d1]" />
             ))}
           </div>
-          <p className="text-[11px] text-gray-400 font-sans uppercase tracking-wider">{item.duration}</p>
+          <p className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider font-semibold">{item.duration}</p>
         </div>
       </div>
     </motion.div>
@@ -193,92 +198,92 @@ export function SmileGallery() {
   const whatsappUrl = "https://wa.me/919655300036?text=Hello!%20I%20saw%20your%20smile%20gallery%20and%20would%20like%20to%20book%20a%20consultation.";
 
   return (
-    <div className="pt-[80px] bg-[#fff5f7]">
+    <div className="pt-[80px] bg-background text-foreground relative">
 
-      {/* ─── Hero Banner ─── */}
-      <section className="relative overflow-hidden py-28 px-4">
-        {/* Background blobs */}
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-[#ffc2d1]/30 rounded-full blur-[120px]" />
-        <div className="absolute -bottom-32 -right-32 w-[400px] h-[400px] bg-[#ffc2d1]/20 rounded-full blur-[100px]" />
+      {/* ─── Hero Banner with Pink Ethereal Glow ─── */}
+      <section className="relative overflow-hidden py-24 sm:py-28 px-4">
+        {/* Soft elegant ambient glows */}
+        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-[#ffc2d1]/8 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/6 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-[900px] mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="inline-flex items-center gap-2 bg-[#ffc2d1]/20 text-[#ffc2d1] px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.3em] mb-6">
-              <Sparkles size={12} />
+            <span className="inline-flex items-center gap-2 bg-[#ffc2d1]/15 text-[#ffb3c6] px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] mb-6 font-sans">
+              <Sparkles size={11} className="text-[#ffc2d1]" />
               Real Results · Real Patients
             </span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[44px] md:text-[68px] font-black text-gray-900 leading-[1.0] mb-6 font-serif"
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[40px] sm:text-[56px] md:text-[68px] font-bold text-[#333333] leading-[1.05] mb-6 font-heading"
           >
             Smiles We're{" "}
-            <span className="relative inline-block">
+            <span className="relative inline-block text-black">
               Proud Of
-              <span className="absolute -bottom-2 left-0 w-full h-[5px] bg-[#ffc2d1] rounded-full" />
+              <span className="absolute -bottom-1.5 left-0 w-full h-[4px] bg-[#ffc2d1] rounded-full" />
             </span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-500 text-lg md:text-xl max-w-[620px] mx-auto font-sans leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[#666666] text-base sm:text-lg max-w-[620px] mx-auto font-sans leading-relaxed"
           >
-            Drag the slider on each card to see the before &amp; after transformation. Every result is a real patient from our clinic.
+            Interact with the cards below by dragging the comparison slider to see before &amp; after transformations. Every patient restyled by our experts.
           </motion.p>
         </div>
       </section>
 
       {/* ─── Stats Bar ─── */}
-      <section className="bg-white border-y border-[#ffc2d1]/20">
+      <section className="bg-white border-y border-border">
         <div className="max-w-[1100px] mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="text-center"
             >
-              <p className="text-3xl font-black text-gray-900">{stat.value}</p>
-              <p className="text-xs text-gray-500 uppercase tracking-widest font-sans mt-1">{stat.label}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-[#333333] font-heading">{stat.value}</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-sans font-bold mt-1.5">{stat.label}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ─── Filter Tabs ─── */}
-      <section className="sticky top-[80px] z-30 bg-[#fff5f7]/90 backdrop-blur-md border-b border-[#ffc2d1]/15 py-4">
-        <div className="max-w-[1200px] mx-auto px-4 flex flex-wrap items-center justify-center gap-3">
+      {/* ─── Filter Tabs (Sticky with Premium Glassmorphism) ─── */}
+      <section className="sticky top-[72px] z-30 bg-background/85 backdrop-blur-md border-b border-border py-4 transition-all duration-300">
+        <div className="max-w-[1200px] mx-auto px-4 flex flex-wrap items-center justify-center gap-2.5">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`relative px-6 py-2.5 rounded-full text-sm font-bold font-sans transition-all duration-300 ${
+              className={`relative px-5 py-2.5 rounded-full text-xs font-bold font-sans transition-all duration-300 ${
                 activeTab === cat
-                  ? "bg-gray-900 text-white shadow-lg shadow-gray-900/20"
-                  : "bg-white text-gray-600 hover:bg-[#ffc2d1]/20 hover:text-gray-900 border border-[#ffc2d1]/20"
+                  ? "text-white"
+                  : "bg-white text-[#666666] hover:bg-[#ffc2d1]/10 hover:text-[#333333] border border-border"
               }`}
             >
               {activeTab === cat && (
                 <motion.span
                   layoutId="activeFilter"
-                  className="absolute inset-0 bg-gray-900 rounded-full -z-10"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="absolute inset-0 bg-[#333333] rounded-full -z-10 shadow-md shadow-[#333333]/15"
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 />
               )}
               {cat}
               {cat !== "All" && (
-                <span className={`ml-2 text-[10px] px-1.5 py-0.5 rounded-full font-black ${activeTab === cat ? "bg-white/20 text-white" : "bg-[#ffc2d1]/30 text-[#ffc2d1]"}`}>
+                <span className={`ml-2 text-[9px] px-1.5 py-0.5 rounded-full font-bold ${activeTab === cat ? "bg-white/20 text-white" : "bg-[#ffc2d1]/20 text-[#ffb3c6]"}`}>
                   {galleryItems.filter((g) => g.category === cat).length}
                 </span>
               )}
@@ -288,7 +293,7 @@ export function SmileGallery() {
       </section>
 
       {/* ─── Gallery Grid ─── */}
-      <section className="py-20">
+      <section className="py-20 bg-background">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
           <AnimatePresence mode="wait">
             <motion.div
@@ -296,7 +301,7 @@ export function SmileGallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.3 }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {filteredItems.map((item) => (
@@ -306,71 +311,74 @@ export function SmileGallery() {
           </AnimatePresence>
 
           {filteredItems.length === 0 && (
-            <div className="text-center py-24 text-gray-400 font-sans">
-              No results in this category yet.
+            <div className="text-center py-24 text-[#666666] font-sans font-medium">
+              No results available in this category yet.
             </div>
           )}
         </div>
       </section>
 
-      {/* ─── Testimonial Strip ─── */}
-      <section className="py-20 bg-white border-t border-[#ffc2d1]/15">
-        <div className="max-w-[1000px] mx-auto px-4 text-center">
+      {/* ─── Premium Testimonial Strip ─── */}
+      <section className="py-24 bg-white border-t border-border relative overflow-hidden">
+        {/* Soft pink glow overlay */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-[#ffc2d1]/8 rounded-full blur-[90px] pointer-events-none" />
+
+        <div className="max-w-[900px] mx-auto px-4 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex gap-1 justify-center mb-4">
+            <div className="flex gap-1 justify-center mb-5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={20} className="text-[#ffc2d1] fill-[#ffc2d1]" />
+                <Star key={i} size={16} className="text-[#ffc2d1] fill-[#ffc2d1]" />
               ))}
             </div>
-            <blockquote className="text-2xl md:text-3xl font-serif font-medium text-gray-900 leading-snug mb-6">
-              "I never imagined I'd be comfortable smiling in photos. Dr. Neelambari gave me back my confidence."
+            <blockquote className="text-xl sm:text-2xl md:text-3xl font-heading font-medium text-[#333333] leading-relaxed mb-6 italic">
+              "I never imagined I'd be comfortable smiling in photos. Dr. Neelambari gave me back my confidence, and my new smile looks incredibly natural."
             </blockquote>
-            <p className="text-gray-500 font-sans text-sm uppercase tracking-widest">— Priya R. · Veneers Patient</p>
+            <p className="text-[#666666] font-sans text-xs uppercase tracking-[0.2em] font-semibold">— Priya R. · Veneers Patient</p>
           </motion.div>
         </div>
       </section>
 
-      {/* ─── CTA Section ─── */}
-      <section className="relative py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-[#ffc2d1]" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/10 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl" />
+      {/* ─── Premium Dark Slate CTA Section with Pink Glow ─── */}
+      <section className="relative py-28 overflow-hidden bg-[#1a1a1a]">
+        {/* Breathtaking ambient pink-to-silver radial glows */}
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] bg-[#ffc2d1]/12 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-[-100px] left-[-100px] w-[400px] h-[400px] bg-[#ffc2d1]/8 rounded-full blur-[110px] pointer-events-none" />
 
-        <div className="relative z-10 max-w-[800px] mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-[800px] mx-auto px-4 text-center text-white">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Sparkles className="mx-auto text-white/60 mb-5" size={32} />
-            <h2 className="text-[38px] md:text-[52px] font-black text-gray-900 font-serif leading-[1.1] mb-5">
+            <Sparkles className="mx-auto text-[#ffc2d1] mb-5 animate-pulse" size={28} />
+            <h2 className="text-[36px] md:text-[52px] font-bold text-white font-heading leading-tight mb-5">
               Ready for Your<br />Transformation?
             </h2>
-            <p className="text-gray-800 text-lg mb-10 max-w-[560px] mx-auto font-sans leading-relaxed">
-              Every smile you saw started with a conversation. Book yours today and let's plan what's possible for you.
+            <p className="text-white/70 text-base sm:text-lg mb-10 max-w-[560px] mx-auto font-sans leading-relaxed">
+              Every beautiful smile you saw started with a simple conversation. Book your consultation today and let's explore what's possible.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-gray-900 hover:bg-black text-white px-10 py-4 rounded-full font-bold text-[16px] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 group"
+                className="inline-flex items-center gap-3 bg-[#FFC2D1] hover:bg-[#FFB3C6] text-black px-10 py-4.5 rounded-xl font-bold text-[15px] transition-all shadow-lg shadow-[#FFC2D1]/15 active:scale-95 group"
               >
-                <WhatsAppIcon size={18} />
+                <WhatsAppIcon size={16} />
                 Book via WhatsApp
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
               </a>
               <a
                 href="tel:+919655300036"
-                className="inline-flex items-center gap-3 bg-white/30 hover:bg-white/50 text-gray-900 px-10 py-4 rounded-full font-bold text-[16px] transition-all backdrop-blur-sm"
+                className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-9 py-4.5 rounded-xl font-bold text-[15px] transition-all backdrop-blur-md active:scale-95"
               >
-                <Phone size={16} />
+                <Phone size={15} />
                 +91 96553 00036
               </a>
             </div>

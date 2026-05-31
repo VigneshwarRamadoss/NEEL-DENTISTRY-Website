@@ -19,73 +19,68 @@ const images = [
 
 export function SmileGallery() {
   return (
-    <section style={{ padding: "96px 0", backgroundColor: "#fff5f7" }}>
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
-        {/* Header — trimmed to 2 lines */}
-        <div className="max-w-2xl" style={{ marginBottom: "56px" }}>
-          <h2 style={{
-            fontFamily: "'Roboto', sans-serif",
-            fontWeight: 700,
-            fontSize: "28px",
-            color: "#000000",
-            marginBottom: "12px",
-          }}>
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Decorative ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#FFC2D1]/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+        
+        {/* Header */}
+        <div className="max-w-2xl mb-14">
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl sm:text-4xl font-bold font-heading text-[#333333] mb-4"
+          >
             Smile Gallery
-          </h2>
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: "16px",
-            color: "#888888",
-            lineHeight: 1.7,
-          }}>
-            Browse through our gallery of successful transformations.
-          </p>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[#666666] text-base sm:text-lg leading-relaxed"
+          >
+            Browse through our gallery of successful, life-changing transformations.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "28px" }}>
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {images.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 30, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full"
             >
               <Link
                 to="/smile-gallery"
-                className="relative group overflow-hidden cursor-pointer block"
-                style={{ borderRadius: "12px", aspectRatio: "4/3" }}
+                className="relative group overflow-hidden cursor-pointer block rounded-2xl aspect-[4/3] border border-border shadow-md hover:shadow-xl transition-all duration-500 bg-white"
               >
+                {/* Photo Layer */}
                 <img
                   src={item.img}
                   alt={item.tag}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
                 />
+                
+                {/* Ethereal overlay gradient */}
                 <div
-                  className="absolute inset-0 flex flex-col justify-end"
+                  className="absolute inset-0 flex flex-col justify-end p-6"
                   style={{
-                    background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)",
-                    padding: "24px",
+                    background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)",
                   }}
                 >
-                  <span style={{
-                    fontFamily: "'Open Sans', sans-serif",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    color: "#ffc2d1",
-                    textTransform: "uppercase",
-                    letterSpacing: "1px",
-                    marginBottom: "4px",
-                  }}>
+                  <span className="text-[#FFC2D1] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-1.5 font-sans">
                     {item.tag}
                   </span>
-                  <span style={{
-                    fontFamily: "'Roboto', sans-serif",
-                    fontSize: "18px",
-                    fontWeight: 700,
-                    color: "#FFFFFF",
-                  }}>
-                    View Results →
+                  <span className="text-white text-base sm:text-lg font-bold flex items-center gap-1 font-sans group-hover:translate-x-1 transition-transform duration-300">
+                    View Results <ArrowRight size={14} className="text-[#FFC2D1]" />
                   </span>
                 </div>
               </Link>
@@ -93,23 +88,14 @@ export function SmileGallery() {
           ))}
         </div>
 
-        <div className="text-center" style={{ marginTop: "44px" }}>
+        {/* Bottom CTA Link */}
+        <div className="text-center mt-12">
           <Link
             to="/smile-gallery"
-            style={{
-              fontFamily: "'Open Sans', sans-serif",
-              fontSize: "14px",
-              fontWeight: 400,
-              color: "#000000",
-              textDecoration: "none",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
+            className="inline-flex items-center gap-2 text-[#333333] hover:text-[#FFC2D1] font-bold text-sm tracking-widest uppercase transition-colors font-sans group"
           >
-            View All Results <ArrowRight size={14} />
+            View All Results 
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       </div>
