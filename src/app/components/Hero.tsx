@@ -7,13 +7,16 @@ export function Hero() {
   
   const { scrollY } = useScroll();
   
-  const bgY = useTransform(scrollY, [0, 800], [0, -240]);
-  const bgYSmooth = useSpring(bgY, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const scrollYSmooth = useSpring(scrollY, {
+    stiffness: 80,
+    damping: 25,
+    restDelta: 0.001
+  });
   
-  const vignetteY = useTransform(scrollY, [0, 800], [0, -80]);
-  
-  const textY = useTransform(scrollY, [0, 800], [0, -40]);
-  const textOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const bgY = useTransform(scrollYSmooth, [0, 800], [0, -240]);
+  const vignetteY = useTransform(scrollYSmooth, [0, 800], [0, -80]);
+  const textY = useTransform(scrollYSmooth, [0, 800], [0, -40]);
+  const textOpacity = useTransform(scrollYSmooth, [0, 300], [1, 0]);
 
   return (
     <section
@@ -23,7 +26,7 @@ export function Hero() {
       {/* LAYER 1 — Background Photo */}
       <motion.div
         className="absolute inset-0 z-0 will-change-transform"
-        style={{ y: bgYSmooth }}
+        style={{ y: bgY }}
       >
         <img
           src="https://i.postimg.cc/wjLsx7mg/Enhance-the-PNG-to-4k-202605022239.jpg"

@@ -7,6 +7,7 @@ import { IntroAnimation } from "./IntroAnimation";
 import { PageTransition } from "./PageTransition";
 import { ScrollProgress } from "./ScrollProgress";
 import { WhatsAppFloating } from "./WhatsAppFloating";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 function PageSkeleton() {
   return (
@@ -19,6 +20,8 @@ function PageSkeleton() {
 export function Layout() {
   const { pathname } = useLocation();
   const [showIntro, setShowIntro] = useState(true);
+
+  useSmoothScroll();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });

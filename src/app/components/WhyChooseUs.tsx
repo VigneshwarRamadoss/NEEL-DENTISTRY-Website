@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { Link } from "react-router";
 import { useMotionSafe } from "@/hooks/useMotionSafe";
 
@@ -18,9 +18,15 @@ export function WhyChooseUs() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
+  const smoothScrollY = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 25,
+    restDelta: 0.001
+  });
   
-  const imageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const textY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const imageY = useTransform(smoothScrollY, [0, 1], [40, -40]);
+  const textY = useTransform(smoothScrollY, [0, 1], [20, -20]);
 
   const benefitVariants = {
     hidden: { opacity: 0, x: -20 },
