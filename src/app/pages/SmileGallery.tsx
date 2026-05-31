@@ -78,91 +78,82 @@ const stats = [
 // ─── Before/After Slider Card ─────────────────────────────────────────────────
 function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
   const [sliderPos, setSliderPos] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const updateSlider = (clientX: number) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.buttons !== 1) return; // Only trigger if pointer is down
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width || 1; // Safeguard against division by zero
-    const x = Math.max(0, Math.min(clientX - rect.left, width));
+    const width = rect.width || 1;
+    const x = Math.max(0, Math.min(e.clientX - rect.left, width));
     setSliderPos((x / width) * 100);
   };
 
-  useEffect(() => {
-    const onMouseMove = (e: MouseEvent) => { if (isDragging) updateSlider(e.clientX); };
-    const onMouseUp   = () => setIsDragging(false);
-    const onTouchMove = (e: TouchEvent) => { 
-      if (isDragging && e.touches && e.touches.length > 0) {
-        updateSlider(e.touches[0].clientX); 
-      }
-    };
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId);
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const width = rect.width || 1;
+    const x = Math.max(0, Math.min(e.clientX - rect.left, width));
+    setSliderPos((x / width) * 100);
+  };
 
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    window.addEventListener("touchmove", onTouchMove);
-    window.addEventListener("touchend", onMouseUp);
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onMouseUp);
-    };
-  }, [isDragging]);
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.releasePointerCapture(e.pointerId);
+  };
 
   return (
-    <div
-      className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-border transition-all duration-500"
-    >
-      {/* Slider Viewport */}
+    <div className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl border border-border transition-all duration-500">
       <div
         ref={cardRef}
-        className="relative aspect-[4/3] select-none cursor-col-resize overflow-hidden bg-gray-100"
-        onMouseDown={(e) => { setIsDragging(true); updateSlider(e.clientX); }}
-        onTouchStart={(e) => { setIsDragging(true); updateSlider(e.touches[0].clientX); }}
+        className="relative aspect-[4/3] select-none cursor-col-resize overflow-hidden bg-gray-100 touch-pan-y"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
       >
         {/* After (full width, behind) */}
         <img 
           src={item.after} 
           alt="After restoration" 
-          className="absolute inset-0 w-full h-full object-cover" 
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
           loading="lazy"
         />
 
         {/* Before (clipped, front) */}
         <div
-          className="absolute inset-0 overflow-hidden"
+          className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
         >
           <img 
             src={item.before} 
             alt="Before treatment" 
-            className="absolute inset-0 w-full h-full object-cover" 
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
             loading="lazy"
           />
         </div>
 
         {/* Custom Premium Handle */}
         <div
-          className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-10"
+          className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-10 pointer-events-none"
           style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border border-[#ffc2d1] hover:scale-105 active:scale-95 transition-all">
+          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border border-[#ffc2d1] transition-all">
             <ChevronLeft size={10} className="text-[#333333] mr-[1px]" />
             <ChevronRight size={10} className="text-[#333333] ml-[1px]" />
           </div>
         </div>
 
         {/* Labels with subtle glassmorphism */}
-        <span className="absolute top-4 left-4 bg-black/45 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans">
+        <span className="absolute top-4 left-4 bg-black/45 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans pointer-events-none">
           Before
         </span>
-        <span className="absolute top-4 right-4 bg-[#ffc2d1] text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans">
+        <span className="absolute top-4 right-4 bg-[#ffc2d1] text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans pointer-events-none">
           After
         </span>
 
         {/* Interactive Drag Hint */}
-        <div className={`absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[0.5px] transition-opacity duration-500 pointer-events-none ${isDragging || sliderPos !== 50 ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}>
+        <div className={`absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[0.5px] transition-opacity duration-500 pointer-events-none ${sliderPos !== 50 ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}>
           <p className="text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] bg-black/55 backdrop-blur-md px-4 py-2 rounded-full font-sans">
             ← Drag to Compare →
           </p>
