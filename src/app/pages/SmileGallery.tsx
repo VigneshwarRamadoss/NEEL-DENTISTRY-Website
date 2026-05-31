@@ -80,11 +80,7 @@ const stats = [
 function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
   const [sliderPos, setSliderPos] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
-  const [beforeLoaded, setBeforeLoaded] = useState(false);
-  const [afterLoaded, setAfterLoaded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-
-  const imagesLoaded = beforeLoaded && afterLoaded;
 
   const updateSlider = (clientX: number) => {
     if (!cardRef.current) return;
@@ -130,32 +126,26 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
         <img 
           src={item.after} 
           alt="After restoration" 
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${imagesLoaded ? "opacity-100" : "opacity-0"}`} 
-          onLoad={() => setAfterLoaded(true)}
+          className="absolute inset-0 w-full h-full object-cover" 
+          loading="lazy"
         />
 
         {/* Before (clipped, front) */}
         <div
-          className={`absolute inset-0 overflow-hidden transition-opacity duration-500 ${imagesLoaded ? "opacity-100" : "opacity-0"}`}
+          className="absolute inset-0 overflow-hidden"
           style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
         >
           <img 
             src={item.before} 
             alt="Before treatment" 
             className="absolute inset-0 w-full h-full object-cover" 
-            onLoad={() => setBeforeLoaded(true)}
+            loading="lazy"
           />
         </div>
 
-        {/* Premium Skeleton Shimmer Layer */}
-        {!imagesLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 bg-[length:400%_100%] animate-pulse" 
-               style={{ animationDuration: "1.5s" }} />
-        )}
-
         {/* Custom Premium Handle */}
         <div
-          className={`absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-10 transition-opacity duration-500 ${imagesLoaded ? "opacity-100" : "opacity-0"}`}
+          className="absolute top-0 bottom-0 w-[2px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-10"
           style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
         >
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center border border-[#ffc2d1] hover:scale-105 active:scale-95 transition-all">
@@ -165,15 +155,15 @@ function BeforeAfterCard({ item }: { item: typeof galleryItems[0] }) {
         </div>
 
         {/* Labels with subtle glassmorphism */}
-        <span className={`absolute top-4 left-4 bg-black/45 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans transition-opacity duration-500 ${imagesLoaded ? "opacity-100" : "opacity-0"}`}>
+        <span className="absolute top-4 left-4 bg-black/45 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans">
           Before
         </span>
-        <span className={`absolute top-4 right-4 bg-[#ffc2d1] text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans transition-opacity duration-500 ${imagesLoaded ? "opacity-100" : "opacity-0"}`}>
+        <span className="absolute top-4 right-4 bg-[#ffc2d1] text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full z-10 font-sans">
           After
         </span>
 
         {/* Interactive Drag Hint */}
-        <div className={`absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[0.5px] transition-opacity duration-500 pointer-events-none ${!imagesLoaded || isDragging || sliderPos !== 50 ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}>
+        <div className={`absolute inset-0 z-20 flex items-center justify-center bg-black/25 backdrop-blur-[0.5px] transition-opacity duration-500 pointer-events-none ${isDragging || sliderPos !== 50 ? "opacity-0" : "opacity-100 group-hover:opacity-0"}`}>
           <p className="text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] bg-black/55 backdrop-blur-md px-4 py-2 rounded-full font-sans">
             ← Drag to Compare →
           </p>
