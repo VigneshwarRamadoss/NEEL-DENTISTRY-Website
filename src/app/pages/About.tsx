@@ -12,7 +12,7 @@ export function About() {
   return (
     <div className="pt-20">
       {/* ─── Hero Banner ─── */}
-      <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center lg:justify-start overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-[center_15%]"
           style={{
@@ -20,32 +20,46 @@ export function About() {
               "url('https://i.postimg.cc/85Wrwjw9/Enhance-the-quality-of-the-202605022234.jpg')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70" />
+          {/* Refined gradient overlay for a luxury feel: darker, smoother, more vignette */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-900/30" />
         </div>
-        <div className="relative z-10 text-center text-white px-4">
-          <motion.span
-            {...fadeUp}
-            transition={{ duration: 0.5 }}
-            className="inline-block text-primary uppercase tracking-[0.3em] text-xs sm:text-sm font-black mb-5 font-sans"
-          >
-            Our Story
-          </motion.span>
-          <motion.h1
-            {...fadeUp}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-white mb-5 leading-[1.1]"
-          >
-            More Than a Dentist.
-            <br />
-            <span className="text-primary">A Practice Built on Trust.</span>
-          </motion.h1>
-          <motion.p
-            {...fadeUp}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="max-w-[620px] mx-auto text-white/80 text-base sm:text-lg lg:text-xl font-heading leading-relaxed"
-          >
-            At Neel Dentistry, we believe exceptional care begins long before you sit in the chair.
-          </motion.p>
+        
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="max-w-[800px] pt-12 md:pt-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-5 mb-8"
+            >
+              <div className="h-[1px] w-12 md:w-16 bg-primary/80"></div>
+              <span className="text-primary uppercase tracking-[0.4em] text-[11px] md:text-xs font-bold font-sans">
+                Our Story
+              </span>
+            </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[40px] sm:text-[50px] md:text-[62px] lg:text-[72px] font-extrabold text-white font-serif mb-8 leading-[1.05] tracking-tight drop-shadow-sm"
+            >
+              More Than a Dentist.
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 italic font-medium pr-3 md:pr-4">A Practice</span>
+              <span className="text-primary">Built on Trust.</span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-[500px] text-white/80 text-lg md:text-xl font-serif leading-relaxed border-l-2 border-white/20 pl-6"
+            >
+              At Neel Dentistry, we believe exceptional care begins long before you sit in the chair.
+            </motion.p>
+          </div>
         </div>
       </section>
 
@@ -97,7 +111,7 @@ export function About() {
               {/* Floating stat badge */}
               <div className="absolute -bottom-4 sm:-bottom-6 -left-2 sm:-left-4 bg-white rounded-2xl shadow-xl p-4 sm:p-5 z-20 flex items-center gap-3 sm:gap-4 scale-90 sm:scale-100 origin-left">
                 <div className="bg-primary rounded-full p-2 sm:p-3">
-                  <Users className="text-black" size={20} sm:size={24} />
+                  <Users className="text-black" size={22} />
                 </div>
                 <div>
                   <p className="font-black text-xl sm:text-2xl text-black leading-none">2,400+</p>
@@ -150,7 +164,7 @@ export function About() {
                   className="bg-white p-8 sm:p-10 rounded-[1.5rem] sm:rounded-[2rem] shadow-sm border border-primary/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
                 >
                   <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/15 rounded-2xl flex items-center justify-center mb-7 group-hover:bg-primary transition-colors duration-300">
-                    <Icon className="text-primary group-hover:text-black transition-colors duration-300" size={24} sm:size={28} />
+                    <Icon className="text-primary group-hover:text-black transition-colors duration-300" size={26} />
                   </div>
                   <h3 className="mb-4">{value.title}</h3>
                   <p className="text-muted-foreground leading-relaxed font-heading text-sm sm:text-base">{value.desc}</p>
@@ -207,7 +221,7 @@ export function About() {
                       key={i}
                       className="flex flex-col items-center text-center bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-primary/10"
                     >
-                      <CIcon className="text-primary mb-2" size={20} sm:size={22} />
+                      <CIcon className="text-primary mb-2" size={20} />
                       <span className="text-[10px] sm:text-xs font-bold text-black uppercase tracking-wider font-sans">
                         {cred.label}
                       </span>
@@ -247,7 +261,7 @@ export function About() {
               <div className="absolute -top-3 sm:-top-4 -right-3 sm:-right-4 bg-white rounded-2xl shadow-xl p-4 sm:p-5 z-20 flex items-center gap-2 sm:gap-3 scale-90 sm:scale-100 origin-right">
                 <div className="flex gap-0.5 text-primary">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} sm:size={16} fill="currentColor" />
+                    <Star key={i} size={15} fill="currentColor" />
                   ))}
                 </div>
                 <div>

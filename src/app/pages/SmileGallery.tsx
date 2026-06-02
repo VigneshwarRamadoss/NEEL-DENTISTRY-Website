@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { motion } from "motion/react";
 import { ArrowRight, Star, Sparkles, ChevronLeft, ChevronRight, Phone } from "lucide-react";
 import { WhatsAppIcon } from "../components/WhatsAppIcon";
 
@@ -195,31 +196,56 @@ export function SmileGallery() {
   return (
     <div className="pt-[80px] bg-background text-foreground relative">
 
-      {/* ─── Hero Banner with Pink Ethereal Glow ─── */}
-      <section className="relative overflow-hidden py-24 sm:py-28 px-4">
-        {/* Soft elegant ambient glows */}
-        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-primary/6 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="max-w-[900px] mx-auto text-center relative z-10">
-          <div>
-            <span className="inline-flex items-center gap-2 bg-primary/15 text-primary px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] mb-6 font-sans">
-              <Sparkles size={11} className="text-primary" />
-              Real Results · Real Patients
-            </span>
+      {/* ─── Hero Banner ─── */}
+      <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center lg:justify-start overflow-hidden">
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-[center_top]"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080')",
+          }}
+        >
+          {/* Refined gradient overlay for a luxury feel: darker, smoother, more vignette */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-900/30" />
+        </div>
+        
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="max-w-[800px] pt-12 md:pt-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-5 mb-8"
+            >
+              <div className="h-[1px] w-12 md:w-16 bg-primary/80"></div>
+              <span className="flex items-center gap-2 text-primary uppercase tracking-[0.4em] text-[11px] md:text-xs font-bold font-sans">
+                <Sparkles size={12} className="text-primary" />
+                Real Results · Real Patients
+              </span>
+            </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[40px] sm:text-[50px] md:text-[62px] lg:text-[72px] font-extrabold text-white font-serif mb-8 leading-[1.05] tracking-tight drop-shadow-sm"
+            >
+              Smiles We're
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 italic font-medium pr-3 md:pr-4">Proud</span>
+              <span className="text-primary">Of.</span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-[500px] text-white/80 text-lg md:text-xl font-serif leading-relaxed border-l-2 border-white/20 pl-6"
+            >
+              Interact with the cards below by dragging the comparison slider to see before &amp; after transformations. Every patient restyled by our experts.
+            </motion.p>
           </div>
-
-          <h1 className="text-[40px] sm:text-[56px] md:text-[68px] font-bold text-[#333333] leading-[1.05] mb-6 font-heading">
-            Smiles We're{" "}
-            <span className="relative inline-block text-black">
-              Proud Of
-              <span className="absolute -bottom-1.5 left-0 w-full h-[4px] bg-primary rounded-full" />
-            </span>
-          </h1>
-
-          <p className="text-[#666666] text-base sm:text-lg max-w-[620px] mx-auto font-sans leading-relaxed">
-            Interact with the cards below by dragging the comparison slider to see before &amp; after transformations. Every patient restyled by our experts.
-          </p>
         </div>
       </section>
 

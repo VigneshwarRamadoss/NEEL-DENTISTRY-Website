@@ -120,7 +120,7 @@ export function PatientInfo() {
   return (
     <div className="pt-[80px]">
       {/* ─── Hero Banner ─── */}
-      <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center lg:justify-start overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{
@@ -128,32 +128,46 @@ export function PatientInfo() {
               "url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjB3YWl0aW5nfGVufDF8fHwxNzc3OTYwMjUwfDA&ixlib=rb-4.1.0&q=80&w=1080')",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-gray-900/60 to-gray-900/80" />
+          {/* Refined gradient overlay for a luxury feel: darker, smoother, more vignette */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-900/30" />
         </div>
-        <div className="relative z-10 text-center text-white px-4">
-          <motion.span
-            {...fadeUp}
-            transition={{ duration: 0.5 }}
-            className="inline-block text-primary uppercase tracking-[0.35em] text-[13px] font-black mb-5 font-sans"
-          >
-            Here to Help
-          </motion.span>
-          <motion.h1
-            {...fadeUp}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-[40px] md:text-[56px] lg:text-[64px] font-bold font-serif mb-5 leading-[1.1]"
-          >
-            Everything You Need
-            <br />
-            <span className="text-primary">Before You Arrive.</span>
-          </motion.h1>
-          <motion.p
-            {...fadeUp}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="max-w-[620px] mx-auto text-gray-200 text-lg font-serif leading-relaxed"
-          >
-            We believe informed patients are confident patients. Find everything you need here.
-          </motion.p>
+        
+        <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="max-w-[750px] pt-12 md:pt-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-5 mb-8"
+            >
+              <div className="h-[1px] w-12 md:w-16 bg-primary/80"></div>
+              <span className="text-primary uppercase tracking-[0.4em] text-[11px] md:text-xs font-bold font-sans">
+                Here to Help
+              </span>
+            </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[44px] sm:text-[56px] md:text-[68px] lg:text-[80px] font-extrabold text-white font-serif mb-8 leading-[1.05] tracking-tight drop-shadow-sm"
+            >
+              Everything You Need
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 italic font-medium pr-3 md:pr-4">Before</span>
+              <span className="text-primary">You Arrive.</span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-[500px] text-white/80 text-lg md:text-xl font-serif leading-relaxed border-l-2 border-white/20 pl-6"
+            >
+              We believe informed patients are confident patients. Find everything you need here.
+            </motion.p>
+          </div>
         </div>
       </section>
 
