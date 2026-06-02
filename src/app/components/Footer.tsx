@@ -45,13 +45,20 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-10">
           {/* Column 1 — Brand */}
           <div className="space-y-6">
-            <div>
-              <span className="font-nativera font-extrabold text-3xl text-white uppercase tracking-tighter leading-none block">
-                Neel
-              </span>
-              <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-primary uppercase block mt-0.5">
-                Dentistry
-              </span>
+            <div className="flex items-center gap-3">
+              <img
+                src="/assets/neel-dentistry-logo.png"
+                alt="Neel Dentistry Logo"
+                className="h-10 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+              />
+              <div>
+                <span className="font-nativera font-extrabold text-3xl text-white uppercase tracking-tighter leading-none block">
+                  Neel
+                </span>
+                <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-primary uppercase block mt-0.5">
+                  Dentistry
+                </span>
+              </div>
             </div>
 
             <p className="font-sans text-white/50 text-sm leading-relaxed max-w-[240px]">

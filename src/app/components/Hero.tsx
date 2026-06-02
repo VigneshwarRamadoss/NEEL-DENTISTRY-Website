@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { Link } from "react-router";
 
+const MotionLink = motion(Link);
+
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   
@@ -33,7 +35,7 @@ export function Hero() {
           alt="Neel Dentistry Team"
           className="w-full h-full object-cover object-center"
           style={{ transform: "scale(1.15)" }}
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
         />
         <div className="absolute inset-0 bg-black/45" />
@@ -54,12 +56,13 @@ export function Hero() {
         style={{ y: textY, opacity: textOpacity }}
       >
         <div className="max-w-[640px]">
+
           {/* Eyebrow */}
           <motion.span
-            initial={{ opacity: 0, y: 20, letterSpacing: "0px" }}
-            animate={{ opacity: 1, y: 0, letterSpacing: "3px" }}
+            initial={{ opacity: 0, y: 20, letterSpacing: "0.05em" }}
+            animate={{ opacity: 1, y: 0, letterSpacing: "0.25em" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-primary/70 text-xs font-medium uppercase mb-4"
+            className="block text-primary text-xs md:text-sm font-semibold uppercase mb-5"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             Chennai's Trusted Dental Clinic
@@ -67,7 +70,7 @@ export function Hero() {
 
           {/* H1 — Word-by-word reveal */}
           <motion.h1
-            className="text-white mb-5 text-4xl sm:text-5xl md:text-6xl font-bold font-heading"
+            className="text-white mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-heading tracking-tight leading-[1.1] sm:leading-[1.1] md:leading-[1.1]"
             initial="hidden"
             animate="visible"
             variants={{
@@ -78,7 +81,7 @@ export function Hero() {
             {"Exceptional Dental Care, Delivered With Warmth.".split(" ").map((word, i) => (
               <motion.span
                 key={i}
-                className="inline-block mr-3"
+                className="inline-block mr-3 md:mr-4"
                 variants={{
                   hidden: { opacity: 0, y: 30, rotateX: -15 },
                   visible: {
@@ -100,7 +103,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-white/80 text-lg mb-10 max-w-[480px]"
+            className="text-white/85 text-base md:text-lg mb-8 max-w-[500px] leading-relaxed font-sans"
           >
             Sculpting unique smiles — from your child's first check-up to a complete smile transformation.
           </motion.p>
@@ -124,15 +127,15 @@ export function Hero() {
             </motion.a>
             
             {/* Secondary */}
-            <motion.a
-              href="/services"
+            <MotionLink
+              to="/services"
               whileHover={{ scale: 1.02, y: -2, borderColor: "rgba(255,255,255,0.5)" }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white border border-white/20 h-14 px-8 rounded-xl font-semibold text-base whitespace-nowrap"
             >
               View Our Services
-            </motion.a>
+            </MotionLink>
           </motion.div>
         </div>
       </motion.div>

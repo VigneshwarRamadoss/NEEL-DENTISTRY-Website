@@ -64,15 +64,24 @@ export function Navbar() {
     >
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex flex-col items-start leading-[0.7] group min-w-fit">
-          <span className={`text-2xl font-black tracking-tighter font-nativera uppercase transition-colors duration-300 ${
-            shouldShowSolid ? "text-black" : "text-white"
-          }`}>
-            Neel
-          </span>
-          <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-primary">
-            Dentistry
-          </span>
+        <Link to="/" className="flex items-center gap-3 group min-w-fit">
+          <img
+            src="/assets/neel-dentistry-logo.png"
+            alt="Neel Dentistry Logo"
+            className={`h-10 w-auto object-contain transition-all duration-300 ${
+              shouldShowSolid ? "brightness-0" : "brightness-0 invert"
+            }`}
+          />
+          <div className="flex flex-col items-start leading-[0.7]">
+            <span className={`text-2xl font-black tracking-tighter font-nativera uppercase transition-colors duration-300 ${
+              shouldShowSolid ? "text-black" : "text-white"
+            }`}>
+              Neel
+            </span>
+            <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-primary">
+              Dentistry
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
@@ -182,13 +191,20 @@ export function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between h-[72px] px-4 border-b">
-          <Link to="/" className="flex flex-col items-start leading-[0.7]" onClick={() => setMobileMenuOpen(false)}>
-            <span className="text-2xl font-black tracking-tighter font-nativera uppercase text-black">
-              Neel
-            </span>
-            <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-primary">
-              Dentistry
-            </span>
+          <Link to="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
+            <img
+              src="/assets/neel-dentistry-logo.png"
+              alt="Neel Dentistry Logo"
+              className="h-10 w-auto object-contain brightness-0"
+            />
+            <div className="flex flex-col items-start leading-[0.7]">
+              <span className="text-2xl font-black tracking-tighter font-nativera uppercase text-black">
+                Neel
+              </span>
+              <span className="text-[11px] font-bold tracking-[0.35em] uppercase text-primary">
+                Dentistry
+              </span>
+            </div>
           </Link>
           <button className="p-2 text-black" onClick={() => setMobileMenuOpen(false)}>
             <X size={32} />

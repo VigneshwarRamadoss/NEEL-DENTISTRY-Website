@@ -61,7 +61,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Open Sans", sans-serif;
-  --font-heading: "Roboto", sans-serif;
+  --font-heading: "Montserrat", sans-serif;
   --font-nativera: "Nativera", sans-serif;
 
   --color-card: var(--card);
@@ -106,32 +106,32 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Heading hierarchy — Roboto 700, enforced sizes */
+  /* Heading hierarchy — Montserrat, enforced sizes */
   h1 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: clamp(32px, 8vw, 48px);
     line-height: 1.15;
     letter-spacing: -0.5px;
   }
-
+  
   h2 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: clamp(24px, 6vw, 36px);
     line-height: 1.2;
     letter-spacing: -0.2px;
   }
-
+  
   h3 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: clamp(20px, 4vw, 24px);
     line-height: 1.3;
   }
-
+  
   h4 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: clamp(18px, 3vw, 20px);
     line-height: 1.3;
