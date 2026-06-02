@@ -1,0 +1,208 @@
+/* ═══════════════════════════════════════════════════════════
+   NEEL DENTISTRY — Premium Pre-Loader Styles
+   "The Smile Forms Before the Page"
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Full-viewport overlay ─────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020203;
+  overflow: hidden;
+  will-change: opacity;
+}
+
+.preloader--hidden {
+  pointer-events: none;
+}
+
+/* ── Subtle radial ambient glow behind logo ────────────── */
+.preloader__ambient {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(245, 245, 242, 0.04) 0%,
+    rgba(245, 245, 242, 0.015) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  opacity: 0;
+  will-change: opacity;
+}
+
+/* ── Ultra-subtle film grain ───────────────────────────── */
+.preloader__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* ── Logo container ────────────────────────────────────── */
+.preloader__logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+@media (max-width: 768px) {
+  .preloader__logo-wrap {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader__logo-wrap {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* ── Logo image ────────────────────────────────────────── */
+.preloader__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(0.85);
+  will-change: filter, opacity;
+}
+
+/* ── Clinical light sweep overlay ──────────────────────── */
+.preloader__light-sweep {
+  position: absolute;
+  top: -20%;
+  left: -120%;
+  width: 80%;
+  height: 140%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(245, 245, 242, 0.06) 42%,
+    rgba(245, 245, 242, 0.14) 48%,
+    rgba(245, 245, 242, 0.25) 50%,
+    rgba(245, 245, 242, 0.14) 52%,
+    rgba(245, 245, 242, 0.06) 58%,
+    transparent 65%,
+    transparent 100%
+  );
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ── SVG stroke-draw overlay (tooth outline, inner curve, smile arc) ── */
+.preloader__svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.preloader__svg-overlay path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  will-change: stroke-dashoffset, stroke, opacity;
+}
+
+/* ── Sparkle elements ──────────────────────────────────── */
+.preloader__sparkle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.preloader__sparkle svg {
+  filter: drop-shadow(0 0 3px rgba(245, 245, 242, 0.4));
+}
+
+/* ── Smile arc transition wipe ─────────────────────────── */
+.preloader__smile-wipe {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.preloader__smile-wipe-line {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(245, 245, 242, 0.3) 20%,
+    rgba(245, 245, 242, 0.7) 50%,
+    rgba(245, 245, 242, 0.3) 80%,
+    transparent 100%
+  );
+  border-radius: 999px;
+  will-change: width, opacity;
+}
+
+/* ── Edge glow on logo ─────────────────────────────────── */
+.preloader__edge-glow {
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(245, 245, 242, 0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  filter: blur(12px);
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* ── Reveal mask (page reveal) ─────────────────────────── */
+.preloader__reveal-mask {
+  position: absolute;
+  inset: 0;
+  background: #020203;
+  will-change: clip-path, opacity;
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .preloader__light-sweep,
+  .preloader__grain,
+  .preloader__sparkle,
+  .preloader__smile-wipe,
+  .preloader__edge-glow {
+    display: none;
+  }
+
+  .preloader__logo-wrap {
+    opacity: 1;
+  }
+
+  .preloader__logo {
+    filter: brightness(0) invert(1) opacity(0.9);
+  }
+}
