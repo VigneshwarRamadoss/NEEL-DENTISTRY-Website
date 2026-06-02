@@ -144,7 +144,7 @@ export function Footer() {
       <div className="border-t border-white/5 bg-black/20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row justify-between items-center gap-6 py-8">
           <p className="font-sans text-xs text-white/30 text-center sm:text-left">
-            &copy; {new Date().getFullYear()} Neel Dentistry. The Dot
+            &copy; {new Date().getFullYear()} The Dot. All rights reserved.
           </p>
           <div className="flex gap-8">
             <Link
