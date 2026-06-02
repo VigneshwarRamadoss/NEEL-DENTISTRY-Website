@@ -259,64 +259,9 @@ export function PatientInfo() {
         </div>
       </section>
 
-      {/* ─── Download Forms ─── */}
-      <section className="py-28 bg-[#fff5f7]">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
-          <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.5 }}
-            className="bg-primary rounded-[2.5rem] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden"
-          >
-            {/* Decorative circles */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl" />
-            <div className="absolute bottom-0 left-0 w-[250px] h-[250px] bg-white/10 rounded-full translate-y-1/2 -translate-x-1/3 blur-2xl" />
-
-            <div className="w-full lg:w-1/2 relative z-10">
-              <h2 className="text-3xl md:text-[40px] font-bold font-serif mb-6 text-gray-900 leading-[1.15]">
-                Complete Your Paperwork <br className="hidden md:block" />
-                in Advance
-              </h2>
-              <p className="text-gray-800 text-lg font-serif mb-10 leading-relaxed">
-                Save time at your first visit by downloading and completing our intake forms at
-                home. Bring them with you or ask us to email them.
-              </p>
-              <div className="space-y-3">
-                {[
-                  "New Patient Registration Form",
-                  "Medical History Form",
-                  "Dental History Form",
-                  "Consent to Treatment Form",
-                ].map((form, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between p-4 bg-white/30 backdrop-blur-sm rounded-2xl border border-white/40 hover:bg-white/50 transition-all cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <FileText className="text-gray-900/60" size={18} />
-                      <span className="font-serif font-semibold text-gray-900">{form}</span>
-                    </div>
-                    <Download
-                      className="text-gray-900 group-hover:translate-y-0.5 transition-transform"
-                      size={18}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2 relative z-10">
-              <img
-                src="https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZW50YWwlMjByZWNvcmRzfGVufDF8fHwxNzc3OTYwMjUwfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Patient Records"
-                className="rounded-[1.5rem] shadow-2xl border-4 border-white"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* ─── FAQ Section ─── */}
-      <section className="py-28 bg-primary/10">
+      <section className="py-28 bg-[#fff5f7]">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-16">
             <span className="inline-block bg-primary/20 text-primary px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.25em] mb-5 font-sans">
@@ -336,7 +281,7 @@ export function PatientInfo() {
       </section>
 
       {/* ─── CTA Navigation ─── */}
-      <section className="py-28 bg-[#fff5f7]">
+      <section className="py-28 bg-primary/10">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div {...fadeUp} transition={{ duration: 0.5 }} className="text-center mb-16">
             <h2 className="text-3xl md:text-[40px] font-bold text-gray-900 font-serif leading-[1.15]">
