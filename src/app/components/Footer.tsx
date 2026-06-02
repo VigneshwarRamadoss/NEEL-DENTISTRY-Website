@@ -55,13 +55,13 @@ export function Footer() {
                 <span className="font-nativera font-extrabold text-3xl text-white uppercase tracking-tighter leading-none block">
                   Neel
                 </span>
-                <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-primary uppercase block mt-0.5">
+                <span className="font-sans font-bold text-[11px] tracking-[0.3em] text-primary uppercase block mt-0.5">
                   Dentistry
                 </span>
               </div>
             </div>
 
-            <p className="font-sans text-white/50 text-sm leading-relaxed max-w-[240px]">
+            <p className="font-sans text-white/65 text-sm leading-relaxed max-w-[240px]">
               Where care meets craft. Delivering exceptional dental experiences for 20+ years.
             </p>
 
@@ -91,7 +91,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="font-sans text-[13px] text-white/60 hover:text-white transition-colors"
+                    className="font-sans text-sm text-white/70 hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -110,7 +110,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="font-sans text-[13px] text-white/60 hover:text-white transition-colors"
+                    className="font-sans text-sm text-white/70 hover:text-white transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -125,7 +125,7 @@ export function Footer() {
               <h4 className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-primary mb-8">
                 Visit Us
               </h4>
-              <p className="font-sans text-[13px] text-white/60 leading-relaxed">
+              <p className="font-sans text-sm text-white/65 leading-relaxed">
                 Neel Dentistry Peace Homes,<br />
                 113A, East Main Road, Sankar Nagar,<br />
                 Pammal, Chennai 600075
@@ -133,8 +133,8 @@ export function Footer() {
             </div>
             
             <div className="space-y-1">
-              <p className="font-sans text-[13px] text-white/60">Mon – Sat: 9am – 10pm</p>
-              <p className="font-sans text-[13px] text-white/60">Sun: 10am – 9pm</p>
+              <p className="font-sans text-sm text-white/65">Mon – Sat: 9am – 10pm</p>
+              <p className="font-sans text-sm text-white/65">Sun: 10am – 9pm</p>
             </div>
           </div>
         </div>
@@ -143,19 +143,19 @@ export function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/5 bg-black/20">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col sm:flex-row justify-between items-center gap-6 py-8">
-          <p className="font-sans text-xs text-white/30 text-center sm:text-left">
+          <p className="font-sans text-sm text-white/50 text-center sm:text-left">
             &copy; {new Date().getFullYear()} The Dot. All rights reserved.
           </p>
           <div className="flex gap-8">
             <Link
               to="/"
-              className="font-sans text-xs text-white/30 hover:text-white transition-colors"
+              className="font-sans text-sm text-white/50 hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               to="/"
-              className="font-sans text-xs text-white/30 hover:text-white transition-colors"
+              className="font-sans text-sm text-white/50 hover:text-white transition-colors"
             >
               Terms of Use
             </Link>

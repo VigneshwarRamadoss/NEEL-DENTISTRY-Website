@@ -118,11 +118,11 @@ export function ServicesOverview() {
                     </p>
 
                     <div className="mt-auto space-y-4">
-                      <p className="text-[#555555] font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] mb-4">
+                      <p className="text-[#555555] font-bold text-xs uppercase tracking-[0.12em] mb-4">
                         {service.hook}
                       </p>
 
-                      <span className="inline-flex items-center gap-2 text-primary-foreground font-semibold text-sm group-hover:gap-3 transition-all">
+                      <span className="inline-flex items-center gap-2 text-gray-800 font-semibold text-sm group-hover:gap-3 transition-all">
                         Learn More <ArrowRight size={16} />
                       </span>
                     </div>

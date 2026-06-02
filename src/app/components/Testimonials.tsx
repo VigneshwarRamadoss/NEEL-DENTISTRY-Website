@@ -72,17 +72,17 @@ export function Testimonials() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              <p className="font-sans font-normal italic text-xl text-foreground leading-relaxed mb-8">
+              <p className="font-sans font-normal italic text-xl md:text-2xl text-foreground leading-relaxed mb-8">
                 &ldquo;{review.text}&rdquo;
               </p>
 
               {/* Patient name */}
-              <p className="font-heading font-bold text-sm text-foreground mb-1">
+              <p className="font-heading font-bold text-base text-foreground mb-1">
                 {review.author}, {review.location}
               </p>
 
               {/* Treatment type */}
-              <p className="font-sans font-normal text-[13px] text-muted-foreground">
+              <p className="font-sans font-normal text-sm text-muted-foreground">
                 {review.treatment}
               </p>
             </motion.div>
@@ -95,8 +95,8 @@ export function Testimonials() {
                 key={idx}
                 onClick={() => goTo(idx)}
                 aria-label={`View testimonial ${idx + 1}`}
-                className={`w-1.5 h-1.5 rounded-full border-none p-0 cursor-pointer transition-all ${
-                  idx === current ? "w-2 h-2 bg-primary" : "bg-border"
+                className={`rounded-full border-none p-0 cursor-pointer transition-all ${
+                  idx === current ? "w-4 h-4 bg-primary" : "w-3 h-3 bg-border"
                 }`}
               />
             ))}

@@ -60,7 +60,7 @@ export function TrustBar() {
                 <p className="font-heading font-extrabold text-2xl md:text-3xl text-white tracking-tight leading-none mb-1.5 drop-shadow-sm">
                   <AnimatedCounter target={item.stat} suffix={item.suffix} />
                 </p>
-                <p className="text-[10px] md:text-xs text-white/50 uppercase tracking-[0.2em] font-semibold">{item.label}</p>
+                <p className="text-xs md:text-sm text-white/60 uppercase tracking-[0.15em] font-semibold">{item.label}</p>
               </div>
             </motion.div>
           ))}

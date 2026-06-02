@@ -13,7 +13,7 @@ export function CtaBanner() {
           className="max-w-2xl mx-auto text-center"
         >
           {/* Eyebrow */}
-          <p className="font-sans font-bold text-xs uppercase tracking-[0.2em] text-black/40 mb-4">
+          <p className="font-sans font-bold text-sm uppercase tracking-[0.2em] text-black/60 mb-4">
             Most patients are seen within 48 hours
           </p>
 
@@ -33,7 +33,7 @@ export function CtaBanner() {
           </a>
 
           {/* Trust micro-copy */}
-          <p className="font-sans text-sm text-black/40 mt-8 leading-relaxed">
+          <p className="font-sans text-base text-black/60 mt-8 leading-relaxed">
             No referral needed &nbsp;·&nbsp; All ages welcome &nbsp;·&nbsp; Same-day emergency slots available
           </p>
         </motion.div>

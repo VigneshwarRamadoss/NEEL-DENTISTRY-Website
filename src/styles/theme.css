@@ -14,7 +14,7 @@
   --secondary: #E8E8E8;
   --secondary-foreground: #333333;
   --muted: #F5F5F5;
-  --muted-foreground: #666666;
+  --muted-foreground: #5a5a5a;
   --accent: #ffc2d1;
   --accent-foreground: #333333;
   --destructive: #d4183d;
@@ -100,8 +100,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -140,26 +140,26 @@
   p {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    font-size: clamp(14px, 2vw, 16px);
-    line-height: 1.7;
+    font-size: clamp(15px, 2vw, 17px);
+    line-height: 1.75;
   }
 
   label {
-    font-size: clamp(14px, 2vw, 16px);
+    font-size: clamp(15px, 2vw, 17px);
     font-weight: 500;
     line-height: 1.5;
   }
 
   button {
     font-family: "Open Sans", sans-serif;
-    font-size: clamp(14px, 2vw, 16px);
+    font-size: clamp(15px, 2vw, 17px);
     font-weight: 500;
     line-height: 1.5;
   }
 
   input {
     font-family: "Open Sans", sans-serif;
-    font-size: clamp(14px, 2vw, 16px);
+    font-size: clamp(15px, 2vw, 17px);
     font-weight: 400;
     line-height: 1.5;
   }
