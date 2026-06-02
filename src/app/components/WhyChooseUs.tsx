@@ -38,7 +38,7 @@ export function WhyChooseUs() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-section-pink overflow-hidden">
+    <section ref={sectionRef} className="relative py-24 bg-section-pink overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row items-stretch gap-0">
           

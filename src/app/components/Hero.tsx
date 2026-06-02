@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { Link } from "react-router";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -35,7 +35,7 @@ export function Hero() {
           alt="Neel Dentistry Team"
           className="w-full h-full object-cover object-center"
           style={{ transform: "scale(1.15)" }}
-          fetchPriority="high"
+          {...{ fetchpriority: "high" }}
           decoding="async"
         />
         <div className="absolute inset-0 bg-black/45" />
