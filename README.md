@@ -76,8 +76,8 @@ Configure the host to serve `index.html` for SPA routing.
 | **Project Owner** | Vigneshwar Ramadoss |
 | **Frontend Lead** | Vigneshwar Ramadoss |
 | **UI/UX Designer** | Vigneshwar Ramadoss |
-| **DevOps** | (Add name) |
-| **Contributors** | Open to community contributions |
+| **DevOps** | ChanakiyaKshatriyaArivoli |
+| **Contributors** | The Dot |
 
 Feel free to reach out via the repository's Issues page for questions, feature requests, or help.
 
